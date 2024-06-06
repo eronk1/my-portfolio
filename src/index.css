@@ -1,11 +1,16 @@
 :root {
-  
+  --primary-color: #FFFA5A;
+    --primary-tint-one: #797300;
+  --secondary-color: #013bb0;
+    --secondary-tint-one: #6C7980;
+  --cta-color: #8D00C4;
+    --cta-tint-one: #f8eefd;
 }
 *{
   font-family: "Crimson Pro", serif;
 }
 html{
-  
+  background-color: var(--primary-color);
 }
 body{
   margin: 0;

@@ -1,0 +1,43 @@
+.headerParent{
+    width: 100vw;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    display: flex;
+}
+.headerParent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cta-color);
+    opacity: 0.1;
+    filter: blur(0.1rem);
+    z-index: -1;
+  }
+  
+.name{
+    margin: auto;
+    margin-left: 2rem;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+.contactMe{
+    margin: auto;
+    margin-right: 2rem;
+    color: var(--cta-color);
+    background: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.4rem;
+    text-align: center;
+    margin: 0.5rem 2rem 0.5rem 0;
+}
+.contactMe:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+}

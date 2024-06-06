@@ -1,13 +1,14 @@
 import { useState } from 'react'
-
 import './App.css'
-
+import Headers from './Headers/Headers.jsx'
+import HomePage from './Contents/HomePage.jsx'
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState('Home')
 
   return (
     <div>
-
+      <Headers currentPage={currentPage} />
+      <HomePage />
     </div>
   )
 }
