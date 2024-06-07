@@ -1,13 +1,16 @@
 :root {
-  --primary-color: #FFFA5A;
+  --primary-color: #FFFCA4;
     --primary-tint-one: #797300;
-  --secondary-color: #013bb0;
+  --secondary-color: #293246;
     --secondary-tint-one: #6C7980;
-  --cta-color: #8D00C4;
+  --cta-color: #6f009b;
     --cta-tint-one: #f8eefd;
 }
 *{
-  font-family: "Crimson Pro", serif;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html{
   background-color: var(--primary-color);

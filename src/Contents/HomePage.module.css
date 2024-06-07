@@ -1,0 +1,48 @@
+.homePageParent{
+    margin-top: 5rem;
+    width: 100vw;
+    height: fit-content;
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: left;
+    gap: 5rem;
+    padding: 5rem 0rem 5rem 5rem;
+}
+.homeText{
+    margin: auto 0;
+    display: grid;
+    grid-template-rows: repeat(5,auto);
+    gap: 1rem;
+}
+.imageSection{
+    margin: auto 0;
+}
+.homeImage{
+    height: 30rem;
+    width: 30rem;
+    border-radius: 0.2rem;
+    border: 2rem var(--secondary-color) groove;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3), 0 1.5rem 5rem rgba(0, 0, 0, 0.3);
+}
+.name{
+    font-size: 1.5rem;
+}
+.jobTitle{
+    font-weight: 600;
+    font-size: 3rem;
+}
+.socialLinks{
+    border-radius: 0.2rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.socialLinks img{
+    width: 3rem;
+    height: 3rem;
+    margin-right: auto;
+}
+.socialLinks img:hover{
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.1rem var(--cta-color));
+}
