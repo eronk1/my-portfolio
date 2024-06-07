@@ -1,5 +1,5 @@
 .homePageParent{
-    margin-top: 5rem;
+    margin-top: 2rem;
     width: 100vw;
     height: fit-content;
     color: var(--secondary-color);
@@ -44,5 +44,5 @@
 }
 .socialLinks img:hover{
     cursor: pointer;
-    filter: drop-shadow(0 0 0.1rem var(--cta-color));
+    filter: drop-shadow(0 0 0.1rem var(--secondary-color));
 }

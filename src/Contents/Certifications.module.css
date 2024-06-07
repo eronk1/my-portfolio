@@ -1,0 +1,21 @@
+.parent{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+.parent::before{
+    background-color: var(--secondary-color);
+    opacity: 0.1;
+}
+.parent .title{
+    font-size: 1.5rem;
+}
+.certParent{
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    gap: 2rem;
+}
+.certParent img{
+    height: 15rem;
+    width: 15rem;
+}
