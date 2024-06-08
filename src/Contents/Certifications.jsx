@@ -3,11 +3,11 @@ import s from './Certifications.module.css';
 export default function Certifications() {
   return (
     <div className={s.parent}>
-        <p className='title'>Certifications</p>
+        <p className={s.title}>IT Certifications</p>
         <div className={s.certParent}>
-            <iframe src="/ccna.pdf" width="100%" height="500px"></iframe>
-            <img src="/security+.pdf" alt="Security+" />
-            <img src="/a+.pdf" alt="A+" />
+            <img src="/ccna.jpg" alt="CCNA" />
+            <img src="/security+.jpg" alt="Security+" />
+            <img src="/a+.jpg" alt="A+" />
         </div>
     </div>
   )

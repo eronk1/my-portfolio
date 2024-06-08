@@ -1,21 +1,22 @@
 .parent{
     display: grid;
     grid-template-rows: auto auto;
-}
-.parent::before{
-    background-color: var(--secondary-color);
-    opacity: 0.1;
+    height: fit-content;
+    background-color: var(--third-tint-two);
+    color: var(--secondary-color);
 }
 .parent .title{
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 .certParent{
     height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(3,auto);
+    display: flex;
     gap: 2rem;
+    justify-content: space-between;
 }
 .certParent img{
-    height: 15rem;
-    width: 15rem;
+    height: 20rem;
+    border-radius: 0.4rem;
 }
+

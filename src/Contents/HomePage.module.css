@@ -1,12 +1,10 @@
 .homePageParent{
-    margin-top: 2rem;
-    width: 100vw;
     height: fit-content;
     color: var(--secondary-color);
     display: flex;
     justify-content: left;
-    gap: 5rem;
-    padding: 5rem 0rem 5rem 5rem;
+    gap: 3rem;
+    background-color: var(--third-tint-one);
 }
 .homeText{
     margin: auto 0;
@@ -25,7 +23,7 @@
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3), 0 1.5rem 5rem rgba(0, 0, 0, 0.3);
 }
 .name{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .jobTitle{
     font-weight: 600;
@@ -35,7 +33,7 @@
     border-radius: 0.2rem;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(4,1fr);
 }
 .socialLinks img{
     width: 3rem;
@@ -44,5 +42,5 @@
 }
 .socialLinks img:hover{
     cursor: pointer;
-    filter: drop-shadow(0 0 0.1rem var(--secondary-color));
+    filter: drop-shadow(0 0 0.1rem grey);
 }

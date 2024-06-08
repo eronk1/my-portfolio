@@ -1,0 +1,12 @@
+#all-main-section-parent{
+    display: flex;
+    flex-direction: column;
+    margin: 7rem auto;
+    gap: 5rem;
+}
+#all-main-section-parent > *{
+    margin: 0 auto;
+    border-radius: 1rem;
+    width: 88rem;
+    padding: 3rem;
+}

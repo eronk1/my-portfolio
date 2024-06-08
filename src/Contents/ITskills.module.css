@@ -1,0 +1,51 @@
+.ITskillsParent{
+    display: grid;
+    grid-template-rows: repeat(2,auto);
+    place-content: baseline;
+    background-color: var(--third-tint-three);
+}
+.ITskillsTitle{
+    color: var(--secondary-color);
+    font-size: 2rem;
+}
+.scrollList{
+    flex-wrap: wrap;
+}
+.scrollDownContainerParent{
+    color: var(--secondary-color);
+    border-radius: 0.5rem;
+    background-color: var(--third-tint-three);
+}
+.scrollContainerTitle{
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+}
+.scrollContainerParent{
+    display: flex;
+    flex-direction: column;
+}
+.scrollContainerParent li{
+    list-style-type: disc;
+    margin-left: 3rem;
+    line-height: 2;
+}
+.scrollContainerParent > *{
+    font-size: 1.2rem;
+}
+.scrollHeaderParent{
+    display: flex;
+}
+.scrollHeaderParent:hover, .scrollHeaderParent > *:hover {
+    cursor: pointer;
+}
+.scrollContainerTitle{
+
+}
+.scrollOpenSignal{
+    margin: auto;
+    margin-right: 2rem;
+}
