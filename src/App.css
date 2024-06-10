@@ -3,10 +3,11 @@
     flex-direction: column;
     margin: 7rem auto;
     gap: 5rem;
+    margin-top: 100vh;
 }
-#all-main-section-parent > *{
+/* #all-main-section-parent > *{
     margin: 0 auto;
     border-radius: 1rem;
     width: 88rem;
     padding: 3rem;
-}
+} */

@@ -10,8 +10,8 @@ function App() {
   return (
     <div>
       <Headers currentPage={currentPage} />
-      <div id='all-main-section-parent'>
-        <HomePage />
+      <HomePage />
+      <div id='all-main-section-parent' style={{ transform: `translateY(-${scrollY}px)`}}>
         <Certifications />
         <ITskills />
       </div>

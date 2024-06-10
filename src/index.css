@@ -1,15 +1,15 @@
 :root {
-  --primary-color: #FFFCA4;
-    --primary-tint-one: #fffb7a;
-  --secondary-color: rgb(0, 0, 106);
-    --third-tint-one: rgba(0, 0, 106, 0.3);
-    --second-tint-two: rgba(0, 0, 106, 0.45);
-    --second-tint-three: rgba(0, 0, 106, 0.60);
-  --third-color: hsl(246, 98%, 78%);
-    --third-tint-one: rgba(154, 142, 254, 0.3);
-    --third-tint-two: rgba(154, 142, 254, 0.4);
-    --third-tint-three: rgba(154, 142, 254, 0.5);
-    --third-tint-four: rgba(154, 142, 254, 0.6);
+  --primary-color:rgb(46, 46, 46);
+    --primary-tint-one: rgba(46, 46, 46, 0.9);
+  --secondary-color: rgb(230, 230, 230);
+    --third-tint-one: rgba(230, 230, 230, 0.3);
+    --second-tint-two: rgba(230, 230, 230, 0.45);
+    --second-tint-three: rgba(230, 230, 230, 0.60);
+  --third-color: rgb(40, 36, 87);
+    --third-tint-one: rgba(255, 252, 164, 0.3);
+    --third-tint-two: rgba(255, 252, 164, 0.4);
+    --third-tint-three: rgba(255, 252, 164, 0.5);
+    --third-tint-four: rgba(255, 252, 164, 0.6);
   --cta-color: rgb(247, 86, 89);
     --cta-tint-one: rgba(247, 86, 89, 0.30);
     --cta-tint-two: rgba(247, 86, 89, 0.45);
