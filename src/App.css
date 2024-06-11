@@ -1,11 +1,11 @@
 #all-main-section-parent{
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin:100vh auto;
     padding: 7rem 0;
     gap: 7rem;
-    margin-top: 100vh;
-    backdrop-filter: blur(5rem);
+    backdrop-filter: blur(1rem);
+    padding-bottom: 100vh; /*temporary*/
 }
 /* #all-main-section-parent > *{
     margin: 0 auto;
