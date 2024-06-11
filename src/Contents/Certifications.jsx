@@ -5,9 +5,18 @@ export default function Certifications() {
     <div className={s.parent}>
         <p className={s.title}>IT Certifications</p>
         <div className={s.certParent}>
-            <img src="/ccna.jpg" alt="CCNA" />
-            <img src="/security+.jpg" alt="Security+" />
-            <img src="/a+.jpg" alt="A+" />
+          <div>
+            <p className={s.certTitle}>Cisco CCNA</p>
+            {/* <img src="/certifications/ccna.jpg" alt="CCNA" /> */}
+          </div>
+          <div>
+            <p className={s.certTitle}>CompTIA Security+</p>
+            {/* <img src="/certifications/security+.png" alt="Security+" /> */}
+          </div>
+          <div>
+            <p className={s.certTitle}>CompTIA A+</p>
+            {/* <img src="/certifications/a+.png" alt="A+" /> */}
+          </div>
         </div>
     </div>
   )

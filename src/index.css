@@ -1,11 +1,11 @@
 :root {
-  --primary-color:rgb(46, 46, 46);
+  --primary-color:#2e2e2e;
     --primary-tint-one: rgba(46, 46, 46, 0.9);
   --secondary-color: rgb(230, 230, 230);
     --third-tint-one: rgba(230, 230, 230, 0.3);
     --second-tint-two: rgba(230, 230, 230, 0.45);
     --second-tint-three: rgba(230, 230, 230, 0.60);
-  --third-color: rgb(40, 36, 87);
+  --third-color: #282457;
     --third-tint-one: rgba(255, 252, 164, 0.3);
     --third-tint-two: rgba(255, 252, 164, 0.4);
     --third-tint-three: rgba(255, 252, 164, 0.5);

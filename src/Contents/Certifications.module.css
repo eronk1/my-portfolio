@@ -2,11 +2,10 @@
     display: grid;
     grid-template-rows: auto auto;
     height: fit-content;
-    background-color: var(--third-tint-two);
     color: var(--secondary-color);
 }
 .parent .title{
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 .certParent{
@@ -16,7 +15,8 @@
     justify-content: space-between;
 }
 .certParent img{
-    height: 20rem;
-    border-radius: 0.4rem;
+    height: 2rem;
 }
-
+.certTitle{
+    font-size: 2rem;
+}

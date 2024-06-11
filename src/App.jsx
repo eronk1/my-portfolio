@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Headers from './Headers/Headers.jsx'
 import HomePage from './Contents/HomePage.jsx'
 import Certifications from './Contents/Certifications.jsx'
 import ITskills from './Contents/ITskills.jsx'
+import ScrollHandler from './more-stuff/ScrollHandler.jsx'
+
 function App() {
   const [currentPage, setCurrentPage] = useState('Home')
+  const [checkScrolledStart, setCheckScrolledStart] = useState(1);
 
   return (
     <div>
+      <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
       <Headers currentPage={currentPage} />
-      <HomePage />
-      <div id='all-main-section-parent' style={{ transform: `translateY(-${scrollY}px)`}}>
+      <HomePage back checkScrolledStart={checkScrolledStart} />
+      <div id='all-main-section-parent'>
         <Certifications />
         <ITskills />
       </div>

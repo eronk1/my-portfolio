@@ -1,9 +1,10 @@
 import React, {useState, useEffect,useRef} from 'react'
 import s from './HomePage.module.css'
+import GetLogoIcon from '../more-stuff/GetLogoIcon.jsx';
 
-export default function HomePage() {
+export default function HomePage({checkScrolledStart}) {
   return (
-    <div className={s.homePageParent}>
+    <div id='all-main-section-home-page-parent' className={s.homePageParent}>
       <div className={s.homeText}>
         <p className={s.name}>✨ Seon Kim ✨</p>
         <p className={s.jobTitle}>IT Specialist & Web Developer</p>
@@ -14,7 +15,7 @@ export default function HomePage() {
           <img tabIndex={9} onClick={()=>window.open('https://www.credly.com/users/seon-kim.37523a11', '_blank')} src="/credly.svg" alt="Credly" />
         </div>
       </div>
-      <DVDthing />
+      {checkScrolledStart==1 && <DVDthing />}
     </div>
   )
 }
@@ -28,7 +29,7 @@ const DVDthing = () => {
   const [velocity, setVelocity] = useState({ dx: 1, dy: 0.5 });
   const [acceleration, setAcceleration] = useState({ ax: 0.2, ay: 0.2 });
   const [text, setText] = useState('Cisco');
-  const texts = ['Cisco', 'Firefox', 'JavaScript', 'VS Code'];
+  const texts = ['Cisco', 'Firefox', 'JavaScript', 'VS Code','Linux'];
   const collisionBuffer = 2; // Buffer to prevent repeated collisions
 
   useEffect(() => {
@@ -117,7 +118,7 @@ const DVDthing = () => {
         style={{ top: `${position.top}px`, left: `${position.left}px`, position: 'absolute' }}
       >
         <p className={s.iLove}><span className={s.left}>I 💗</span><span className={s.right}>{text}</span></p>
-        <img className={s.logoIcon} src={`/logoIcons/${text}.svg`} alt={text} />
+        <GetLogoIcon item={text} />
       </div>
     </div>
   );
