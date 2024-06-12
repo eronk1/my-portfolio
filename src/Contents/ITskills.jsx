@@ -3,8 +3,50 @@ import { motion } from 'framer-motion';
 import s from './ITskills.module.css'
 export default function ITskills() {
     let ciscoWLC = {
-        catagory: 'Configuring AP using WLC',
-        subCatagory: ["Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos.","Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos.","Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos."]
+        catagory: 'Configuring WLC',
+        subCatagory: [
+            "",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos."
+        ]
+    }
+    let awsSkill = {
+        catagory: 'AWS',
+        subCatagory: [
+            "Configuring EC2 instance",
+            "Configuring Application Load Balancer",
+            "Installing a basic SSL Certificate",
+            'Reverse proxy with nginx',
+            'Pushing docker image into EC2 instance'
+        ]
+    }
+    let cloudflare = {
+        catagory: 'Cloudflare',
+        subCatagory: [
+            "Setting up DNS",
+            "Configuring DNS records",
+            "implementing security measures using cloudlfare"
+        ]
+    }
+    let activeDirectory = {
+        catagory: 'Active Directory',
+        subCatagory: [
+
+        ]
+    }
+    let splunk = {
+        catagory: 'Splunk',
+        subCatagory: [
+
+        ]
+    }
+    let kaliLinux = {
+        catagory: 'Kali Linux (ethical)',
+        subCatagory: [
+            'Passive & Active Reconaissance',
+            'Password attacks',
+            'Directory traversal attack'
+        ]
     }
 
 
@@ -13,7 +55,11 @@ export default function ITskills() {
             <p className={s.ITskillsTitle}>IT Skills</p>
             <div className={s.scrollList}>
                 <ScrollDownList skills={ciscoWLC} />
-                <ScrollDownList skills={ciscoWLC} />
+                <ScrollDownList skills={awsSkill} />
+                <ScrollDownList skills={cloudflare} />
+                <ScrollDownList skills={activeDirectory} />
+                <ScrollDownList skills={splunk} />
+                <ScrollDownList skills={kaliLinux} />
             </div>
         </div>
     )
