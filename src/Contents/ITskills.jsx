@@ -13,6 +13,7 @@ export default function ITskills() {
             <p className={s.ITskillsTitle}>IT Skills</p>
             <div className={s.scrollList}>
                 <ScrollDownList skills={ciscoWLC} />
+                <ScrollDownList skills={ciscoWLC} />
             </div>
         </div>
     )
@@ -35,7 +36,8 @@ const ScrollDownList = ({skills}) => {
             style={{filter: filterAmount}}
             onMouseEnter={()=>setFilterAmount("brightness(110%)")}
             onMouseLeave={()=> isOpen ? "" : setFilterAmount("")}
-            onClick={toggleList} className={s.scrollDownContainerParent}
+            onClick={toggleList}
+            className={s.scrollDownContainerParent}
         >
             <div className={s.scrollHeaderParent}>
                 <button className={s.scrollContainerTitle}>{catagory}</button>

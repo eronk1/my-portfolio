@@ -6,17 +6,25 @@
 }
 .parent .title{
     font-size: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
+    text-align: center;
 }
 .certParent{
     height: fit-content;
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
     justify-content: space-between;
+    width: fit-content;
+    margin: auto;
 }
 .certParent img{
-    height: 2rem;
+    height: 38px;
 }
 .certTitle{
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+.certPartParent{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
 }
