@@ -18,6 +18,14 @@
     padding: 0 5rem;
     padding-top: 3.5rem;
 }
+.skillColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    gap: 5rem;
+    margin-top: 0;
+}
 .scrollDownContainerParent{
     color: var(--secondary-color);
     border-radius: 0.5rem;
@@ -26,6 +34,7 @@
     border: 0.2rem var(--secondary-color) solid;
     padding-right: 2rem;
     padding-left: 1rem;
+    transition: 0.1s;
 }
 .scrollContainerTitle{
     font-size: 1.5rem;

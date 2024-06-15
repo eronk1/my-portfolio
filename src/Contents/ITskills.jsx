@@ -25,7 +25,7 @@ export default function ITskills() {
         subCatagory: [
             "Setting up DNS",
             "Configuring DNS records",
-            "implementing security measures using cloudlfare"
+            "implementing cloudflare's SSL Certificate"
         ]
     }
     let activeDirectory = {
@@ -41,11 +41,12 @@ export default function ITskills() {
         ]
     }
     let kaliLinux = {
-        catagory: 'Kali Linux (ethical)',
+        catagory: 'Penetration Testing',
         subCatagory: [
+            'Kali Linux',
             'Passive & Active Reconaissance',
             'Password attacks',
-            'Directory traversal attack'
+            'Burp Suite'
         ]
     }
 
@@ -54,12 +55,16 @@ export default function ITskills() {
         <div className={s.ITskillsParent}>
             <p className={s.ITskillsTitle}>IT Skills</p>
             <div className={s.scrollList}>
-                <ScrollDownList skills={ciscoWLC} />
-                <ScrollDownList skills={awsSkill} />
-                <ScrollDownList skills={cloudflare} />
-                <ScrollDownList skills={activeDirectory} />
-                <ScrollDownList skills={splunk} />
-                <ScrollDownList skills={kaliLinux} />
+                <div className={s.skillColumn}>
+                    <ScrollDownList skills={ciscoWLC} />
+                    <ScrollDownList skills={awsSkill} />
+                    <ScrollDownList skills={cloudflare} />
+                </div>
+                <div className={s.skillColumn}>
+                    <ScrollDownList skills={activeDirectory} />
+                    <ScrollDownList skills={splunk} />
+                    <ScrollDownList skills={kaliLinux} />
+                </div>
             </div>
         </div>
     )
@@ -70,6 +75,7 @@ const ScrollDownList = ({skills}) => {
     const [isOpen, setIsOpen] = useState(false);
     const {catagory, subCatagory} = skills;
     let [filterAmount, setFilterAmount] = useState("");
+    
     const toggleList = () => {
         setIsOpen((old) => {
             setFilterAmount(!old ? "brightness(110%)" : "")
@@ -79,9 +85,14 @@ const ScrollDownList = ({skills}) => {
 
     return (
         <div
-            style={{filter: filterAmount}}
+            style={{filter: filterAmount, transform: (isOpen && filterAmount == "brightness(110%)")|| filterAmount == "brightness(105%)" ? 'scale(1.05)' :
+                (!isOpen && filterAmount == "brightness(110%)") ? 'scale(1.1)' :
+                'scale(1)'}}
             onMouseEnter={()=>setFilterAmount("brightness(110%)")}
             onMouseLeave={()=> isOpen ? "" : setFilterAmount("")}
+            onFocus={() => setFilterAmount("brightness(110%)")}
+            onBlur={() => setFilterAmount(isOpen ? "brightness(110%)" : "")}
+            onMouseDown={() => setFilterAmount("brightness(105%)")}
             onClick={toggleList}
             className={s.scrollDownContainerParent}
         >

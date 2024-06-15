@@ -5,7 +5,7 @@ import HomePage from './Contents/HomePage.jsx'
 import Certifications from './Contents/Certifications.jsx'
 import ITskills from './Contents/ITskills.jsx'
 import ScrollHandler from './more-stuff/ScrollHandler.jsx'
-
+import ITProjects from './Contents/ITProjects.jsx'
 function App() {
   const [currentPage, setCurrentPage] = useState('Home')
   const [checkScrolledStart, setCheckScrolledStart] = useState(1);
@@ -18,6 +18,7 @@ function App() {
       <div id='all-main-section-parent'>
         <Certifications />
         <ITskills />
+        <ITProjects />
       </div>
     </div>
   )

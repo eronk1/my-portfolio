@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     margin:100vh auto;
-    padding: 15rem 0;
-    gap: 15rem;
+    padding: 20rem 0;
+    gap: 30rem;
     backdrop-filter: blur(1rem);
     box-shadow: 0 -0.2rem 1rem var(--secondary-color);
 }
