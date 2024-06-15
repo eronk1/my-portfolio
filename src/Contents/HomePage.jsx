@@ -292,7 +292,7 @@ const DVDthing = ({checkScrolledStart}) => {
     <motion.div className={s.box} ref={boxRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: checkScrolledStart==1 ? 1 : 0 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
     >
       <div
         className={s.logo}

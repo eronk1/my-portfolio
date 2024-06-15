@@ -1,0 +1,9 @@
+.AllProjectsParent{
+    width: 100%;
+}
+.AllProjectsParent > *{
+    padding-top: 5rem;
+}
+.AllProjectsParent *{
+    color: var(--secondary-color);
+}

@@ -1,36 +1,45 @@
 import React, { useRef, useState } from 'react'
 import s from './ITProjects.module.css'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
+
 export default function ITProjects() {
+
     const ciscoWLC = {
         title: 'Configuring AP with WLC',
         desc: 'Configured cisco access point and its group with Catalyst 9800-CL embedded Wireless Controller.',
-        imgLink: ''
+        imgLink: '/water4.jpg',
+        navigateLink: 'cisco-wlc'
     }
     const aws = {
-        title: 'Setting Up secure website on AWS',
-        desc: 'Utilized services: EC2 instance, Application Load Balancer, Access Credential Manager (ACM)',
-        imgLink: ''
+        title: 'Established a secure website on AWS',
+        desc: 'Utilized AWS services: EC2 instance, Application Load Balancer, Access Credential Manager (ACM)',
+        imgLink: '/projectAWS/awsProject.jpg',
+        navigateLink: 'secure-website-with-aws'
     }
     const cloudflare = {
         title: 'DNS & SSL Certificate with cloudflare',
         desc: 'Bought a domain, configured DNS records, obtained an SSL Certificate from cloudflare, and set it up on nginx.',
-        imgLink: ''
+        imgLink: '/water4.jpg',
+        navigateLink: 'cloudflare-dns-ssl-config'
     }
     const activeDirectory = {
         title: 'Configuring Active Directory',
         desc: 'Set up user in a OU, implemented a powershell script, and set up DHCP',
-        imgLink: ''
+        imgLink: '/water4.jpg',
+        navigateLink: 'active-directory'
     }
     const splunk = {
         title: 'Navigating through Splunk',
         desc: '',
-        imgLink: ''
+        imgLink: '/water4.jpg',
+        navigateLink: 'navigate-splunk'
     }
     const kaliLinux = {
         title: 'Basic Penetration Testing Using Kali',
         desc: '',
-        imgLink: ''
+        imgLink: '/water4.jpg',
+        navigateLink: 'kali-linux-pen-test'
     }
   return (
     <div className={s.ITProjectsParent}>
@@ -50,16 +59,23 @@ export default function ITProjects() {
     </div>
   )
 }
+
+
 function ProjectSec({projectContent}){
-    const {title, desc, imgLink} = projectContent
+    const navigate = useNavigate();
+    const {title, desc, imgLink, navigateLink} = projectContent
     const [isOpen, setIsOpen] = useState(false);
     return(
         <div
+            tabIndex={0}
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
+            onFocus={() => setIsOpen(true)}
+            onBlur={() => setIsOpen(false)}
             className={s.projectSecParent}
+            onClick={()=>navigate(`/project/${navigateLink}`)}
         >
-            <img className={s.projectImg} src="/water4.jpg" alt={title} />
+            <img className={s.projectImg} src={imgLink} alt={title} />
             {isOpen && 
                 <motion.div 
                     className={s.projectContentParent}
