@@ -1,0 +1,22 @@
+.SmallTextParent{
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+}
+
+.MediumTextParent{
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.LargeTextParent{
+    font-size: 3rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.CommandBlockParent{
+    
+}
+.CommandBlockParent .eachChild{
+    
+}
