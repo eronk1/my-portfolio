@@ -3,7 +3,7 @@ import s from './Certifications.module.css';
 export default function Certifications() {
   return (
     <div className={s.parent}>
-        <p className={s.title}>IT Certifications</p>
+        <p className={s.title} tabIndex={0}>IT Certifications</p>
         <div className={s.certParent}>
           <div className={s.certPartParent}>
             <p className={s.certTitle}>Cisco CCNA</p>

@@ -106,25 +106,25 @@ export default function HomePage({ checkScrolledStart }) {
           transition={{ duration: 1, ease: 'easeInOut' }}
         >
           <img
-            tabIndex={6}
+            tabIndex={0}
             onClick={() => window.open('https://www.linkedin.com/in/seon-mo-kim/', '_blank')}
             src="/linkedIn.svg"
             alt="LinkedIn"
           />
           <img
-            tabIndex={7}
+            tabIndex={0}
             onClick={() => window.open('https://mail.google.com/mail/?view=cm&fs=1&to=skimnumber@gmail.com', '_blank')}
             src="/gmail.svg"
             alt="Gmail"
           />
           <img
-            tabIndex={8}
+            tabIndex={0}
             onClick={() => window.open('https://github.com/eronk1/', '_blank')}
             src="/github.svg"
             alt="Github"
           />
           <img
-            tabIndex={9}
+            tabIndex={0}
             onClick={() => window.open('https://www.credly.com/users/seon-kim.37523a11', '_blank')}
             src="/credly.svg"
             alt="Credly"

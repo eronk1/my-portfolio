@@ -20,9 +20,6 @@
 .contactForm textarea{
     height: 15rem;
 }
-.contactForm input:focus-visible, .contactForm textarea:focus-visible{
-    outline: none;
-}
 .submitForm{
     background: var(--cta-color);
     color: var(--secondary-color);
