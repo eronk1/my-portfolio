@@ -9,7 +9,7 @@ export default function Footers() {
       {location.pathname !== '/home' && (
         <div className={s.footerParent}>
           <div className={s.midSec}>
-            <h1>Contact Me</h1>
+            <h1>My Pages</h1>
             <EndSec />
           </div>
         </div>

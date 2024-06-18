@@ -69,7 +69,7 @@ export default function ContactMePage() {
 
   return (
     <div className={s.contactForm}>
-      <h2>Reach out</h2>
+      <h2>Contact Me</h2>
       <form className={s.contactActualForm} onSubmit={handleSubmit}>
         <div>
           <input
