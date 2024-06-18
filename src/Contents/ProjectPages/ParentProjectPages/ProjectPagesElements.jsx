@@ -1,5 +1,5 @@
 import React from 'react'
-import s from '/ProjectPagesElements.module.css'
+import s from './ProjectPagesElements.module.css'
 
 export function SmallText({children}) {
     return (
@@ -24,17 +24,32 @@ export function LargeText({children}) {
       </div>
     )
 }
+export function TitleText({children}) {
+  return (
+    <div className={s.TitleTextParent}>
+      <div className={s.TitleText}>
+        {children}
+      </div>
+    </div>
+  )
+}
 
-export function CommandBlock({children}){
-    return(
-        <div className={s.CommandBlockParent}>
-            <p>Command Block</p>
-            {React.Children.map(children, (child, index)=>{
-                <div className={s.eachChild}>
-
-                </div>
-            })}
-            {children}
-        </div>
-    )
+export function LargeSection({children}){
+  return(
+    <div className={s.LargeSectionParent}>
+      {children}
+    </div>
+  )
+}
+export function MediumSection({children}){
+  return(
+    <div className={s.MediumSectionParent}>
+      {children}
+    </div>
+  )
+}
+export function ImgSec({ImgSrc}){
+  return(
+    <img className={s.ImgSecParent} src={`/projectAWS/${ImgSrc}`} alt="Image failed to load :(" />
+  )
 }

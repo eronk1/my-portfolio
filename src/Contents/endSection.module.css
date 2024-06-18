@@ -1,0 +1,23 @@
+.socialLinks{
+    border-radius: 0.2rem;
+    width: 20rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    margin: 0 auto;
+    place-content: center;
+}
+.socialLinks img{
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: 0.1s;
+    filter: brightness(90%);
+    margin: 0 auto;
+}
+.socialLinks img:hover,.socialLinks img:focus {
+    transform: scale(1.2);
+    cursor: pointer;
+    filter: brightness(110%);
+}
+.socialLinks img:active{
+    transform: scale(1.1);
+}

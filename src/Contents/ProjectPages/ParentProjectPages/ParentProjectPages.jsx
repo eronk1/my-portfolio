@@ -8,10 +8,9 @@ export default function ParentProjectPages() {
   return (
     <div className={s.AllProjectsParent}>
         {projectName=='cisco-wlc' && <WebServerAWS /> }
-        {projectName=='secure-website-with-aws' && <WebServerAWS /> }
+        {projectName=='secure-website-with-aws-and-cloudflare' && <WebServerAWS /> }
         {projectName=='cloudflare-dns-ssl-config' && <WebServerAWS /> }
         {projectName=='active-directory' && <WebServerAWS /> }
-        {projectName=='navigate-splunk' && <WebServerAWS /> }
         {projectName=='kali-linux-pen-test' && <WebServerAWS /> }
     </div>
   )

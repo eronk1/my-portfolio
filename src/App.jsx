@@ -8,12 +8,12 @@ import ITskills from './Contents/ITskills.jsx'
 import ScrollHandler from './more-stuff/ScrollHandler.jsx'
 import ITProjects from './Contents/ITProjects.jsx'
 import ParentProjectPages from './Contents/ProjectPages/ParentProjectPages/ParentProjectPages.jsx'
-
+import Footers from './Footers/Footers.jsx'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home')
   const [checkScrolledStart, setCheckScrolledStart] = useState(1);
-
+  
   return (
     <Router>
       <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
@@ -23,6 +23,7 @@ function App() {
         <Route exact path='/project/:projectName' element={<ParentProjectPages />} />
         <Route exact path='*' element={<Navigate to='/home' />} />
       </Routes>
+      <Footers />
     </Router>
   )
 }

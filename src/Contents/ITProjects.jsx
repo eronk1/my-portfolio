@@ -12,29 +12,19 @@ export default function ITProjects() {
         navigateLink: 'cisco-wlc'
     }
     const aws = {
-        title: 'Established a secure website on AWS',
-        desc: 'Utilized AWS services: EC2 instance, Application Load Balancer, Access Credential Manager (ACM)',
-        imgLink: '/projectAWS/awsProject.jpg',
-        navigateLink: 'secure-website-with-aws'
+        title: 'Secure Website with AWS and Cloudflare',
+        desc: 'My process of establishing a website with AWS services and securing it with cloudflare',
+        imgLink: '/projectAWS/awsProject.png',
+        navigateLink: 'secure-website-with-aws-and-cloudflare'
     }
-    const cloudflare = {
-        title: 'DNS & SSL Certificate with cloudflare',
-        desc: 'Bought a domain, configured DNS records, obtained an SSL Certificate from cloudflare, and set it up on nginx.',
-        imgLink: '/water4.jpg',
-        navigateLink: 'cloudflare-dns-ssl-config'
-    }
+    
     const activeDirectory = {
         title: 'Configuring Active Directory',
         desc: 'Set up user in a OU, implemented a powershell script, and set up DHCP',
         imgLink: '/water4.jpg',
         navigateLink: 'active-directory'
     }
-    const splunk = {
-        title: 'Navigating through Splunk',
-        desc: '',
-        imgLink: '/water4.jpg',
-        navigateLink: 'navigate-splunk'
-    }
+    
     const kaliLinux = {
         title: 'Basic Penetration Testing Using Kali',
         desc: '',
@@ -48,11 +38,9 @@ export default function ITProjects() {
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={ciscoWLC} />
                 <ProjectSec projectContent={aws} />
-                <ProjectSec projectContent={cloudflare} />
             </div>
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={activeDirectory} />
-                <ProjectSec projectContent={splunk} />
                 <ProjectSec projectContent={kaliLinux} />
             </div>
         </div>

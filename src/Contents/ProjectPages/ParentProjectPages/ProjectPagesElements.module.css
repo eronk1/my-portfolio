@@ -1,22 +1,70 @@
 .SmallTextParent{
     font-size: 1.2rem;
     color: var(--secondary-color);
+    opacity: 0.85;
 }
 
 .MediumTextParent{
     font-size: 1.5rem;
     color: var(--secondary-color);
-}
-
-.LargeTextParent{
-    font-size: 3rem;
-    color: var(--secondary-color);
     font-weight: 600;
 }
 
-.CommandBlockParent{
-    
+.LargeTextParent{
+    font-size: 2rem;
+    color: var(--secondary-color);
+    font-weight: 600;
 }
-.CommandBlockParent .eachChild{
-    
+.TitleTextParent {
+    width: 100%;
+    height: 30vh;
+    border: none;
+    z-index: -1;
+    background-color: #262e3b;
+    display: grid;
+    place-content: center;
+    margin-bottom: 10rem;
+}
+.TitleText{
+    color: var(--secondary-color);
+    font-weight: 650;
+    text-align: left;
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.TitleText h1{
+    font-size: 2.5rem;
+}
+.TitleText h2{
+    font-size: 1.5rem;
+    opacity: 0.85;
+}
+
+
+.LargeSectionParent{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25rem;
+}
+.LargeSectionParent > :first-child{
+    margin-top: 0;
+}
+.LargeSectionParent > :nth-child(2){
+    margin-top: 4rem;
+}
+
+.LargeSectionParent > :not(:first-child):not(:nth-child(2)){
+    margin-top: 8rem;
+}
+.MediumSectionParent{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.ImgSecParent{
+    border-radius: 0.5rem;
+    width: 100%;
 }

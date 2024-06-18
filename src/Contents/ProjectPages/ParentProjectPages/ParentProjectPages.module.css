@@ -3,6 +3,12 @@
 }
 .AllProjectsParent > *{
     padding-top: 5rem;
+    text-align: left;
+}
+.AllProjectsParent > * > *{
+    width: 80vw;
+    min-width: 30rem;
+    margin: 0 auto;
 }
 .AllProjectsParent *{
     color: var(--secondary-color);
