@@ -6,7 +6,7 @@
     text-align: left;
 }
 .AllProjectsParent > * > *{
-    width: 80vw;
+    width: 65vw;
     min-width: 30rem;
     margin: 0 auto;
 }
