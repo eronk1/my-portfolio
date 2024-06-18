@@ -103,3 +103,7 @@
   .downArrowSVG{
     cursor: pointer;
   }
+  .contactMeBoxParent{
+    display: grid;
+    place-content: center;
+  }
