@@ -8,7 +8,7 @@ export default function ITProjects() {
     const ciscoWLC = {
         title: 'Configuring AP with WLC',
         desc: 'Configured cisco access point and its group with Catalyst 9800-CL embedded Wireless Controller.',
-        imgLink: '/water4.jpg',
+        imgLink: '/ciscoWLC/0.png',
         navigateLink: 'cisco-wlc'
     }
     const aws = {
@@ -21,7 +21,7 @@ export default function ITProjects() {
     const activeDirectory = {
         title: 'Configuring Active Directory',
         desc: 'Set up user in a OU, implemented a powershell script, and set up DHCP',
-        imgLink: '/water4.jpg',
+        imgLink: '/activeDirectory/0.png',
         navigateLink: 'active-directory'
     }
     
