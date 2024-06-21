@@ -19,10 +19,10 @@ export default function ITProjects() {
     }
     
     const activeDirectory = {
-        title: 'Configuring Active Directory',
-        desc: 'Set up user in a OU, implemented a powershell script, and set up DHCP',
+        title: 'Configuring Active Directory & splunk',
+        desc: 'Set up the user in an OU, implemented a PowerShell script, and set up DHCP. Then, configured and tested Splunk by attacking with Kali.',
         imgLink: '/activeDirectory/0.png',
-        navigateLink: 'active-directory'
+        navigateLink: 'active-directory-and-splunk'
     }
     
     const kaliLinux = {

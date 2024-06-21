@@ -4,7 +4,7 @@ import { SmallText, MediumText, LargeText, TitleText, MediumSection, LargeSectio
 export default function WebServerAWS() {
   return (
     <div>
-      <TitleText>
+      <TitleText backC={'#1c2f6d'}>
         <h1>Secure Website with AWS and Cloudflare</h1>
         <h2>This article explains the process and challenges I encountered while setting up my website.</h2>
       </TitleText>
@@ -13,28 +13,28 @@ export default function WebServerAWS() {
         <MediumSection>
           <MediumText>SCP Key Pair</MediumText>
           <SmallText>First, I set up an EC2 instance, and while doing so, I created a key pair and saved it in a file so I could use it for file transfer.</SmallText>
-          <ImgSec ImgSrc="30.png" />
+          <ImgSec ImgSrc="/projectAWS/30.png" />
         </MediumSection>
         <MediumSection>
           <MediumText>File Transfer</MediumText>
           <SmallText>After setting up the EC2 instance, I transferred all my project files to it using the key I created.</SmallText>
-          <ImgSec ImgSrc="70.png" />
+          <ImgSec ImgSrc="/projectAWS/70.png" />
         </MediumSection>
         <MediumSection>
           <MediumText>EC2 Instance Security Group</MediumText>
           <SmallText>Then, I configured the EC2 instance to allow inbound traffic for only the necessary ports.</SmallText>
-          <ImgSec ImgSrc="90.png" />
+          <ImgSec ImgSrc="/projectAWS/90.png" />
         </MediumSection>
         <MediumSection>
           <MediumText>AWS Certificate Manager</MediumText>
           <SmallText>Using AWS Certificate Manager, I assigned a certificate to my app domain name (chat.cags2.com).</SmallText>
-          <ImgSec ImgSrc="180.png" />
+          <ImgSec ImgSrc="/projectAWS/180.png" />
         </MediumSection>
         <MediumSection>
           <MediumText>Application Load Balancer</MediumText>
           <SmallText>Then, I configured the EC2 instance to convert traffic from HTTPS to HTTP.</SmallText>
           <SmallText>For the most part, this allowed the EC2 instance to receive user traffic without any problems while still maintaining secure traffic with users. My website was securely up after this step.</SmallText>
-          <ImgSec ImgSrc="320.png" />
+          <ImgSec ImgSrc="/projectAWS/320.png" />
         </MediumSection>
       </LargeSection>
       <LargeSection>
@@ -45,7 +45,7 @@ export default function WebServerAWS() {
           <SmallText>Due to a recent cyberattack, all non-essential ports were blocked on my school campus, causing my website to lose some of its essential function in the school campus.</SmallText>
           <MediumText>Solution:</MediumText>
           <SmallText>I tried various methods, but I found out that Nginx was the most effective. By sending requests through URL parameters, translating them, and then forwarding them to its internal ports, the issue was resolved.</SmallText>
-          <ImgSec ImgSrc="340.png" />
+          <ImgSec ImgSrc="/projectAWS/340.png" />
         </MediumSection>
 
         <MediumSection>
@@ -53,9 +53,9 @@ export default function WebServerAWS() {
           <SmallText>While using the AWS free tier, I realized I was being charged for using the IP address in the Application Load Balancer.</SmallText>
           <MediumText>Solution:</MediumText>
           <SmallText>From the various methods I tried, I realized that using Cloudflare and installing a certificate onto the origin server was the best option so I created and downloaded the certificate in Cloudflare.</SmallText>
-          <ImgSec ImgSrc="360.png" />
+          <ImgSec ImgSrc="/projectAWS/360.png" />
           <SmallText>I configured Nginx to receive from port 443 with the downloaded certificate. I then enabled Full (strict) mode to establish HTTPS, allowing the load balancer to be removed entirely.</SmallText>
-          <ImgSec ImgSrc="370.png" />
+          <ImgSec ImgSrc="/projectAWS/370.png" />
         </MediumSection>
         <MediumSection>
           <MediumText>

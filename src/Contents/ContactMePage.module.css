@@ -26,6 +26,7 @@
     color: var(--secondary-color);
     text-align: center;
     transition: 0.1s;
+    margin: auto;
 }
 .submitForm:hover,.submitForm:focus{
     cursor: pointer;
