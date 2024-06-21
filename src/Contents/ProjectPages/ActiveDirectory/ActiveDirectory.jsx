@@ -13,7 +13,8 @@ export default function ActiveDirectory() {
         <LargeText>Initial setup</LargeText>
         <MediumSection>
           <MediumText>Diagram</MediumText>
-          <SmallText>First, I set up an EC2 instance, and while doing so, I created a key pair and saved it in a file so I could use it for file transfer.</SmallText>
+          <SmallText>This is all inside the virtual box.</SmallText>
+          <SmallText>There is a internal NAT named </SmallText>
           <ImgSec ImgSrc="/activeDirectory/5.png" />
         </MediumSection>
       </LargeSection>

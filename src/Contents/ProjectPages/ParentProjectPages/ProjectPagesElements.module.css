@@ -66,7 +66,7 @@
 .ImgSecParent {
     border-radius: 0.5rem;
     width: 100%;
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    cursor: zoom-in;
   }
   
   .imageContainer {
