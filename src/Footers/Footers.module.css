@@ -4,7 +4,6 @@
     background-color: black;
     color: var(--secondary-color);
     display: grid;
-    position: absolute;
 }
 .footerParent h1{
     font-size: 2rem;
