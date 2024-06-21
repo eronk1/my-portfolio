@@ -6,7 +6,7 @@ export default function ActiveDirectory() {
   return (
     <div>
       <TitleText backC={'#193f50'}>
-        <h1>Configuring Active Directory & splunk</h1>
+        <h1>Configuring Active Directory & Splunk</h1>
         <h2>Set up the user in an OU, implemented a PowerShell script, and set up DHCP. Then, configured and tested Splunk by attacking with Kali.</h2>
       </TitleText>
       <LargeSection>
