@@ -7,7 +7,7 @@ export default function ITProjects() {
 
     const ciscoWLC = {
         title: 'Configuring AP with WLC',
-        desc: 'Configured cisco access point and its group with Catalyst 9800-CL embedded Wireless Controller.',
+        desc: 'Configured cisco access point and its group with Catalyst 9800-CL Wireless Controller.',
         imgLink: '/ciscoWLC/0.png',
         navigateLink: 'cisco-wlc'
     }
