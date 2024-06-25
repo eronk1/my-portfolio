@@ -7,7 +7,7 @@ export default function ITProjects() {
 
     const ciscoWLC = {
         title: 'Configuring AP with WLC',
-        desc: 'Configured cisco access point and its group with Catalyst 9800-CL embedded Wireless Controller.',
+        desc: 'Configured cisco access point and its group with Catalyst 9800-CL Wireless Controller.',
         imgLink: '/ciscoWLC/0.png',
         navigateLink: 'cisco-wlc'
     }
@@ -19,7 +19,7 @@ export default function ITProjects() {
     }
     
     const activeDirectory = {
-        title: 'Configuring Active Directory & splunk',
+        title: 'Configuring Active Directory & Splunk',
         desc: 'Set up the user in an OU, implemented a PowerShell script, and set up DHCP. Then, configured and tested Splunk by attacking with Kali.',
         imgLink: '/activeDirectory/0.png',
         navigateLink: 'active-directory-and-splunk'

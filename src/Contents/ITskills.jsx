@@ -20,22 +20,9 @@ export default function ITskills() {
             'Pushing docker image into EC2 instance'
         ]
     }
-    let cloudflare = {
-        catagory: 'Cloudflare',
-        subCatagory: [
-            "Setting up DNS",
-            "Configuring DNS records",
-            "implementing cloudflare's SSL Certificate"
-        ]
-    }
+    
     let activeDirectory = {
         catagory: 'Active Directory',
-        subCatagory: [
-
-        ]
-    }
-    let splunk = {
-        catagory: 'Splunk',
         subCatagory: [
 
         ]
@@ -58,11 +45,9 @@ export default function ITskills() {
                 <div className={s.skillColumn}>
                     <ScrollDownList skills={ciscoWLC} />
                     <ScrollDownList skills={awsSkill} />
-                    <ScrollDownList skills={cloudflare} />
                 </div>
                 <div className={s.skillColumn}>
                     <ScrollDownList skills={activeDirectory} />
-                    <ScrollDownList skills={splunk} />
                     <ScrollDownList skills={kaliLinux} />
                 </div>
             </div>
