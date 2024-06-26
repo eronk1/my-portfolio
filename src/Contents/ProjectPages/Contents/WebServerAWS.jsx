@@ -1,5 +1,4 @@
 import React from 'react'
-import s from './WebServerAWS.module.css'
 import { SmallText, MediumText, LargeText, TitleText, MediumSection, LargeSection, ImgSec } from '../ParentProjectPages/ProjectPagesElements.jsx'
 export default function WebServerAWS() {
   return (

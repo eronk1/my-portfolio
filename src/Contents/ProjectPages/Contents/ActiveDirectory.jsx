@@ -1,11 +1,10 @@
 import React from 'react'
-import s from './ActiveDirectory.module.css'
 import { SmallText, MediumText, LargeText, TitleText, MediumSection, LargeSection, ImgSec } from '../ParentProjectPages/ProjectPagesElements.jsx'
 
 export default function ActiveDirectory() {
   return (
     <div>
-      <TitleText backC={'#193f50'}>
+      <TitleText backC={'#3645ca'}>
         <h1>Configuring Active Directory & Splunk</h1>
         <h2>Set up the user in an OU, implemented a PowerShell script, and set up DHCP. Then, configured and tested Splunk by attacking with Kali.</h2>
       </TitleText>
