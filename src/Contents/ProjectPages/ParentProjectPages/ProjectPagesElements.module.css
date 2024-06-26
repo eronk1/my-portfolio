@@ -46,7 +46,7 @@
 .LargeSectionParent{
     display: flex;
     flex-direction: column;
-    margin-bottom: 25rem;
+    margin-bottom: 15rem;
 }
 .LargeSectionParent > :first-child{
     margin-top: 0;
