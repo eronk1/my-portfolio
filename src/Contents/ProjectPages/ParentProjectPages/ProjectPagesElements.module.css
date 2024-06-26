@@ -94,6 +94,8 @@
     max-height: 90%;
     border-radius: 0.5rem;
     position: static;
+    object-fit: contain;
+    width: 90%;
   }
   .noScroll {
     overflow: hidden;
