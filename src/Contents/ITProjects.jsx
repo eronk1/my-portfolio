@@ -7,20 +7,20 @@ export default function ITProjects() {
 
     const ciscoWLC = {
         title: 'Configuring AP with WLC',
-        desc: 'Configured cisco access point and its group with Catalyst 9800-CL Wireless Controller.',
+        desc: 'Configured Cisco access point and its group with Catalyst 9800-CL Wireless Controller.',
         imgLink: '/ciscoWLC/0.png',
         navigateLink: 'cisco-wlc'
     }
     const aws = {
-        title: 'Secure Website with AWS and Cloudflare',
-        desc: 'My process of establishing a website with AWS services and securing it with cloudflare',
+        title: 'Securing and Setting Up a Website with AWS and Cloudflare',
+        desc: 'This article explains the process and challenges encountered while setting up my website.',
         imgLink: '/projectAWS/awsProject.png',
         navigateLink: 'secure-website-with-aws-and-cloudflare'
     }
     
     const activeDirectory = {
         title: 'Configuring Active Directory & Splunk',
-        desc: 'Set up the user in an OU, implemented a PowerShell script, and set up DHCP. Then, configured and tested Splunk by attacking with Kali.',
+        desc: 'Set up the user in an OU, implemented a PowerShell script, and configured DHCP. Then, configured and tested Splunk by attacking it with Kali.',
         imgLink: '/activeDirectory/0.png',
         navigateLink: 'active-directory-and-splunk'
     }

@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import s from './ITskills.module.css'
 export default function ITskills() {
     let ciscoWLC = {
-        catagory: 'Configuring WLC',
+        catagory: 'Cisco WLC',
         subCatagory: [
-            "",
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos.",
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, eos."
+            "Setting Up Access Point & WLC",
+            "Configuring AP functions",
+            "Configuring AP Security"
         ]
     }
     let awsSkill = {
@@ -24,7 +24,9 @@ export default function ITskills() {
     let activeDirectory = {
         catagory: 'Active Directory',
         subCatagory: [
-
+            "Creating OU",
+            "Automating tasks with powershell script",
+            'Configuring DHCP'
         ]
     }
     let kaliLinux = {
@@ -36,6 +38,22 @@ export default function ITskills() {
             'Burp Suite'
         ]
     }
+    let splunk = {
+        catagory: 'Splunk',
+        subCatagory: [
+            'Push Events to Splunk with the Universal Forwarder',
+            'Sorting and Narrowing Down Events',
+            'Analyzing Events and Their Event Numbers'
+        ]
+    }
+    let virtualBox = {
+        catagory: 'VirtualBox',
+        subCatagory: [
+            'Setting up Internal Network & NAT Network',
+            'Customizing VMs with Different Resources and Features',
+            'Save Different VM States with Snapshots'
+        ]
+    }
 
 
     return (
@@ -45,10 +63,12 @@ export default function ITskills() {
                 <div className={s.skillColumn}>
                     <ScrollDownList skills={ciscoWLC} />
                     <ScrollDownList skills={awsSkill} />
+                    <ScrollDownList skills={splunk} />
                 </div>
                 <div className={s.skillColumn}>
                     <ScrollDownList skills={activeDirectory} />
                     <ScrollDownList skills={kaliLinux} />
+                    <ScrollDownList skills={virtualBox} />
                 </div>
             </div>
         </div>
