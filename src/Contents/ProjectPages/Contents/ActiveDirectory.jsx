@@ -4,7 +4,7 @@ import { SmallText, MediumText, LargeText, TitleText, MediumSection, LargeSectio
 export default function ActiveDirectory() {
   return (
     <div>
-      <TitleText backC={'#3645ca'}>
+      <TitleText backC={'#083587'}>
           <h1>Configuring Active Directory & Splunk</h1>
           <h2>Set up the user in an OU, implemented a PowerShell script, and configured DHCP. Then, configured and tested Splunk by attacking it with Kali.</h2>
       </TitleText>

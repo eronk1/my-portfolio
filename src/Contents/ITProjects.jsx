@@ -27,8 +27,8 @@ export default function ITProjects() {
     
     const kaliLinux = {
         title: 'Basic Penetration Testing Using Kali',
-        desc: '',
-        imgLink: '/water4.jpg',
+        desc: 'Used Kali to perform basic passive/active reconnaissance and SYN flood.',
+        imgLink: '/kaliLinux/0.png',
         navigateLink: 'kali-linux-pen-test'
     }
   return (

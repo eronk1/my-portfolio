@@ -29,3 +29,6 @@ body{
   margin: 0;
   padding: 0;
 }
+code{
+  color: #8fff96 !important;
+}
