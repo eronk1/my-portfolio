@@ -21,7 +21,7 @@ export default function ActiveDirectory() {
           <MediumSection>
               <MediumText>Virtual Box Setup</MediumText>
               <SmallText>Here, I set up all the necessary configurations in each ISO and virtual environment.</SmallText>
-              <ImgSec ImgSrc="/activeDirectory/5.png" />
+              <ImgSec ImgSrc="/activeDirectory/7.png" />
           </MediumSection>
           <MediumSection>
               <MediumText>NIC Config</MediumText>
@@ -67,8 +67,10 @@ export default function ActiveDirectory() {
           </MediumSection>
       </LargeSection>
       <LargeSection>
-          <MediumSection>Final Takeaways</MediumSection>
-          <SmallText>I learned to develop my own internal network and gained a general understanding of what Splunk and Active Directory are like. Active Directory was interesting because I was able to understand why it is used often in the IT world.</SmallText>
+            <MediumSection>
+                <MediumText>Final Takeaways</MediumText>
+                <SmallText>I learned to develop my own internal network and gained a general understanding of what Splunk and Active Directory are like. Active Directory was interesting because I was able to understand why it is used often in the IT world.</SmallText>
+            </MediumSection>
       </LargeSection>
     </div>
   )

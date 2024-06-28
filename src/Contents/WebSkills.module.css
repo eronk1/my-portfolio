@@ -1,0 +1,41 @@
+.webSkillsParent{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 5rem;
+}
+.webSkillsHeader{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--secondary-color);
+}
+.eachImageListParent{
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 58rem;
+    row-gap: 2rem;
+    column-gap: 2rem;
+    margin: 0 3rem;
+    justify-content: center;
+}
+.imgSecParent{
+    display: grid;
+    place-content: center;
+    grid-template-rows: 3rem 1fr;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color);
+}
+.imgSecParent img{
+    width: 3rem;
+    height: 3rem;
+    margin: auto;
+}
+.imgSecParent p{
+    font-size: 1.5rem;
+    margin: auto;
+    text-align: center;
+    color: var(--primary-color);
+}

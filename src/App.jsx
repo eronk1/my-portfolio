@@ -9,6 +9,7 @@ import ScrollHandler from './more-stuff/ScrollHandler.jsx'
 import ITProjects from './Contents/ITProjects.jsx'
 import ParentProjectPages from './Contents/ProjectPages/ParentProjectPages/ParentProjectPages.jsx'
 import Footers from './Footers/Footers.jsx'
+import WebSkills from './Contents/WebSkills.jsx'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home')
@@ -36,6 +37,7 @@ const HomeLayout = ({ checkScrolledStart }) => {
         <Certifications />
         <ITskills />
         <ITProjects />
+        <WebSkills />
       </div>
     </>
   );
