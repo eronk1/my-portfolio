@@ -6,7 +6,7 @@ export default function ActiveDirectory() {
     <div>
       <TitleText backC={'#083587'}>
           <h1>Configuring Active Directory & Splunk</h1>
-          <h2>Set up the user in an OU, implemented a PowerShell script, and configured DHCP. Then, configured and tested Splunk by attacking it with Kali.</h2>
+          <h2>Set up OU, implemented PS script, configured DHCP. Then, configured and tested Splunk by attacking it with Kali.</h2>
       </TitleText>
       <LargeSection>
           <LargeText>Initial setup</LargeText>

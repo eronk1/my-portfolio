@@ -11,15 +11,18 @@
 }
 .contactForm input, .contactForm textarea, .submitForm{
     font-size: 1.2rem;
-    width: 30rem;
     padding: 0.4rem 0.8rem;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
     border-radius: 0.5rem;
-    border: none;
+}
+.contactForm input, .contactForm textarea{
+    background: none;
+    color: var(--secondary-color);
+    border: 0.2rem var(--secondary-color) solid;
+    width: 30rem;
 }
 .contactForm textarea{
     height: 15rem;
+    resize: none;
 }
 .submitForm{
     background: var(--cta-color);
@@ -27,6 +30,8 @@
     text-align: center;
     transition: 0.1s;
     margin: auto;
+    border: none;
+    width: 100%;
 }
 .submitForm:hover,.submitForm:focus{
     cursor: pointer;

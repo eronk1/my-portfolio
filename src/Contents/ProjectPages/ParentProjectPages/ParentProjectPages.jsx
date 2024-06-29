@@ -5,6 +5,7 @@ import WebServerAWS from '../Contents/WebServerAWS.jsx';
 import ActiveDirectory from '../Contents/ActiveDirectory.jsx';
 import WirelessController from '../Contents/WirelessController.jsx';
 import KaliLinux from '../Contents/KaliLinux.jsx';
+import ChatApp from '../Contents/ChatApp.jsx';
 
 export default function ParentProjectPages() {
   const { projectName } = useParams();
@@ -14,6 +15,7 @@ export default function ParentProjectPages() {
         {projectName=='secure-website-with-aws-and-cloudflare' && <WebServerAWS /> }
         {projectName=='active-directory-and-splunk' && <ActiveDirectory /> }
         {projectName=='kali-linux-pen-test' && <KaliLinux /> }
+        {projectName=='transparency-chat-app' && <ChatApp /> }
     </div>
   )
 }

@@ -2,15 +2,28 @@ import React from 'react'
 import s from './WebSkills.module.css'
 
 export default function WebSkills() {
+
+    let imageList = [
+        {imgSrc: 'react.svg',name: 'React'},
+        {imgSrc: 'framerMotion.svg',name: 'Framer-M'},
+        {imgSrc: 'svelte.svg',name: 'Svelte'},
+        {imgSrc: 'nodejs.svg',name: 'Node JS'},
+        {imgSrc: 'socketio.svg',name: 'Socket.IO'},
+        {imgSrc: 'redis.svg',name: 'Redis'},
+        {imgSrc: 'mongodb.svg',name: 'Mongodb'},
+        {imgSrc: 'html.svg',name: 'HTML'},
+        {imgSrc: 'ejs.svg',name: 'EJS'},
+        {imgSrc: 'css.svg',name: 'CSS'},
+        {imgSrc: 'JavaScript.svg',name: 'JavaScript'},
+        {imgSrc: 'jquery.svg',name: 'jQuery'},
+    ]
   return (
     <div className={s.webSkillsParent}>
-        <h1 className={s.webSkillsHeader}>Tech Skills</h1>
+        <h1 className={s.webSkillsHeader}>Web Skills</h1>
         <div className={s.eachImageListParent}>
-            <EachImage imgSrc='/public/webSkills/reactLogo.png' name='react'/>
-            <EachImage imgSrc='/public/webSkills/reactLogo.png' name='react'/>
-            <EachImage imgSrc='/public/webSkills/reactLogo.png' name='react'/>
-            <EachImage imgSrc='/public/webSkills/reactLogo.png' name='react'/>
-            <EachImage imgSrc='/public/webSkills/reactLogo.png' name='react'/>
+            {imageList.map((item,key)=>{
+                return <EachImage key={key} imgSrc={'/webSkills/'+item.imgSrc} name={item.name}/>
+            })}
         </div>
     </div>
   )

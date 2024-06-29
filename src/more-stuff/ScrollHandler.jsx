@@ -42,7 +42,7 @@ const ScrollHandler = ({ setCheckScrolledStart }) => {
       const thirdColor = getComputedStyle(document.documentElement).getPropertyValue('--third-color').trim();
       const backgroundColor = colorInterpolation(thirdColor, primaryColor, scrollPercentage);
 
-      const targetElement = document.getElementById('all-main-section-home-page-parent');
+      const targetElement = document.documentElement;
       if (targetElement) {
         targetElement.style.backgroundColor = backgroundColor;
       }

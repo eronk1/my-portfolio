@@ -4,11 +4,11 @@ import GetLogoIcon from '../more-stuff/GetLogoIcon.jsx';
 import { motion } from 'framer-motion';
 import ContactMePage from './ContactMePage.jsx';
 
-export default function HomePage({ checkScrolledStart }) {
+export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) {
   const [startAnimation, setStartAnimation] = useState(false);
   const [scrollPos, setScrollPos] = useState(0);
   const [hideHome, setHideHome] = useState(true);
-  
+
   useEffect(() => {
     if (checkScrolledStart === 2) {
       setStartAnimation(true);
@@ -31,16 +31,59 @@ export default function HomePage({ checkScrolledStart }) {
   }, []);
   let instantSet = null;
   let homeHeadersRef = useRef(null);
+  let homeHeadersRef2 = useRef(null);
+  let [bkColor, setbkColor] = useState('var(--third-color)')
+  const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();// for factor
+  const thirdColor = getComputedStyle(document.documentElement).getPropertyValue('--third-color').trim(); // for factor
+  useEffect(()=>{
+    document.documentElement.style.backgroundColor = bkColor;
+  },[bkColor])
+  useEffect(() => {
+    // Retrieve the hex colors from CSS variables
+    const primaryColorHex = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
+    const thirdColorHex = getComputedStyle(document.documentElement).getPropertyValue('--third-color').trim();
+
+    const handleScroll = () => {
+      const interpolatedColor = interpolateColor(primaryColorHex, thirdColorHex, calculateBoxOpacity());
+      if(calculateBoxOpacity()!=0){
+        document.documentElement.style.backgroundColor = interpolatedColor;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const [hideHomeTrue, setHideHomeTrue] = useState(false)
+  let temp1 = true;
   const calculateBoxOpacity = () => {
     const viewportHeight = window.innerHeight;
     const scrollPos = window.scrollY;
     const documentHeight = document.documentElement.scrollHeight;
     const startScroll = viewportHeight;
     const endScroll = documentHeight - 2*viewportHeight;
-    if(homeHeadersRef && homeHeadersRef.current){
-      homeHeadersRef.current.style.opacity = 1 - scrollPos/viewportHeight;
+    if(scrollPos/viewportHeight<=1.2){
+      if(hideHome==true && temp1==true){
+        temp1 = false;
+        setHideHome(false)
+      }
+      if(homeHeadersRef && homeHeadersRef.current){
+        homeHeadersRef.current.style.opacity = 1 - scrollPos/viewportHeight;
+      }
+      if(homeHeadersRef2 && homeHeadersRef2.current){
+        homeHeadersRef2.current.style.opacity = 1 - scrollPos/viewportHeight;
+      }
+    }else{
+      if(hideHome==false&&temp1==false){
+        temp1 == true;
+        setHideHome(true)
+      }
     }
     if (scrollPos < startScroll) {
+        setTimeout(() => {
+            setCheckScrolledStart(1);
+        }, 0);
       return 0;
     }
 
@@ -58,7 +101,10 @@ export default function HomePage({ checkScrolledStart }) {
         setHideHome(false)
       }
     }
-    return Math.min(scrollProgress, 1);
+    let factor = Math.min(scrollProgress, 1);
+    
+    
+    return factor;
   };
   const handleDownArrowClick = () => {
     window.scrollTo({
@@ -80,6 +126,7 @@ export default function HomePage({ checkScrolledStart }) {
       },
     },
   };
+
   return (
     <div id="all-main-section-home-page-parent" className={s.homePageParent}>
       {!hideHome && <div ref={homeHeadersRef} className={s.homeText}>
@@ -141,7 +188,6 @@ export default function HomePage({ checkScrolledStart }) {
           bottom: 0,
           width: '100vw',
           height: '100vh',
-          backgroundColor: 'var(--third-color)', // Using CSS variable for the background color
           color: 'white',
         }}
       >
@@ -195,10 +241,23 @@ export default function HomePage({ checkScrolledStart }) {
               </g>
             </svg>
       </motion.div>}
-      {!hideHome && <DVDthing checkScrolledStart={checkScrolledStart} />}
+      {!hideHome &&<div ref={homeHeadersRef2}>
+        <DVDthing checkScrolledStart={checkScrolledStart} />
+      </div>}
     </div>
   );
 }
+
+const interpolateColor = (color1, color2, factor) => {
+  const result = color1.slice(1).match(/.{2}/g)
+    .map((hex, index) => {
+      const color1Int = parseInt(hex, 16);
+      const color2Int = parseInt(color2.slice(1).match(/.{2}/g)[index], 16);
+      const interpolated = Math.round(color1Int + factor * (color2Int - color1Int));
+      return interpolated.toString(16).padStart(2, '0');
+    });
+  return `#${result.join('')}`;
+};
 
 
 const DVDthing = ({checkScrolledStart}) => {

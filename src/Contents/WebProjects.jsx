@@ -3,13 +3,12 @@ import s from './ITProjects.module.css'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
-export default function ITProjects() {
-
-    const ciscoWLC = {
-        title: 'Configuring AP with WLC',
-        desc: 'Configured Cisco access point and its group with Catalyst 9800-CL Wireless Controller.',
-        imgLink: '/ciscoWLC/0.png',
-        navigateLink: 'cisco-wlc'
+export default function WebProjects() {
+    const chatApp = {
+        title: 'Transparency Chat App',
+        desc: 'An app inspired by Discord, where the other person can see you typing in real-time while chatting.',
+        imgLink: '/projectChatApp/0.png',
+        navigateLink: 'transparency-chat-app'
     }
     const aws = {
         title: 'Securing and Setting Up a Website with AWS and Cloudflare',
@@ -36,7 +35,7 @@ export default function ITProjects() {
         <p className={s.ITProjectsHeader}>IT Experiences</p>
         <div className={s.projectsParent}>
             <div className={s.projectColumn}>
-                <ProjectSec projectContent={ciscoWLC} />
+                <ProjectSec projectContent={chatApp} />
                 <ProjectSec projectContent={aws} />
             </div>
             <div className={s.projectColumn}>

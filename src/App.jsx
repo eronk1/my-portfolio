@@ -10,6 +10,7 @@ import ITProjects from './Contents/ITProjects.jsx'
 import ParentProjectPages from './Contents/ProjectPages/ParentProjectPages/ParentProjectPages.jsx'
 import Footers from './Footers/Footers.jsx'
 import WebSkills from './Contents/WebSkills.jsx'
+import WebProjects from './Contents/WebProjects.jsx'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Home')
@@ -17,10 +18,12 @@ function App() {
   
   return (
     <Router>
-      <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
+      {checkScrolledStart!=2 &&
+        <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
+      }
       <Headers currentPage={currentPage} />
       <Routes>
-        <Route exact path='/home' element={ <HomeLayout checkScrolledStart={checkScrolledStart}/> } />
+        <Route exact path='/home' element={ <HomeLayout checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart}/> } />
         <Route exact path='/project/:projectName' element={<ParentProjectPages />} />
         <Route exact path='*' element={<Navigate to='/home' />} />
       </Routes>
@@ -29,15 +32,17 @@ function App() {
   )
 }
 
-const HomeLayout = ({ checkScrolledStart }) => {
+const HomeLayout = ({ checkScrolledStart, setCheckScrolledStart }) => {
+
   return (
     <>
-      <HomePage checkScrolledStart={checkScrolledStart} />
+      <HomePage checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart}/>
       <div id='all-main-section-parent'>
         <Certifications />
         <ITskills />
         <ITProjects />
         <WebSkills />
+        <WebProjects />
       </div>
     </>
   );

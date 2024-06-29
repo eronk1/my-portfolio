@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 html{
-  background-color: var(--primary-color);
+  background-color: var(--third-color);
 }
 body{
   margin: 0;
