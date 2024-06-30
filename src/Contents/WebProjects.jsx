@@ -32,7 +32,7 @@ export default function WebProjects() {
     }
   return (
     <div className={s.ITProjectsParent}>
-        <p className={s.ITProjectsHeader}>IT Experiences</p>
+        <p className={s.ITProjectsHeader}>Web Projects</p>
         <div className={s.projectsParent}>
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={chatApp} />
