@@ -3,7 +3,7 @@ import s from './ProjectPagesElements.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
 export function SmallText({children}) {
     return (
-      <div className={s.SmallTextParent}>
+      <div tabIndex={0} className={s.SmallTextParent}>
           {children}
       </div>
     )
@@ -11,7 +11,7 @@ export function SmallText({children}) {
 
 export function MediumText({children}) {
   return (
-    <div className={s.MediumTextParent}>
+    <div tabIndex={0} className={s.MediumTextParent}>
         {children}
     </div>
   )
@@ -19,7 +19,7 @@ export function MediumText({children}) {
 
 export function LargeText({children}) {
     return (
-      <div className={s.LargeTextParent}>
+      <div tabIndex={0} className={s.LargeTextParent}>
           {children}
       </div>
     )
@@ -27,7 +27,7 @@ export function LargeText({children}) {
 export function TitleText({children,backC}) {
   return (
     <div className={s.TitleTextParent} style={{background: backC}}>
-      <div className={s.TitleText}>
+      <div tabIndex={0} className={s.TitleText}>
         {children}
       </div>
     </div>
