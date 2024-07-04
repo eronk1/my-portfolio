@@ -10,21 +10,21 @@ export default function WebProjects() {
         imgLink: '/projectChatApp/0.png',
         navigateLink: 'transparency-chat-app'
     }
-    const aws = {
-        title: 'Securing and Setting Up a Website with AWS and Cloudflare',
-        desc: 'This article explains the process and challenges encountered while setting up my website.',
-        imgLink: '/projectAWS/awsProject.png',
-        navigateLink: 'secure-website-with-aws-and-cloudflare'
+    const passwordGenerator = {
+        title: 'Random Password Generator',
+        desc: 'Simple design, practiced UI/UX design with react',
+        imgLink: '/passwordGenerator/0.png',
+        navigateLink: 'random-password-generator'
     }
     
-    const activeDirectory = {
+    const weatherApp = {
         title: 'Configuring Active Directory & Splunk',
-        desc: 'Set up OU, implemented PS script, configured DHCP. Then, configured and tested Splunk by attacking it with Kali.',
-        imgLink: '/activeDirectory/0.png',
-        navigateLink: 'active-directory-and-splunk'
+        desc: 'My first finished project, used 3rd party API',
+        imgLink: '/weatherApp/0.png',
+        navigateLink: 'weather-app'
     }
     
-    const kaliLinux = {
+    const quickQuiz = {
         title: 'Basic Penetration Testing Using Kali',
         desc: 'Used Kali to perform basic passive/active reconnaissance and DoS.',
         imgLink: '/kaliLinux/0.png',
@@ -36,11 +36,11 @@ export default function WebProjects() {
         <div className={s.projectsParent}>
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={chatApp} />
-                <ProjectSec projectContent={aws} />
+                <ProjectSec projectContent={passwordGenerator} />
             </div>
             <div className={s.projectColumn}>
-                <ProjectSec projectContent={activeDirectory} />
-                <ProjectSec projectContent={kaliLinux} />
+                <ProjectSec projectContent={weatherApp} />
+                <ProjectSec projectContent={quickQuiz} />
             </div>
         </div>
     </div>

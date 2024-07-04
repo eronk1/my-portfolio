@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import './App.css'
 import Headers from './Headers/Headers.jsx'
 import HomePage from './Contents/HomePage.jsx'
@@ -18,6 +18,7 @@ function App() {
   
   return (
     <Router>
+      <UseScrollRestoration />
       {checkScrolledStart!=2 &&
         <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
       }
@@ -47,5 +48,30 @@ const HomeLayout = ({ checkScrolledStart, setCheckScrolledStart }) => {
     </>
   );
 };
+
+
+const UseScrollRestoration = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const savedPositions = JSON.parse(sessionStorage.getItem('scrollPositions')) || {};
+    const currentPath = location.pathname;
+
+    if (savedPositions[currentPath]) {
+      window.scrollTo(0, savedPositions[currentPath]);
+    }
+
+    const handleScroll = () => {
+      savedPositions[currentPath] = window.scrollY;
+      sessionStorage.setItem('scrollPositions', JSON.stringify(savedPositions));
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [location]);
+};
+
 
 export default App
