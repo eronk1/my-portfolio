@@ -136,3 +136,17 @@ export function ImgSec({ ImgSrc }) {
     </>
   );
 }
+export function DemoSection({children}){
+  const [firstChild, secondChild] = React.Children.toArray(children);
+  return(
+    <LargeSection>
+      <LargeText>Website Demo</LargeText>
+      <MediumSection>
+        {secondChild}
+        <div className={s.imageContainerDemoSection}>
+          {firstChild}
+        </div>
+      </MediumSection>
+    </LargeSection>
+  )
+}
