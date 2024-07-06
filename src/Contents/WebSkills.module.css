@@ -13,9 +13,10 @@
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
-    max-width: 41rem;
-    row-gap: 3rem;
-    column-gap: 3rem;
+    min-width: 34rem;
+    width: 80vw;
+    row-gap: 5rem;
+    column-gap: 5rem;
     margin: 0 1rem;
     justify-content: center;
 }
