@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
-
+import { useLocation } from 'react-router-dom';
 const ScrollHandler = ({ setCheckScrolledStart }) => {
+  let currentPath = useLocation().pathname;
+  
+  if(currentPath != '/home'){
+    return;
+  }
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;

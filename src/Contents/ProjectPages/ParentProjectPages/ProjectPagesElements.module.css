@@ -17,12 +17,12 @@
 }
 .TitleTextParent {
     width: 100%;
-    height: 30vh;
     border: none;
     z-index: -1;
     display: grid;
     place-content: center;
     margin-bottom: 10rem;
+    padding: 2rem 0;
 }
 .TitleText{
     color: var(--secondary-color);
@@ -89,6 +89,8 @@
     width: 100%;
     height: 100%;
     border: 0;
+    border-radius: 0.5rem;
+    border-bottom-right-radius: 0;
   }
   
   .overlay {

@@ -52,7 +52,9 @@ const HomeLayout = ({ checkScrolledStart, setCheckScrolledStart }) => {
 
 const UseScrollRestoration = () => {
   const location = useLocation();
-
+  if(location.pathname != '/home'){
+    return;
+  }
   useEffect(() => {
     const savedPositions = JSON.parse(sessionStorage.getItem('scrollPositions')) || {};
     const currentPath = location.pathname;
