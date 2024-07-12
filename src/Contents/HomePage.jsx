@@ -329,8 +329,8 @@ const DVDthing = ({checkScrolledStart}) => {
     }
 
     // Add small random jerk in the same direction as the velocity
-    newDx += Math.sign(newDx) * (Math.random() * 0.05);
-    newDy += Math.sign(newDy) * (Math.random() * 0.05);
+    // newDx += Math.sign(newDx) * (Math.random() * 0.05);
+    // newDy += Math.sign(newDy) * (Math.random() * 0.05);
 
     // Ensure x velocity is at least 1 or -1 and clamp values
     newDx = Math.max(-2, Math.min(2, newDx));

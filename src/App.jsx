@@ -22,11 +22,11 @@ function App() {
       {checkScrolledStart!=2 &&
         <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
       }
-      <Headers currentPage={currentPage} />
+      <Headers setCurrentPage={setCurrentPage} currentPage={currentPage} />
       <Routes>
         <Route exact path='/home' element={ <HomeLayout checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart}/> } />
         <Route exact path='/project/:projectName' element={<ParentProjectPages />} />
-        <Route exact path='*' element={<Navigate to='/home' />} />
+        <Route exact path='*' element={<NotFound/>} />
       </Routes>
       <Footers />
     </Router>
@@ -49,6 +49,23 @@ const HomeLayout = ({ checkScrolledStart, setCheckScrolledStart }) => {
   );
 };
 
+
+
+function NotFound() {
+  let pageNotFoundStyle = {
+    height: '100vh',
+    width: '100vw',
+    display: 'grid',
+    placeContent: 'center',
+    color: 'var(--secondary-color)'
+  }
+  return (
+    <div style={pageNotFoundStyle}>
+      <h1>404 - Page Not Found</h1>
+      <p>Sorry, the page you are looking for does not exist.</p>
+    </div>
+  );
+}
 
 const UseScrollRestoration = () => {
   const location = useLocation();
