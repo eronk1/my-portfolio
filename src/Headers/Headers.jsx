@@ -1,60 +1,56 @@
 import React, {useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import s from './Headers.module.css';
 
-export default function Headers({ currentPage, setCurrentPage }) {
+export default function Headers() {
   const navigate = useNavigate();
 
   const pickedStyle = {
     filter: 'brightness(105%)',
-    background: 'rgba(30, 177, 108, 0.4)'
+    background: 'rgba(30, 177, 108, 0.4)',
+    pointerEvents: 'none',
+    transform: 'scale(1)'
   };
-
-  const handleClick = (page) => {
-    setCurrentPage(page);
-  };
-  useEffect(()=>{
-    navigate(`/${currentPage.toLowerCase()}`);
-  },[currentPage])
+  const currentPage = `${useLocation().pathname}`;
 
   return (
     <div className={s.headerParent}>
       <p 
         className={s.name} 
         tabIndex={0} 
-        onClick={() => handleClick('Home')}
+        onClick={() => navigate('/home')}
       >
         Seon Kim (Eron)
       </p>
       <button 
         className={s.contactMe} 
         tabIndex={0} 
-        style={currentPage === 'Home' ? pickedStyle : {}} 
-        onClick={() => handleClick('Home')}
+        style={currentPage === '/home' ? pickedStyle : {}} 
+        onClick={() => navigate('/home')}
       >
         Home
       </button>
       <button 
         className={s.contactMe} 
         tabIndex={0} 
-        style={currentPage === 'About' ? pickedStyle : {}} 
-        onClick={() => handleClick('About')}
+        style={currentPage === '/about' ? pickedStyle : {}} 
+        onClick={() => navigate('/about')}
       >
         About
       </button>
       <button 
         className={s.contactMe} 
         tabIndex={0} 
-        style={currentPage === 'Resume' ? pickedStyle : {}} 
-        onClick={() => handleClick('Resume')}
+        style={currentPage === '/resume' ? pickedStyle : {}} 
+        onClick={() => navigate('/resume')}
       >
         Resume
       </button>
       <button 
         className={`${s.contactMe} ${s.realContactMe}`} 
         tabIndex={0} 
-        style={currentPage === 'Contact' ? pickedStyle : {}} 
-        onClick={() => handleClick('Contact')}
+        style={currentPage === '/contact' ? pickedStyle : {}} 
+        onClick={() => navigate('/contact')}
       >
         Contact
       </button>
