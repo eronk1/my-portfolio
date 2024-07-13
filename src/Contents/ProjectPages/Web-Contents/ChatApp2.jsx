@@ -7,12 +7,11 @@ export default function ChatApp2() {
     <div>
       <TitleText backC={'#2c2f33'}>
           <h1>Transparency Chat App</h1>
-          <h2>An app inspired by Discord, where the user can see the other user typing in real-time while chatting.</h2>
+          <h2>Website inspired by Discord, where the other person can see you typing in real-time while chatting.</h2>
       </TitleText>
       <DemoSection>
-        <iframe src="https://www.youtube.com/embed/H0LnFQOT9FI?si=Lh4t_8YmHkrC3-jN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/H0LnFQOT9FI?si=Lh4t_8YmHkrC3-jN" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         <MediumSection>
-            <MediumText>This is the fully configured secure website:</MediumText>
             <MediumText>
                 <a target="_blank" href="https://chat.cags2.com">https://chat.cags2.com 
                   <svg style={{marginLeft:"0.5rem"}} fill="var(--secondary-color)" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

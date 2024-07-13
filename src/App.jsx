@@ -11,22 +11,26 @@ import ParentProjectPages from './Contents/ProjectPages/ParentProjectPages/Paren
 import Footers from './Footers/Footers.jsx'
 import WebSkills from './Contents/WebSkills.jsx'
 import WebProjects from './Contents/WebProjects.jsx'
+import About from './other-stuff-in-headers/About.jsx'
+import Contact from './other-stuff-in-headers/Contact.jsx'
+import Resume from './other-stuff-in-headers/Resume.jsx'
+
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('Home')
   const [checkScrolledStart, setCheckScrolledStart] = useState(1);
   
   return (
     <Router>
-      <UseScrollRestoration />
-      {checkScrolledStart!=2 &&
-        <ScrollHandler setCheckScrolledStart={setCheckScrolledStart} />
-      }
-      <Headers currentPage={currentPage} />
+      {/* <UseScrollRestoration /> */}
+      <ScrollHandler checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart} />
+      <Headers />
       <Routes>
         <Route exact path='/home' element={ <HomeLayout checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart}/> } />
+        <Route exact path='/about' element={ <About /> } />
+        <Route exact path='/contact' element={ <Contact /> } />
+        <Route exact path='/resume' element={ <Resume /> } />
         <Route exact path='/project/:projectName' element={<ParentProjectPages />} />
-        <Route exact path='*' element={<Navigate to='/home' />} />
+        <Route exact path='*' element={<NotFound/>} />
       </Routes>
       <Footers />
     </Router>
@@ -50,9 +54,28 @@ const HomeLayout = ({ checkScrolledStart, setCheckScrolledStart }) => {
 };
 
 
+
+function NotFound() {
+  let pageNotFoundStyle = {
+    height: '100vh',
+    width: '100vw',
+    display: 'grid',
+    placeContent: 'center',
+    color: 'var(--secondary-color)'
+  }
+  return (
+    <div style={pageNotFoundStyle}>
+      <h1>404 - Page Not Found</h1>
+      <p>Sorry, the page you are looking for does not exist.</p>
+    </div>
+  );
+}
+
 const UseScrollRestoration = () => {
   const location = useLocation();
-
+  if(location.pathname != '/home'){
+    return;
+  }
   useEffect(() => {
     const savedPositions = JSON.parse(sessionStorage.getItem('scrollPositions')) || {};
     const currentPath = location.pathname;

@@ -55,7 +55,6 @@ export default function WebServerAWS() {
           <ImgSec ImgSrc="/projectAWS/370.png" />
       </MediumSection>
       <MediumSection>
-          <MediumText>This is the fully configured secure website:</MediumText>
           <MediumText>
               <a target="_blank" href="https://chat.cags2.com">https://chat.cags2.com 
                 <svg style={{marginLeft:"0.5rem"}} fill="var(--secondary-color)" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

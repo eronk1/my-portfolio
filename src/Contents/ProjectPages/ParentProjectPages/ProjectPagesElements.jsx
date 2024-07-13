@@ -138,10 +138,42 @@ export function ImgSec({ ImgSrc }) {
 }
 export function DemoSection({children}){
   const [firstChild, secondChild] = React.Children.toArray(children);
+
+  useEffect(() => {
+      const handleFullscreenChange = () => {
+          const iframe = document.getElementById('youtube-iframe');
+          if (document.fullscreenElement && document.fullscreenElement === iframe) {
+              console.log('Iframe has entered fullscreen mode!');
+              onEnterFullscreen();
+          } else {
+              console.log('Iframe has exited fullscreen mode!');
+              onExitFullscreen();
+          }
+      };
+
+      // Add event listener for fullscreen change
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+      // Cleanup function to remove the event listener
+      return () => {
+          document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      };
+  }, []);
+
+  const onEnterFullscreen = () => {
+      console.log('Fullscreen button was clicked to enter fullscreen!');
+      // Add any specific functionality for entering fullscreen here
+  };
+
+  const onExitFullscreen = () => {
+      console.log('Fullscreen button was clicked to exit fullscreen!');
+      // Add any specific functionality for exiting fullscreen here
+  };
+  
   return(
     <LargeSection>
-      <LargeText>Website Demo</LargeText>
       <MediumSection>
+        <LargeText>Website Demo</LargeText>
         {secondChild}
         <div className={s.imageContainerDemoSection}>
           {firstChild}
