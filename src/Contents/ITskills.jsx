@@ -30,7 +30,7 @@ export default function ITskills() {
         ]
     }
     let kaliLinux = {
-        catagory: 'Penetration Testing',
+        catagory: 'Basic PenTest',
         subCatagory: [
             'Kali Linux',
             'Passive & Active Reconaissance',

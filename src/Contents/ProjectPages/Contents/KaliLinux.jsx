@@ -5,7 +5,7 @@ export default function KaliLinux() {
   return (
     <div>
       <TitleText backC={'#005163'}>
-          <h1>Basic Penetration Testing Using Kali</h1>
+          <h1>Basic PenTest Using Kali</h1>
           <h2>Used Kali to perform basic passive/active reconnaissance and DoS.</h2>
       </TitleText>
       <LargeSection>
