@@ -8,7 +8,7 @@ export default function About() {
         <h1 className={s.header1}>About Me</h1>
         <div className={s.squigglyLine}></div>
         <div className={s.secondSection}>
-            <img className={s.myPic} src="/aboutMePic.jpg" alt="" />
+            <img className={s.myPic} src="/aboutMePic.jpg" alt="image failed to load :(" />
             <div className={s.thirdSection}>
                 <h2 className={s.secondHeader}>Greetings!</h2>
                 <div className={s.actualAboutMeParent}>
