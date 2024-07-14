@@ -3,6 +3,7 @@
     width: 100%;
     margin: auto;
     text-align: center;
+    position: relative;
 }
 .contactForm h2{
     font-size: 2.5rem;

@@ -12,7 +12,9 @@ export default function Headers() {
     transform: 'scale(1)'
   };
   const currentPage = `${useLocation().pathname}`;
-
+  if(currentPage === '/resume'){
+    return null;
+  }
   return (
     <div className={s.headerParent}>
       <p 
@@ -26,7 +28,10 @@ export default function Headers() {
         className={s.contactMe} 
         tabIndex={0} 
         style={currentPage === '/home' ? pickedStyle : {}} 
-        onClick={() => navigate('/home')}
+        onClick={(e) => {
+          navigate('/home')
+          e.currentTarget.blur();
+        }}
       >
         Home
       </button>
@@ -34,7 +39,10 @@ export default function Headers() {
         className={s.contactMe} 
         tabIndex={0} 
         style={currentPage === '/about' ? pickedStyle : {}} 
-        onClick={() => navigate('/about')}
+        onClick={(e) => {
+          navigate('/about')
+          e.currentTarget.blur();
+        }}
       >
         About
       </button>
@@ -42,17 +50,12 @@ export default function Headers() {
         className={s.contactMe} 
         tabIndex={0} 
         style={currentPage === '/resume' ? pickedStyle : {}} 
-        onClick={() => navigate('/resume')}
+        onClick={(e) => {
+          window.open('/Eron-resume.pdf', '_blank', 'noopener,noreferrer')
+          e.currentTarget.blur();
+        }}
       >
         Resume
-      </button>
-      <button 
-        className={`${s.contactMe} ${s.realContactMe}`} 
-        tabIndex={0} 
-        style={currentPage === '/contact' ? pickedStyle : {}} 
-        onClick={() => navigate('/contact')}
-      >
-        Contact
       </button>
     </div>
   );

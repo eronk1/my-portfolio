@@ -12,8 +12,6 @@ import Footers from './Footers/Footers.jsx'
 import WebSkills from './Contents/WebSkills.jsx'
 import WebProjects from './Contents/WebProjects.jsx'
 import About from './other-stuff-in-headers/About.jsx'
-import Contact from './other-stuff-in-headers/Contact.jsx'
-import Resume from './other-stuff-in-headers/Resume.jsx'
 
 
 function App() {
@@ -27,9 +25,8 @@ function App() {
       <Routes>
         <Route exact path='/home' element={ <HomeLayout checkScrolledStart={checkScrolledStart} setCheckScrolledStart={setCheckScrolledStart}/> } />
         <Route exact path='/about' element={ <About /> } />
-        <Route exact path='/contact' element={ <Contact /> } />
-        <Route exact path='/resume' element={ <Resume /> } />
         <Route exact path='/project/:projectName' element={<ParentProjectPages />} />
+        <Route exact path='/' element={<Navigate to={'/home'} />}/>
         <Route exact path='*' element={<NotFound/>} />
       </Routes>
       <Footers />

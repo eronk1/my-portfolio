@@ -3,6 +3,7 @@ import s from './HomePage.module.css'
 import GetLogoIcon from '../more-stuff/GetLogoIcon.jsx';
 import { motion } from 'framer-motion';
 import ContactMePage from './ContactMePage.jsx';
+import Footers from '../Footers/Footers.jsx';
 
 export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) {
   const [startAnimation, setStartAnimation] = useState(false);
@@ -12,6 +13,7 @@ export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) 
   useEffect(() => {
     if (checkScrolledStart === 2) {
       setStartAnimation(true);
+      setHideHome(true)
     } else {
       setHideHome(false)
       setStartAnimation(false);
@@ -49,7 +51,7 @@ export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) 
         document.documentElement.style.backgroundColor = interpolatedColor;
       }
     };
-
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -82,7 +84,11 @@ export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) 
     }
     if (scrollPos < startScroll) {
         setTimeout(() => {
-            setCheckScrolledStart(1);
+            const scrollPos = window.scrollY;
+            const startScroll = viewportHeight;
+            if(scrollPos < startScroll){
+              setCheckScrolledStart(1);
+            }
         }, 0);
       return 0;
     }
@@ -113,9 +119,9 @@ export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) 
     });
   };
 
-  const boxVariants = {
+  let boxVariants = {
     initial: {
-      opacity: 0,
+      opacity: calculateBoxOpacity(),
     },
     animate: {
       opacity: calculateBoxOpacity(),
@@ -192,6 +198,10 @@ export default function HomePage({ checkScrolledStart, setCheckScrolledStart }) 
         }}
       >
         <ContactMePage />
+        
+        <div className={s.footer}>
+          <Footers use={true}/>
+        </div>
       </motion.div>}
       {(!hideHome && checkScrolledStart==1) && <motion.div
         style={{

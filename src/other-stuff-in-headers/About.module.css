@@ -1,6 +1,70 @@
 .AboutParent{
-    padding-top: 5rem;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 5rem 1fr auto;
+    --content-width: 80rem;
+    --individual-component-width-second-section: 32rem;
+    
 }
+
+.AboutParent{
+    padding-top: 15rem;
+    height: fit-content;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    color: var(--secondary-color);
+}
+.secondSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10rem auto 15rem auto;
+    width: 100%;
+}
+.thirdSection{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: var(--individual-component-width-second-section);
+    margin: auto 0;
+}
+.myPic{
+    width: calc(1.2*var(--individual-component-width-second-section));
+    border-radius: 0.5rem;
+}
+.secondHeader{
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.thirdHeader{
+    margin-bottom: 2rem;
+    font-weight: 550;
+    font-size: 1.5rem;
+    opacity: 0.7;
+}
+.header1{
+    font-size: 6.5rem;
+    font-weight: 600;
+    margin: 0 auto;
+}
+.header1, .secondSection{
+    width: var(--content-width);
+}
+.squigglyLine {
+    width: var(--content-width);
+    height: 0.1rem;
+    background: var(--secondary-color);
+    margin: 1rem auto 0 auto;
+    opacity: 0.7;
+  }
+
+  .actualAboutMeParent{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+    height: fit-content;
+  }
+  .actualAboutMe{
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2;
+  }
