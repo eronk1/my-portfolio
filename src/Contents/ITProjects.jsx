@@ -36,8 +36,8 @@ export default function ITProjects() {
         <p className={s.ITProjectsHeader}>IT Experiences</p>
         <div className={s.projectsParent}>
             <div className={s.projectColumn}>
-                <ProjectSec projectContent={ciscoWLC} />
                 <ProjectSec projectContent={aws} />
+                <ProjectSec projectContent={ciscoWLC} />
             </div>
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={activeDirectory} />

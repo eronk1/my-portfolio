@@ -16,7 +16,7 @@ import About from './other-stuff-in-headers/About.jsx'
 
 function App() {
   const [checkScrolledStart, setCheckScrolledStart] = useState(1);
-  
+
   return (
     <Router>
       {/* <UseScrollRestoration /> */}

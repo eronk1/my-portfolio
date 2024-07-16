@@ -12,8 +12,8 @@ export default function About() {
             <div className={s.thirdSection}>
                 <h2 className={s.secondHeader}>Greetings!</h2>
                 <div className={s.actualAboutMeParent}>
-                  <div className={s.actualAboutMe}>I'm Seon, but people tend to call me Eron. I was born and raised in southern California in a Korean family. I like to do various physical activities such as running and soccer with my friends, as well as discussing and learning about historical events.</div>
-                  <div className={s.actualAboutMe}>My passion for technology formed in 2021 when I first discovered web development. Two years later, exploring various areas in IT became my primary interest.</div>
+                  <div className={s.actualAboutMe}>I'm Seon, but people tend to call me Eron. I was born and raised in southern California in a Korean family. I like to do various physical activities such as running and soccer with my friends, as well as discussing and learning history.</div>
+                  <div className={s.actualAboutMe}>My passion for technology formed in 2021 when I first discovered web development. Two years later, exploring various areas in IT became my primary interest. In the present, IT still remains as my primary interest.</div>
                   <div className={s.actualAboutMe}>Exploring and mastering the endless possibilities of technology constantly captivates me. I'm currently looking for an IT job, so if you're interested, I'd be happy to hear from you.</div>
                 </div>
             </div>

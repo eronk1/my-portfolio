@@ -1,5 +1,5 @@
 .AboutParent{
-    --content-width: 80rem;
+    --content-width: 74rem;
     --individual-component-width-second-section: 32rem;
     
 }
@@ -25,7 +25,7 @@
     margin: auto 0;
 }
 .myPic{
-    width: calc(1.2*var(--individual-component-width-second-section));
+    width: calc(1.1*var(--individual-component-width-second-section));
     border-radius: 0.5rem;
 }
 .secondHeader{

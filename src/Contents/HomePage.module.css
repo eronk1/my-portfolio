@@ -112,7 +112,7 @@
   bottom: 0;
   width: 100%;
   display: grid;
-  height: 7rem;
+  height: 10vh;
   background: rgba(0, 0, 0, 0.5);
   place-content: center;
 }
@@ -123,12 +123,11 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.5);
 }
 
 .socialPage2Links img{
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 5vh;
+  height: 5vh;
   margin-right: auto;
   transition: 0.1s;
   filter: brightness(90%);
