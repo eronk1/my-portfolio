@@ -12,7 +12,11 @@ const AnimateIn = forwardRef(({ children, ...props }, ref) => {
   const combinedRef = (node) => {
     inViewRef(node);
     if (ref) {
-      ref.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else {
+        ref.current = node;
+      }
     }
   };
 
@@ -21,7 +25,6 @@ const AnimateIn = forwardRef(({ children, ...props }, ref) => {
       const isScrolledPast = entry.boundingClientRect.top < 0;
       if (inView || isScrolledPast) {
         controls.start('visible');
-        console.log('start')
       }
     }
   }, [controls, inView, entry]);
@@ -32,9 +35,16 @@ const AnimateIn = forwardRef(({ children, ...props }, ref) => {
       initial="hidden"
       animate={controls}
       variants={{
-        visible: { opacity: 1, y: '0rem' },
-        hidden: { opacity: 0, y: '3rem' },
-        transition: { duration: 0.1, ease: 'easeIn' }
+        visible: { 
+          opacity: 1, 
+          y: '0rem',
+          transition: { duration: 0.1, ease: 'easeIn' }
+        },
+        hidden: { 
+          opacity: 0, 
+          y: '3rem',
+          transition: { duration: 0.1, ease: 'easeIn' }
+        },
       }}
       {...props}
     >

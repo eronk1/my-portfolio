@@ -59,9 +59,10 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
       }
     }
   }, [controls, inView, entry]);
+  let [checkImageLoaded, setCheckImageLoaded] = useState(false);
   return (
     <div ref={combinedRef} className={className} style={containerStyle}>
-        {shouldLoad&&<div className={className} style={containerStyle}>
+        <div className={className} style={containerStyle}>
             {Array.from({ length: numItems }).map((_, index) => {
                 const row = Math.floor(index / cols);
                 const col = index % cols;
@@ -70,7 +71,7 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
                     key={index}
                     custom={index}
                     initial="hidden"
-                    animate="visible"
+                    animate={(shouldLoad && checkImageLoaded )  ? "visible" : "hidden"}
                     variants={itemVariants}
                     style={{
                     ...itemStyle,
@@ -82,9 +83,9 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
                 ></motion.div>
                 );
             })}
-            <img src={imagePath} alt={alt} style={{ display: 'none' }} /> {/* For accessibility */}
-            </div>}
+            <img onLoad={()=>setCheckImageLoaded(true)} className={className} src={imagePath} alt={alt} style={{ display: 'none' }} />
         </div>
+    </div>
   );
 });
 

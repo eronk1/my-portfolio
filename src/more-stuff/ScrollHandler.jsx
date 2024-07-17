@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion-latest';
 
 const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
   let currentPath = useLocation().pathname;
   let [finished, setFinished] = useState(true);
-  
+  let [loadingProgress, setLoadingProgress] = useState(0);
+
+  useEffect(()=> console.log(finished), [finished])
   useEffect(() => {
-    
+    window.scrollTo(0, 0);
     let imageCount = 0;
     let goal;
     if(currentPath=='/home') goal=29;
-    if(currentPath=='/about') goal=4;
+    if(currentPath=='/about') goal=5;
     if(currentPath=='/project/secure-website-with-aws-and-cloudflare') goal=12;
     if(currentPath=='/project/cisco-wlc') goal=13;
     if(currentPath=='/project/active-directory-and-splunk') goal=12;
@@ -22,17 +24,22 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
     if(currentPath=='/project/weather-app') goal=9;
     if(currentPath=='/project/quick-quiz') goal=8;
     if(currentPath=='/project/random-math-problem-generator') goal=10;
+
     const timeoutId = setTimeout(() => {
       if(goal>imageCount){
         setFinished(false);
       }
     }, 300);
+    let waitFinish;
     const handleImageLoad = (event) => {
       imageCount++;
       if(imageCount >= goal){
         console.log('finished',goal)
-        setFinished(true);
+        waitFinish = setTimeout(() => {
+          setFinished(true);
+        }, 200);
       }
+      setLoadingProgress(Math.round((imageCount/goal)*100));
     };
 
     const images = document.querySelectorAll('img');
@@ -43,6 +50,8 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
 
     return () => {
       clearTimeout(timeoutId);
+      clearTimeout(waitFinish);
+
       images.forEach((img) => {
         img.removeEventListener('load', handleImageLoad);
       });
@@ -114,13 +123,19 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
     };
   }, [checkScrolledStart, setCheckScrolledStart, currentPath]);
 
-  return !finished ? <LoadingAnimation /> :  null; // This component doesn't render anything
+  return (
+    <AnimatePresence>
+      {!finished && (
+        <LoadingAnimation loadingProgress={loadingProgress} key={`loading-animation-${finished}`} />
+      )}
+    </AnimatePresence>
+  );
 };
 
 
-let LoadingAnimation = () => {
+let LoadingAnimation = ({loadingProgress}) => {
   useEffect(() => {
-    // Disable scrolling on the body and remove scroll bar
+    // Disable scrolling on the body and remove the scroll bar
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
@@ -134,6 +149,7 @@ let LoadingAnimation = () => {
   const loadingScreenStyle = {
     display: 'flex',
     alignItems: 'center',
+    flexDirection: 'column',
     justifyContent: 'center',
     height: '100vh',
     width: '100vw',
@@ -149,6 +165,20 @@ let LoadingAnimation = () => {
   const dotAnimation = {
     y: ["0rem", "-1rem", "0rem"], // Move up and down
   };
+  const loadingContainerStyle = {
+    width: '90vmin',
+    height: '3rem',
+    border: '0.2rem var(--secondary-color) solid',
+    borderRadius: '1rem',
+    overflow: 'hidden',
+    margin: '0.7rem auto',
+    marginBottom: '2rem'
+  };
+
+  const loadingBarStyle = {
+    height: '100%',
+    backgroundColor: 'var(--secondary-color)'
+  };
 
   return (
     <motion.div
@@ -156,47 +186,59 @@ let LoadingAnimation = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{duration: 0.5, ease: 'easeOut'}}
     >
-      <span>Loading</span>
-      <motion.span
-        animate={dotAnimation}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatDelay: 0.2,
-          delay: 0
-        }}
-        style={{ marginLeft: '0.5rem', display: 'inline-block' }}
-      >
-        .
-      </motion.span>
-      <motion.span
-        animate={dotAnimation}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatDelay: 0.2,
-          delay: 0.1
-        }}
-        style={{ marginLeft: '0.5rem', display: 'inline-block' }}
-      >
-        .
-      </motion.span>
-      <motion.span
-        animate={dotAnimation}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatDelay: 0.2,
-          delay: 0.2
-        }}
-        style={{ marginLeft: '0.5rem', display: 'inline-block' }}
-      >
-        .
-      </motion.span>
+      {/* style={{marginRight: 'auto', marginLeft: 'calc((100vw - 90vmin)/2)'}} */}
+      <div>
+        <span>Loading</span>
+        <motion.span
+          animate={dotAnimation}
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.5,
+            delay: 0
+          }}
+          style={{ marginLeft: '0.5rem', display: 'inline-block' }}
+        >
+          .
+        </motion.span>
+        <motion.span
+          animate={dotAnimation}
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.5,
+            delay: 0.2
+          }}
+          style={{ marginLeft: '0.5rem', display: 'inline-block' }}
+        >
+          .
+        </motion.span>
+        <motion.span
+          animate={dotAnimation}
+          transition={{
+            duration: 0.5,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 0.5,
+            delay: 0.4
+          }}
+          style={{ marginLeft: '0.5rem', display: 'inline-block' }}
+        >
+          .
+        </motion.span>
+      </div>
+      <div style={loadingContainerStyle}>
+        <motion.div
+          style={{ ...loadingBarStyle, width: `${loadingProgress}%` }}
+          initial={{ width: 0 }}
+          animate={{ width: `${loadingProgress}%` }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        />
+      </div>
     </motion.div>
   );
 };
