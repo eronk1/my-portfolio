@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './WebSkills.module.css'
+import AnimateIn from '../Animation-stuff/AnimateIn'
 
 export default function WebSkills() {
 
@@ -19,7 +20,9 @@ export default function WebSkills() {
     ]
   return (
     <div className={s.webSkillsParent}>
-        <h1 className={s.webSkillsHeader}>Web Skills</h1>
+        <AnimateIn>
+            <h1 className={s.webSkillsHeader}>Web Skills</h1>
+        </AnimateIn>
         <div className={s.eachImageListParent}>
             {imageList.map((item,key)=>{
                 return <EachImage key={key} imgSrc={'/webSkills/'+item.imgSrc} name={item.name}/>
@@ -31,9 +34,9 @@ export default function WebSkills() {
 
 function EachImage({imgSrc, name}){
     return(
-        <div className={s.imgSecParent}>
+        <AnimateIn className={s.imgSecParent}>
             <p>{name}</p>
             <img src={imgSrc} alt="" />
-        </div>
+        </AnimateIn>
     )
 }

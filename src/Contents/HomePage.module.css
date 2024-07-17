@@ -51,12 +51,12 @@
     filter: brightness(90%);
 }
 .socialLinks img:hover,.socialLinks img:focus {
-    transform: scale(1.2);
+    scale: 1.2;
     cursor: pointer;
     filter: brightness(110%);
 }
 .socialLinks img:active{
-    transform: scale(1.1);
+    scale: 1.1;
 }
 
 .box {
@@ -133,10 +133,10 @@
   filter: brightness(90%);
 }
 .socialPage2Links img:hover,.socialPage2Links img:focus {
-  transform: scale(1.2);
+  scale: 1.2;
   cursor: pointer;
   filter: brightness(110%);
 }
 .socialPage2Links img:active{
-  transform: scale(1.1);
+  scale: 1.1;
 }

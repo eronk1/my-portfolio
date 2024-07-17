@@ -25,7 +25,8 @@
     margin: auto 0;
 }
 .myPic{
-    width: calc(1.1*var(--individual-component-width-second-section));
+    width: calc(1.1 * var(--individual-component-width-second-section));
+    height: calc(1.1 * 1.2305743243 * var(--individual-component-width-second-section));
     border-radius: 0.5rem;
 }
 .secondHeader{

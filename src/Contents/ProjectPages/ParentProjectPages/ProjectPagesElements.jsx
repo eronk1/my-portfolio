@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import s from './ProjectPagesElements.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
+import ProjectPagesElementsAnimate from '../../../Animation-stuff/ProjectPagesElementsAnimate'
 export function SmallText({children}) {
     return (
       <div tabIndex={0} className={s.SmallTextParent}>
@@ -16,7 +17,6 @@ export function MediumText({children}) {
     </div>
   )
 }
-
 export function LargeText({children}) {
     return (
       <div tabIndex={0} className={s.LargeTextParent}>
@@ -27,25 +27,25 @@ export function LargeText({children}) {
 export function TitleText({children,backC}) {
   return (
     <div className={s.TitleTextParent} style={{background: backC}}>
-      <div tabIndex={0} className={s.TitleText}>
+      <ProjectPagesElementsAnimate tabIndex={0} className={s.TitleText}>
         {children}
-      </div>
+      </ProjectPagesElementsAnimate>
     </div>
   )
 }
 
 export function LargeSection({children}){
   return(
-    <div className={s.LargeSectionParent}>
+    <ProjectPagesElementsAnimate className={s.LargeSectionParent}>
       {children}
-    </div>
+    </ProjectPagesElementsAnimate>
   )
 }
 export function MediumSection({children}){
   return(
-    <div className={s.MediumSectionParent}>
+    <ProjectPagesElementsAnimate className={s.MediumSectionParent}>
       {children}
-    </div>
+    </ProjectPagesElementsAnimate>
   )
 }
 

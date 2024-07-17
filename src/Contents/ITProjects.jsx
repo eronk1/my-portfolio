@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import s from './ITProjects.module.css'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
+import AnimateIn from '../Animation-stuff/AnimateIn'
 
 export default function ITProjects() {
 
@@ -33,7 +34,9 @@ export default function ITProjects() {
     }
   return (
     <div className={s.ITProjectsParent}>
-        <p className={s.ITProjectsHeader}>IT Experiences</p>
+        <AnimateIn>
+            <p className={s.ITProjectsHeader}>IT Experiences</p>
+        </AnimateIn>
         <div className={s.projectsParent}>
             <div className={s.projectColumn}>
                 <ProjectSec projectContent={aws} />
@@ -54,7 +57,7 @@ function ProjectSec({projectContent}){
     const {title, desc, imgLink, navigateLink} = projectContent
     const [isOpen, setIsOpen] = useState(false);
     return(
-        <div
+        <AnimateIn
             tabIndex={0}
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
@@ -86,6 +89,6 @@ function ProjectSec({projectContent}){
                     >{desc}</motion.p>
                 </motion.div>
             }
-        </div>
+        </AnimateIn>
     )
 }

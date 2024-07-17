@@ -11,7 +11,7 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
     let imageCount = 0;
     let goal;
     if(currentPath=='/home') goal=29;
-    if(currentPath=='/about') goal=5;
+    if(currentPath=='/about') goal=4;
     if(currentPath=='/project/secure-website-with-aws-and-cloudflare') goal=12;
     if(currentPath=='/project/cisco-wlc') goal=13;
     if(currentPath=='/project/active-directory-and-splunk') goal=12;
@@ -33,7 +33,6 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
         console.log('finished',goal)
         setFinished(true);
       }
-      console.log(imageCount,goal)
     };
 
     const images = document.querySelectorAll('img');
@@ -137,9 +136,14 @@ let LoadingAnimation = () => {
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
+    width: '100vw',
     fontSize: '4rem',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     color: 'white',
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 100000
   };
 
   const dotAnimation = {

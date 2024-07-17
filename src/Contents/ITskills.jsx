@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from 'react'
 import { motion } from 'framer-motion';
 import s from './ITskills.module.css'
+import AnimateIn from '../Animation-stuff/AnimateIn';
+
 export default function ITskills() {
     let ciscoWLC = {
         catagory: 'Cisco WLC',
@@ -58,7 +60,9 @@ export default function ITskills() {
 
     return (
         <div className={s.ITskillsParent}>
-            <p className={s.ITskillsTitle}>IT Skills</p>
+            <AnimateIn>
+                <p className={s.ITskillsTitle}>IT Skills</p>
+            </AnimateIn>
             <div className={s.scrollList}>
                 <div className={s.skillColumn}>
                     <ScrollDownList skills={ciscoWLC} />
@@ -89,7 +93,7 @@ const ScrollDownList = ({skills}) => {
     };
 
     return (
-        <div
+        <AnimateIn
             style={{filter: filterAmount, transform: (isOpen && filterAmount == "brightness(110%)")|| filterAmount == "brightness(105%)" ? 'scale(1.05)' :
                 (!isOpen && filterAmount == "brightness(110%)") ? 'scale(1.1)' :
                 'scale(1)'}}
@@ -116,6 +120,6 @@ const ScrollDownList = ({skills}) => {
                     return <li key={key}>{val}</li>
                 })}
             </motion.ul>
-        </div>
+        </AnimateIn>
     );
 };
