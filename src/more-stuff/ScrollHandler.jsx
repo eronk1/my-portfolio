@@ -136,12 +136,10 @@ const ScrollHandler = ({ checkScrolledStart, setCheckScrolledStart }) => {
 let LoadingAnimation = ({loadingProgress}) => {
   useEffect(() => {
     // Disable scrolling on the body and remove the scroll bar
-    document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
     // Cleanup function to reset the overflow property when the component unmounts
     return () => {
-      document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
     };
   }, []);

@@ -91,17 +91,14 @@ export function ImgSec({ ImgSrc }) {
   useEffect(() => {
     const htmlElement = document.documentElement;
     if (zoomLevel > 0) {
-      document.body.classList.add(s.noScroll);
       htmlElement.classList.add(s.noScroll);
       document.addEventListener('keydown', handleEscape);
     } else {
-      document.body.classList.remove(s.noScroll);
       htmlElement.classList.remove(s.noScroll);
       document.removeEventListener('keydown', handleEscape);
     }
 
     return () => {
-      document.body.classList.remove(s.noScroll); // Clean up in case the component unmounts
       document.documentElement.classList.remove(s.noScroll);
       document.removeEventListener('keydown', handleEscape);
     };
