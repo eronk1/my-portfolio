@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import s from './Headers.module.css';
-
+import { motion } from 'framer-motion-latest';
 export default function Headers() {
   const navigate = useNavigate();
   const [disappearName, setDisappearName] = useState(false);
@@ -29,7 +29,6 @@ export default function Headers() {
   
   const pickedStyle = {
     filter: 'brightness(105%)',
-    background: 'rgba(30, 177, 108, 0.4)',
     pointerEvents: 'none',
     transform: 'scale(1)'
   };
@@ -38,7 +37,18 @@ export default function Headers() {
     return null;
   }
 
-  
+  const backStyle = {
+    background: 'rgba(30, 177, 108, 0.4)',
+    transition: {
+      duration: 0.1
+    }
+  }
+  const defBackStyle= {
+    background: 'rgba(0, 0, 0, 0)',
+    transition: {
+      duration: 0.2
+    }
+  }
   return (
     <div className={s.headerParent}>
       {!disappearName && <p 
@@ -48,9 +58,11 @@ export default function Headers() {
       >
         Seon Kim (Eron)
       </p>}
-      <button 
+      <motion.button 
         className={s.contactMe} 
-        tabIndex={0} 
+        tabIndex={0}
+        initial={defBackStyle}
+        animate={currentPage === '/home' ? backStyle: defBackStyle}
         style={currentPage === '/home' ? pickedStyle : {}} 
         onClick={(e) => {
           navigate('/home')
@@ -58,10 +70,12 @@ export default function Headers() {
         }}
       >
         Home
-      </button>
-      <button 
+      </motion.button>
+      <motion.button 
         className={s.contactMe} 
         tabIndex={0} 
+        initial={defBackStyle}
+        animate={currentPage === '/about' ? backStyle: defBackStyle}
         style={currentPage === '/about' ? pickedStyle : {}} 
         onClick={(e) => {
           navigate('/about')
@@ -69,7 +83,7 @@ export default function Headers() {
         }}
       >
         About
-      </button>
+      </motion.button>
       <button 
         className={s.contactMe} 
         tabIndex={0} 

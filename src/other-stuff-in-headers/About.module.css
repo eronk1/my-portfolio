@@ -98,6 +98,9 @@
     .AboutParent{
         padding-top: 10rem;
     }
+    .actualAboutMe{
+        font-size: 1.2rem;
+    }
     .secondSection{
         flex-direction: column;
         gap: 5rem;
