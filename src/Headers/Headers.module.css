@@ -69,3 +69,23 @@
         gap: 0rem;
     }
   }
+  @media (max-height: 700px){
+    .headerParent{
+        height: 3rem;
+    }
+}
+@media (max-height: 550px){
+    .headerParent{
+        height: 2rem;
+    }
+    .contactMe{
+        font-size: 1.1rem;
+        padding: 0.05rem 0.6rem;
+    }
+    
+}
+@media (max-height: 300px){
+    .headerParent{
+        display: none;
+    }
+}

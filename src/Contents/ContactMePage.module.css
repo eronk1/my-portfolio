@@ -59,3 +59,39 @@
         width: 80vw;
     }
 }
+
+@media (max-height: 700px){
+    .contactForm textarea{
+        height: 10rem;
+    }
+}
+@media (max-height: 550px){
+    .contactForm{
+        margin-top: 1rem;
+    }
+    .contactForm textarea{
+        height: 7rem;
+    }
+    .contactForm, .contactActualForm{
+        gap: 1rem;
+    }
+    .contactForm h2{
+        font-size: 2rem;
+    }
+}
+@media (max-height: 350px){
+    .contactForm{
+        margin-top: 1rem;
+    }
+    .contactForm textarea{
+        height: 4.5rem;
+    }
+    .contactForm, .contactActualForm{
+        gap: 1rem;
+    }
+    .contactForm h2{
+        font-size: 1.5rem;
+        margin: 0;
+        margin-top: auto;
+    }
+}

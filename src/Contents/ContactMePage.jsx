@@ -66,7 +66,35 @@ export default function ContactMePage() {
       setFormStatus('Please fill out all fields.');
     }
   };
+  let [inputFocused, setInputFocused] = useState(false);
+  const handleInputFocus = () => {
+    setInputFocused(true);
+    console.log('focused')
+  }
+  const handleInputBlur = () => {
+    setInputFocused(false);
+    console.log('blurred')
+  }
+  useEffect(() => {
+    const handleResize = () => {
+      if (inputFocused) {
+        window.scrollTo(0, document.documentElement.scrollHeight);
+      }
+    };
+    handleResize()
+    window.addEventListener('resize', handleResize);
 
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [inputFocused]);
+  // useEffect(()=>{
+  //   const mainSectionParent = document.getElementById('all-main-section-parent');
+  //   if (mainSectionParent) {
+  //     mainSectionParent.style.opacity = inputFocused ? '0' : '1';
+  //     mainSectionParent.style.transition = 'opacity 0.5s ease'; // Optional: for smooth transition
+  //   }
+  // },[inputFocused])
   return (
     <div className={s.contactForm}>
       <h2>Contact Me</h2>
@@ -79,6 +107,8 @@ export default function ContactMePage() {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
         </div>
         <div>
@@ -89,6 +119,8 @@ export default function ContactMePage() {
             placeholder='Email:'
             value={formData.email}
             onChange={handleChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
         </div>
         <div>
@@ -98,6 +130,8 @@ export default function ContactMePage() {
             name="message"
             value={formData.message}
             onChange={handleChange}
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
         </div>
         <button {...isSubmitDisabled && {disabled: true}} className={s.submitForm} type="submit">Submit</button>
