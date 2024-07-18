@@ -42,7 +42,7 @@ const AnimateIn = forwardRef(({ children, ...props }, ref) => {
         },
         hidden: { 
           opacity: 0, 
-          y: '3rem',
+          y: '5rem',
           transition: { duration: 0.1, ease: 'easeIn' }
         },
       }}

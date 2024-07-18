@@ -107,15 +107,11 @@
   }
   
   .zoomedImage {
-    max-width: 90%;
-    max-height: 90%;
     border-radius: 0.5rem;
     position: static;
-    object-fit: contain;
-    min-width: 50%;
   }
   .noScroll {
-    overflow: hidden;
+    overflow: hidden !important;
   }
   .pressurePlate{
     position: fixed;
