@@ -140,3 +140,23 @@
 .socialPage2Links img:active{
   scale: 1.1;
 }
+
+@media(max-width: 870px){
+  .name{
+    font-size: 5rem;
+  }
+  .jobTitle{
+    font-size: 2rem;
+  }
+  .socialPage2Links img{
+    width: 4vh;
+    height: 4vh;
+  }
+}
+
+@media (max-width: 620px){
+  .socialPage2Links{
+    width: 100vw;
+    justify-content: space-evenly;
+  }
+}

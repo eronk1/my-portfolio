@@ -32,3 +32,27 @@ body{
 code{
   color: #8fff96 !important;
 }
+
+
+
+@media (max-width: 870px){
+  :root{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 620px){
+  :root{
+    font-size: 12px;
+  }
+}
+@media (max-width: 530px){
+  :root{
+    font-size: 10px;
+  }
+}
+@media (max-width: 440px){
+  :root{
+    font-size: 8px;
+  }
+}

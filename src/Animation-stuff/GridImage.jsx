@@ -61,6 +61,8 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
   }, [controls, inView, entry]);
   let [checkImageLoaded, setCheckImageLoaded] = useState(false);
   let [allItemsVisible,setAllItemsVisible] = useState(false);
+  let [countItem, setCountItem] = useState(0);
+useEffect(()=> console.log(countItem),[countItem])
   return (
     <div ref={combinedRef} className={className} style={containerStyle}>
         <div className={className} style={containerStyle}>
@@ -87,11 +89,20 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
                       if (isLastItem) {
                           setAllItemsVisible(true);
                       }
+                      setCountItem(old=>old+1)
                   }}
                 ></motion.div>
                 );
             })}
-            <img onLoad={()=>setCheckImageLoaded(true)} className={className} src={imagePath} alt={alt} style={{ display: allItemsVisible ? 'block' : 'none' }} />
+          <motion.img
+            onLoad={() => setCheckImageLoaded(true)}
+            className={className}
+            src={imagePath}
+            alt={alt}
+            style={{ display: shouldLoad && countItem%49==0 ? 'block' : 'none', position: 'absolute', zIndex: -1, opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: shouldLoad && countItem%49==0 && allItemsVisible ? 1 : 0, transition: { delay: 0.4 } }}
+          />
         </div>
     </div>
   );

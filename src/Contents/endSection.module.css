@@ -1,10 +1,10 @@
 .socialLinks{
     border-radius: 0.2rem;
     width: 20rem;
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+    display: flex;
     margin: 0 auto;
-    place-content: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .socialLinks img{
     width: 2.5rem;
