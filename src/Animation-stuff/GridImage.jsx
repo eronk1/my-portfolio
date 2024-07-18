@@ -60,12 +60,15 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
     }
   }, [controls, inView, entry]);
   let [checkImageLoaded, setCheckImageLoaded] = useState(false);
+  let [allItemsVisible,setAllItemsVisible] = useState(false);
   return (
     <div ref={combinedRef} className={className} style={containerStyle}>
         <div className={className} style={containerStyle}>
             {Array.from({ length: numItems }).map((_, index) => {
                 const row = Math.floor(index / cols);
                 const col = index % cols;
+                const isLastItem = index === numItems - 1;
+
                 return (
                 <motion.div
                     key={index}
@@ -80,10 +83,15 @@ const GridImage = forwardRef(({ className, imagePath, alt }, ref) => {
                     gridColumn: col + 1,
                     gridRow: row + 1,
                     }}
+                    onAnimationComplete={() => {
+                      if (isLastItem) {
+                          setAllItemsVisible(true);
+                      }
+                  }}
                 ></motion.div>
                 );
             })}
-            <img onLoad={()=>setCheckImageLoaded(true)} className={className} src={imagePath} alt={alt} style={{ display: 'none' }} />
+            <img onLoad={()=>setCheckImageLoaded(true)} className={className} src={imagePath} alt={alt} style={{ display: allItemsVisible ? 'block' : 'none' }} />
         </div>
     </div>
   );
