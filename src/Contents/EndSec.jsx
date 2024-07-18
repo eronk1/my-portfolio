@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './EndSection.module.css';
+import s from './EndSec.module.css';
 export default function EndSec() {
   return (
     <div>
