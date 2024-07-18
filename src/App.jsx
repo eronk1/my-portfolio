@@ -13,7 +13,6 @@ import WebSkills from './Contents/WebSkills.jsx'
 import WebProjects from './Contents/WebProjects.jsx'
 import About from './other-stuff-in-headers/About.jsx'
 
-
 function App() {
   const [checkScrolledStart, setCheckScrolledStart] = useState(1);
 

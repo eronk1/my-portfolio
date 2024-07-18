@@ -101,7 +101,7 @@ useEffect(()=> console.log(countItem),[countItem])
             alt={alt}
             style={{ display: shouldLoad && countItem%49==0 ? 'block' : 'none', position: 'absolute', zIndex: -1, opacity: 0 }}
             initial={{ opacity: 0 }}
-            animate={{ opacity: shouldLoad && countItem%49==0 && allItemsVisible ? 1 : 0, transition: { delay: 0.4 } }}
+            animate={{ opacity: shouldLoad && countItem%49==0 && allItemsVisible ? 1 : 0, transition: { delay: 0.3, duration: 0.2 } }}
           />
         </div>
     </div>

@@ -5,7 +5,7 @@
 }
 
 .AboutParent{
-    padding-top: 15rem;
+    padding-top: 50vh;
     height: fit-content;
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -68,4 +68,45 @@
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 2;
+  }
+
+
+
+  @media (max-width: 1300px){
+    .AboutParent{
+        --content-width: 55.5rem;
+        --individual-component-width-second-section: 24rem;   
+    }
+    .header1{
+        font-size: 5rem;
+    }
+    .secondHeader{
+        font-size: 2.1rem;
+    }
+    .actualAboutMe{
+        font-size: 0.9rem;
+    }
+    .secondSection{
+        margin: 5rem auto 10rem auto;
+    }
+  }
+  @media (max-width: 1030px){
+    .AboutParent{
+        --content-width: 30rem;
+        --individual-component-width-second-section: 24rem;   
+    }
+    .AboutParent{
+        padding-top: 10rem;
+    }
+    .secondSection{
+        flex-direction: column;
+        gap: 5rem;
+        place-content: center;
+    }
+    .myPic, .thirdSection{
+        margin: auto;
+    }
+    .header1{
+        text-align: center;
+    }
   }

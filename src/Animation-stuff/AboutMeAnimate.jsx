@@ -4,9 +4,10 @@ import { motion, useAnimation } from 'framer-motion';
 
 const AboutMeAnimate = forwardRef(({ children, ...props }, ref) => {
     const controls = useAnimation();
+    let [scrollViewThreshold,setScrollViewThreshold] = useState(0.5);
     const [inViewRef, inView, entry] = useInView({
       triggerOnce: true,
-      threshold: 0.5, // Adjust this value to control how much of the element needs to be visible
+      threshold: scrollViewThreshold, // Adjust this value to control how much of the element needs to be visible
     });
   
     const combinedRef = (node) => {
@@ -15,7 +16,26 @@ const AboutMeAnimate = forwardRef(({ children, ...props }, ref) => {
         ref.current = node;
       }
     };
+    useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth <= 1030) {
+          setScrollViewThreshold(0)
+        } else {
+          setScrollViewThreshold(0.5)
+        }
+      };
   
+      // Call handleResize initially to set the initial state
+      handleResize();
+  
+      // Add the resize event listener
+      window.addEventListener('resize', handleResize);
+  
+      // Clean up the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
     useEffect(() => {
       if (entry) {
         const isScrolledPast = entry.boundingClientRect.top < 0;
