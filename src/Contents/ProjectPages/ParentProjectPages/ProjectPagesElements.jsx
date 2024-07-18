@@ -135,6 +135,7 @@ export function ImgSec({ ImgSrc }) {
     const { naturalWidth, naturalHeight } = e.target;
     const container = e.target.parentNode;
     const maxWidth = container.clientWidth;
+    console.log(maxWidth)
     const maxHeight = window.innerHeight * 0.7;
 
     const widthRatio = maxWidth / naturalWidth;

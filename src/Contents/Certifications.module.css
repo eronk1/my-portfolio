@@ -29,3 +29,8 @@
     grid-template-columns: auto auto;
     gap: 1rem;
 }
+@media (max-width: 620px){
+    .parent .title{
+        font-size: 2.5rem;
+    }
+}

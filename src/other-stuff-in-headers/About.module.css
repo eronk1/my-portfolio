@@ -111,5 +111,16 @@
     }
     .header1{
         text-align: center;
+        font-size: 4rem;
+    }
+  }
+  @media(max-width: 440px){
+    .AboutParent{
+        --content-width: 90vw;
+        --individual-component-width-second-section: 90vw;
+    }
+    .myPic{
+        width: calc(1 * var(--individual-component-width-second-section));
+        height: calc(1.2305743243 * var(--individual-component-width-second-section));
     }
   }

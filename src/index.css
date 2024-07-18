@@ -5,7 +5,7 @@
     --third-tint-one: rgba(230, 230, 230, 0.3);
     --second-tint-two: rgba(230, 230, 230, 0.45);
     --second-tint-three: rgba(230, 230, 230, 0.60);
-  --third-color: #160d6f;
+  --third-color: #26215b;
     --third-tint-one: rgba(255, 252, 164, 0.3);
     --third-tint-two: rgba(255, 252, 164, 0.4);
     --third-tint-three: rgba(255, 252, 164, 0.5);
@@ -42,17 +42,17 @@ code{
 }
 
 @media (max-width: 620px){
-  :root{
+  /* :root{
     font-size: 12px;
-  }
+  } */
 }
 @media (max-width: 530px){
-  :root{
+  /* :root{
     font-size: 10px;
-  }
+  } */
 }
 @media (max-width: 440px){
-  :root{
+  /* :root{
     font-size: 8px;
-  }
+  } */
 }

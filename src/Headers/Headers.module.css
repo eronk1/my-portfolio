@@ -48,11 +48,24 @@
 @media(max-width: 870px){
     .headerParent{
         justify-content: center;
-        gap: 5rem;
+        gap: 4rem;
     }
     .contactMe{
-        font-size: 2rem;
+        font-size: 1.5rem;
         padding: 0.3rem 2rem;
-        margin-right: 0;
+        margin: auto 0;
+    }
+  }
+
+  @media (max-width: 620px){
+    
+    .contactMe{
+        font-size: 1.4rem;
+        padding: 0.3rem 1.2rem;
+        margin: auto 0;
+    }
+    .headerParent{
+        justify-content: space-evenly;
+        gap: 0rem;
     }
   }

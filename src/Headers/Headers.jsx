@@ -30,7 +30,7 @@ export default function Headers() {
   const pickedStyle = {
     filter: 'brightness(105%)',
     pointerEvents: 'none',
-    transform: 'scale(1)'
+    scale: '1'
   };
   const currentPage = `${useLocation().pathname}`;
   if(currentPage === '/resume'){

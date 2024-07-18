@@ -4,8 +4,8 @@ export default function WebServerAWS() {
   return (
     <div>
       <TitleText backC={'#1c2f6d'}>
-    <h1>Securing and Setting Up a Website with AWS and Cloudflare</h1>
-    <h2>This article explains the process and challenges encountered while setting up my website.</h2>
+    <h1>Setting Up a Website with AWS and Cloudflare</h1>
+    <h2>This article explains the process and challenges encountered during setup.</h2>
 </TitleText>
   <LargeSection>
       <LargeText>Securing Website with AWS</LargeText>

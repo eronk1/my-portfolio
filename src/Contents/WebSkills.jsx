@@ -6,7 +6,7 @@ export default function WebSkills() {
 
     let imageList = [
         {imgSrc: 'react.svg',name: 'React'},
-        {imgSrc: 'framerMotion.svg',name: 'Framer-M'},
+        {imgSrc: 'framerMotion.svg',name: 'Animation'},
         {imgSrc: 'svelte.svg',name: 'Svelte'},
         {imgSrc: 'nodejs.svg',name: 'Node JS'},
         {imgSrc: 'socketio.svg',name: 'Socket.IO'},

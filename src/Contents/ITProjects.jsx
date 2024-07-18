@@ -13,8 +13,8 @@ export default function ITProjects() {
         navigateLink: 'cisco-wlc'
     }
     const aws = {
-        title: 'Securing and Setting Up a Website with AWS and Cloudflare',
-        desc: 'This article explains the process and challenges encountered while setting up my website.',
+        title: 'Setting Up a Website with AWS and Cloudflare',
+        desc: 'This article explains the process and challenges encountered during setup.',
         imgLink: '/projectAWS/awsProject.png',
         navigateLink: 'secure-website-with-aws-and-cloudflare'
     }

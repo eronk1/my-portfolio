@@ -94,9 +94,9 @@ const ScrollDownList = ({skills}) => {
 
     return (
         <AnimateIn
-            style={{filter: filterAmount, transform: (isOpen && filterAmount == "brightness(110%)")|| filterAmount == "brightness(105%)" ? 'scale(1.05)' :
-                (!isOpen && filterAmount == "brightness(110%)") ? 'scale(1.1)' :
-                'scale(1)'}}
+            style={{filter: filterAmount, scale: (isOpen && filterAmount == "brightness(110%)")|| filterAmount == "brightness(105%)" ? '1.05' :
+                (!isOpen && filterAmount == "brightness(110%)") ? '1.1' :
+                '1'}}
             onMouseEnter={()=>setFilterAmount("brightness(110%)")}
             onMouseLeave={()=> isOpen ? "" : setFilterAmount("")}
             onFocus={() => setFilterAmount("brightness(110%)")}

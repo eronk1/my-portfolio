@@ -7,7 +7,6 @@
 }
 .AllProjectsParent > * > *{
     width: 65vw;
-    min-width: 30rem;
     margin: 0 auto;
 }
 .AllProjectsParent *{

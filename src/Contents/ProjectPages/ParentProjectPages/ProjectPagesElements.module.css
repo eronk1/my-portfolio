@@ -119,3 +119,27 @@
     height: 100%;
     z-index: -1;
   }
+
+  @media (max-width: 870px){
+    .LargeSectionParent{
+      width: 90vw;
+    }
+    .TitleText{
+      width: 90vw;
+    }
+    .TitleText h1{
+      font-size: 1.8rem;
+    }
+    .TitleText h2{
+      font-size: 1.2rem;
+    }
+    .LargeTextParent{
+      font-size: 1.8rem;
+    }
+    .MediumTextParent{
+      font-size: 1.4rem;
+    }
+    .SmallTextParent{
+      font-size: 1.2rem;
+    }
+  }
