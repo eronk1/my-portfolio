@@ -173,6 +173,8 @@
     font-size: 2.5rem;
   }
 }
+
+
 @media(max-height: 700px){
   .homeText{
     padding-top: 0;
@@ -180,8 +182,26 @@
     margin-top: auto;
   }
 }
+@media (max-height: 700px) and (max-width: 870px){
+  .homeText{
+    margin: 0;
+    margin-bottom: 3rem;
+    margin-top: auto;
+  }
+}
 @media (max-height: 550px){
+  .homeText{
+    margin-bottom: 0;
+  }
   .footer{
     display: none;
+  }
+}
+@media (max-height: 550px) and (max-width: 870px){
+  .name{
+    font-size: 3.5rem;
+  }
+  .jobTitle{
+    font-size: 1.4rem;
   }
 }
