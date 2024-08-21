@@ -22,7 +22,7 @@ export default function About() {
         >About Me</motion.h1>
         <div className={s.squigglyLine}></div>
         <div className={s.secondSection}>
-            <GridImage className={s.myPic} imagePath={'/aboutMePic.jpg'} alt="image failed to load :(" />
+            <GridImage className={s.myPic} imagePath={'/aboutMePic.png'} alt="image failed to load :(" />
             <ScaleAboutMe className={s.thirdSection}>
                 <h2 className={s.secondHeader}>Greetings!</h2>
                 <div className={s.actualAboutMeParent}>
