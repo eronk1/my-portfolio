@@ -26,7 +26,7 @@ export default function About() {
             <ScaleAboutMe className={s.thirdSection}>
                 <h2 className={s.secondHeader}>Greetings!</h2>
                 <div className={s.actualAboutMeParent}>
-                  <div className={s.actualAboutMe}>I'm Seon, but people tend to call me Eron. I was born and raised in Southern California in a Korean family. I enjoy various physical activities such as running and playing soccer with my friends, as well as discussing and learning about history.</div>
+                  <div className={s.actualAboutMe}>I'm Seon, but people tend to call me Eron. I was born and raised in Southern California in a Korean family. I enjoy various physical activities such as running and playing soccer with my friends.</div>
                   <div className={s.actualAboutMe}>My passion for technology began in 2021 when I first discovered web development. Two years later, exploring various areas in IT became my primary interest. Currently, IT remains my primary interest.</div>
                   <div className={s.actualAboutMe}>Exploring and mastering the endless possibilities of technology constantly captivates me. I'm currently looking for an IT job, so if you're interested, I'd be happy to hear from you.</div>
                 </div>
