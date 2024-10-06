@@ -1,7 +1,8 @@
 {
     "headers":{
-        "created": "9/27/2024",
-        "updated": "9/27/2024",
+        "created": "--/--/----",
+        "updated": "--/--/----",
+        "updateHistory":["--/--/----"],
         "title": "Proxmox server disk error 1296 & 1314 (DL360P G8)",
         "picture": null,
         "author": "Seon Kim",
@@ -9,15 +10,18 @@
     },
     "data":[
         {
-            "type": "Overview",
+            "type": "overview",
             "text": "",
-            "picture": ""
+            "picture": "10"
         },
         {
             "type": "small-section",
             "title": "Issue",
             "picture": "",
-            "text": ""
+            "text": "",
+            "data": [
+                
+            ]
         },
         {
             "type": "medium-section",
@@ -25,8 +29,19 @@
             "picture": "",
             "data": [
                 {
+                    "type": "section",
                     "text":"",
-                    "picture":""
+                    "picture":"",
+                    "note":"This field is optional"
+                },
+                {
+                    "type": "small-section",
+                    "title": "",
+                    "text":"",
+                    "picture":"",
+                    "data": [
+                        
+                    ]
                 }
             ]
         },

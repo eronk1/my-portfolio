@@ -1,15 +1,15 @@
 {
     "headers":{
-        "created": "9/27/2024",
-        "updated": "9/27/2024",
+        "created": "09/27/2024",
+        "updated": "09/27/2024",
         "title": "DL360P G8 Integrated Lights-Out (iLO) slowly blinking red",
         "picture": null,
         "author": "Seon Kim",
-        "subject": ""
+        "subject": "Proxmox Errors"
     },
     "data":[
         {
-            "type": "Overview",
+            "type": "overview",
             "text": "These are the steps performed in order to troubleshoot and resolve the issue.",
             "picture": ""
         },
@@ -19,28 +19,34 @@
             "picture": "",
             "data": [
                 {
+                    "type": "section",
                     "text":"First, by using the password and username in my server tag and IPv6 address in the boot screen and connecting to the server via the iOL port I entered the iOL config GUI through the web browser. In my case, the system health said critical so I clicked on it.",
-                    "picture":"web-gui.png"
+                    "picture":"web-gui"
                 },
                 {
+                    "type": "section",
                     "text":"After, status was failure for stoarge so I went into it.",
-                    "picture":"system-devices.png"
+                    "picture":"system-devices"
                 },
                 {
+                    "type": "section",
                     "text":"Logical view showed error.",
-                    "picture":"logical-view.png"
+                    "picture":"logical-view"
                 },
                 {
+                    "type": "section",
                     "text":"I then went into the Remote console and launched the HTML5 Integrated Remote Console (IRC).",
-                    "picture":"html5-irc.png"
+                    "picture":"html5-irc"
                 },
                 {
+                    "type": "section",
                     "text":"I then restarted my server and went into intelligent provisioning by pressing f10 in the IRC. I used this IPv6 address to go into the web configuration.",
-                    "picture":"f10-intelligent-provisioning.png"
+                    "picture":"f10-intelligent-provisioning"
                 },
                 {
+                    "type": "section",
                     "text":"I then went into <code>Perform Maintance > HPE Smart Storage Administrator (SSA) > Array Controller(s) > Smart Array</code> and deleted the logical drive and created a new raid config fixing the problem.",
-                    "picture":"diskinfo.png"
+                    "picture":"diskinfo"
                 }
 
             ]
