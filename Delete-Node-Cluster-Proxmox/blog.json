@@ -1,0 +1,54 @@
+{
+    "headers":{
+        "created": "10/07/2024",
+        "updated": "10/07/2024",
+        "updateHistory":["10/07/2024"],
+        "title": "Remove a node in Proxmox from a cluster.",
+        "picture": null,
+        "author": "Seon Kim",
+        "subject": "Proxmox Features"
+    },
+    "data":[
+        {
+            "type": "overview",
+            "anotherTitle": "",
+            "text": "Deleting node fully can require up to 3 commands. These are the steps to do so.",
+            "picture": "10"
+        },
+        {
+            "type": "medium-section",
+            "title": "Solution",
+            "picture": "",
+            "stepByStepGuide": true,
+            "data": [
+                {
+                    "type": "section",
+                    "text": "Take the node that you want to remove offline then go into the shell of the other node.",
+                    "picture":"",
+                    "note": null
+                },
+                {
+                    "type": "section",
+                    "text": "Use the command <code>pvecm expected 1</code> on the node that is not offline in case permission denied shows up in the following steps.",
+                    "picture":"",
+                    "note": null
+                },
+                {
+                    "type": "section",
+                    "text": "Then delete the node by using the command <code>pvecm delnode &ltnode-name&gt</code>",
+                    "picture":"",
+                    "note": null
+                },
+                {
+                    "type": "section",
+                    "text": "Finally, remove the node from the gui by deleting the directory using the command <code>rm -r /etc/pve/nodes/&ltnode-name&gt</code>",
+                    "picture":"",
+                    "note": null
+                }
+            ]
+        }
+    ],
+    "related-articles":[
+
+    ]
+}

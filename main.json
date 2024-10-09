@@ -2,18 +2,29 @@
     "all-subjects":[
         "Proxmox Errors",
         "Server Errors",
-        "Management with proxmox"
+        "Proxmox Features",
+        "Fog Server",
+        "Server Features"
     ],
     "all-projects-in-catagories":{
         "Proxmox Errors":[
-            "Proxmox server disk error 1296 & 1314 (DL360P G8)"
+            
         ],
         "Server Errors":[
             "DL360P G8 Integrated Lights-Out (iLO) slowly blinking red",
             "Proxmox server disk error 1296 & 1314 (DL360P G8)"
         ],
-        "Proxmox VM Management":[
-            "Management with proxmox"
+        "Proxmox Features":[
+            "Create-VM-proxmox",
+            "Create-Node-Cluster",
+            "Delete-Node-Cluster-Proxmox",
+            "Delete Cluster"
+        ],
+        "Server Features":[
+            "Create-Node-Cluster"
+        ],
+        "Fog Server":[
+            "Install Fog Server"
         ]
     }
 }

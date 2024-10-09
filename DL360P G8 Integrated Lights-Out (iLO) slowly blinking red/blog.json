@@ -5,7 +5,7 @@
         "title": "DL360P G8 Integrated Lights-Out (iLO) slowly blinking red",
         "picture": null,
         "author": "Seon Kim",
-        "subject": "Proxmox Errors"
+        "subject": "Server Errors"
     },
     "data":[
         {
@@ -17,6 +17,7 @@
             "type": "medium-section",
             "title": "Solution",
             "picture": "",
+            "stepByStepGuide": true,
             "data": [
                 {
                     "type": "section",
