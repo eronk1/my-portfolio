@@ -2,7 +2,7 @@
     "headers":{
         "created": "10/10/2024",
         "updated": "10/10/2024",
-        "updateHistory":["10/10/2024"],
+        "updateHistory":["10/10/2024","10/10/2024"],
         "title": "Referencing/Adding Thin Volume Through LVM-Thin and Directory",
         "picture": null,
         "author": "Seon Kim",
@@ -12,8 +12,8 @@
         {
             "type": "overview",
             "anotherTitle": null,
-            "text": "Thin volume can be added through LVM-Thin and Directory by going to <code>Datacenter > Storage > Add</code>. LVM-thin method allows for only disk image and container option while Directory allows for variety of other options.",
-            "picture": "10"
+            "text": "Thin volume can be added through LVM-Thin and Directory by going to <code>Datacenter > Storage > Add</code>. LVM-thin method allows for only disk image and container option while Directory allows for variety of other options. When Creating a Directory, if the referenced storage is not mounted then the local disk space will be used instead.",
+            "picture": ""
         },
         {
             "type": "medium-section",
