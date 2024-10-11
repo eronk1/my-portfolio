@@ -1,15 +1,11 @@
 {
     "all-subjects":[
-        "Proxmox Errors",
         "Server Errors",
         "Proxmox Features",
         "Fog Server",
         "Server Features"
     ],
-    "all-projects-in-catagories":{
-        "Proxmox Errors":[
-            
-        ],
+    "all-steps-in-catagories":{
         "Server Errors":[
             "DL360P G8 Integrated Lights-Out (iLO) slowly blinking red",
             "Proxmox server disk error 1296 & 1314 (DL360P G8)"
@@ -25,6 +21,20 @@
         ],
         "Fog Server":[
             "Install Fog Server"
+        ]
+    },
+    "observation-catagories":{
+        "Server Errors":[
+
+        ],
+        "Proxmox Features":[
+            "proxmox-gui-lvm-thin-behavior"
+        ],
+        "Server Features":[
+            
+        ],
+        "Fog Server":[
+            
         ]
     }
 }
