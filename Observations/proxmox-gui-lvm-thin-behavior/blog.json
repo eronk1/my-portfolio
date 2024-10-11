@@ -1,49 +1,49 @@
 {
     "headers":{
-        "created": "--/--/----",
-        "updated": "--/--/----",
-        "updateHistory":["--/--/----"],
-        "title": "Proxmox server disk error 1296 & 1314 (DL360P G8)",
+        "created": "10/10/2024",
+        "updated": "10/10/2024",
+        "updateHistory":["10/10/2024"],
+        "title": "Referencing/Adding Thin Volume Through LVM-Thin and Directory",
         "picture": null,
         "author": "Seon Kim",
-        "subject": ""
+        "subject": "Proxmox Features"
     },
     "data":[
         {
             "type": "overview",
             "anotherTitle": null,
-            "text": "",
+            "text": "Thin volume can be added through LVM-Thin and Directory by going to <code>Datacenter > Storage > Add</code>. LVM-thin method allows for only disk image and container option while Directory allows for variety of other options.",
             "picture": "10"
-        },
-        {
-            "type": "small-section",
-            "title": "Issue",
-            "picture": "",
-            "text": "",
-            "data": [
-                
-            ]
         },
         {
             "type": "medium-section",
             "title": "Solution",
             "picture": "",
-            "stepByStepGuide": true,
+            "stepByStepGuide": false,
             "data": [
                 {
                     "type": "section",
                     "text":"",
-                    "picture":"",
+                    "picture":"10-1",
                     "note":null
                 },
                 {
-                    "type": "small-section",
-                    "title": "",
+                    "type": "section",
                     "text":"",
-                    "picture":"",
-                    "data": [
-                        
-                    ]
+                    "picture":"10-2",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"",
+                    "picture":"20-1",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"",
+                    "picture":"20-2",
+                    "note":null
                 }
             ]
         },

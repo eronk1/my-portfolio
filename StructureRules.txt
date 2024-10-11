@@ -1,5 +1,16 @@
+Guidelines
+
 Within elements like <code></code> if there are both < & > they must be replaced with &lt &gt
 
 
+
+Structure
+
 Steps folder stores step-by-step-guides
 Observation folder stores normal vlogs like experiences and observations
+
+
+
+Possibilities
+
+"text":"", "picture":"xx" = show picture only
