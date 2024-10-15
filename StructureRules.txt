@@ -12,5 +12,5 @@ Observation folder stores normal vlogs like experiences and observations
 
 
 Possibilities
-
+"text":"", "picture":"" = skip / show none
 "text":"", "picture":"xx" = show picture only
