@@ -4,7 +4,8 @@
         "Proxmox Errors",
         "Proxmox Features",
         "Fog Server",
-        "Server Features"
+        "Server Features",
+        "Firefox Config"
     ],
     "all-steps-in-catagories":{
         "Server Errors":[
@@ -26,6 +27,9 @@
         ],
         "Fog Server":[
             "Install Fog Server"
+        ],
+        "Firefox Config":[
+            "Firefox-tab-show-on-mouse-over"
         ]
     },
     "observation-catagories":{

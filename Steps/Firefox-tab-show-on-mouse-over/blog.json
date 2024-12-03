@@ -1,0 +1,70 @@
+{
+    "headers":{
+        "created": "12/02/2024",
+        "updated": "12/02/2024",
+        "updateHistory":["12/02/2024"],
+        "title": "Disable the display of tabs when hovering the mouse in full-screen mode on Firefox.",
+        "picture": null,
+        "author": "Seon Kim",
+        "subject": "Firefox Config"
+    },
+    "data":[
+        {
+            "type": "overview",
+            "anotherTitle": null,
+            "text": "",
+            "picture": ""
+        },
+        {
+            "type": "small-section",
+            "title": "",
+            "picture": [
+
+            ],
+            "text": "",
+            "multiPicture": true,
+            "data": [
+                {
+                    "type": "section",
+                    "text":"First, go to <code>about:config</code> by typing it in the firefox brwoser then set <code>toolkit.legacyUserProfileCustomizations.stylesheets</code> to false.",
+                    "picture":"10",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"Go to <code>about:support</code> then click <code>Open Folder</code> under Application basics.",
+                    "picture":"20",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"Create <code>Chrome</code> folder if not already there.",
+                    "picture":"30",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"Create <code>userChrome.css</code> inside the <code>Chrome</code> folder.",
+                    "picture":"40",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"Inside the <code>userChrome.css</code> paste this code in.",
+                    "codeAttach": true,
+                    "picture":"userChrome",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"close and reopen firefox and the changes should be applied.",
+                    "picture":"",
+                    "note":null
+                }
+            ]
+        }
+    ],
+    "related-articles":[
+
+    ]
+}
