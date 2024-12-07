@@ -19,7 +19,7 @@
             "type": "small-section",
             "title": "Issue",
             "picture": "10",
-            "text": "Internal network vmbr2 was unable to communicate with the outer network vmbr0. After using <code>tcpdump -i eno1 host 192.168.1.100</code> this output shoewed up.",
+            "text": "Internal network vmbr2 was unable to communicate with the outer network. After using <code>tcpdump -i eno1 host 192.168.1.100</code> this output shoewed up.",
             "data": [
                 
             ]
