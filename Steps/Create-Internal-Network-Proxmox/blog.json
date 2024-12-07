@@ -1,8 +1,8 @@
 {
     "headers":{
         "created": "10/12/2024",
-        "updated": "10/14/2024",
-        "updateHistory":["10/12/2024","10/14/2024"],
+        "updated": "12/6/2024",
+        "updateHistory":["10/12/2024","10/14/2024", "12/6/2024"],
         "title": "Internal Network Creation with IP Masquerase",
         "picture": null,
         "author": "Seon Kim",
@@ -36,7 +36,9 @@
                 {
                     "type": "section",
                     "text":"I configured the post-up with essential flags so it could be applied when interface goes up and I did post-down with the same flag and options so that it will be removed when interface goes down. ",
-                    "picture":"30",
+                    "codeAttach": true,
+                    "multiPicture": true,
+                    "picture":["interfaceCode.txt","30.png"],
                     "note":null
                 },
                 {

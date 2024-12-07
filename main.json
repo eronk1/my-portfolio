@@ -48,5 +48,11 @@
         "Fog Server":[
             
         ]
+    },
+    "troubleshoot-guide-categories":{
+        "Proxmox Errrors":[
+            "Internal-Network-Not-Connecting-With-Outer-Network"
+        ]
     }
+    
 }
