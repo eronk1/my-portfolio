@@ -1,21 +1,18 @@
-// src/Contents/ProjectPages/blogsAggregator.jsx
-
 /**
  * This aggregator auto-discovers all blog.json files and associated assets
  * (images, txt, md) in your src/blogs folder using Vite's import.meta.glob.
  *
+ * It skips the folder named "0-Folder Format" and computes a coverImage from the first
+ * available image file (png, jpg, jpeg, gif) if "cover.png" is not found.
+ *
  * Adjust the relative paths below if your aggregator file is located elsewhere.
  */
 
-// 1) Gather all blog.json files under src/blogs/**/blog.json eagerly.
-//    Using import: 'default' so each .json file is loaded as a default export.
 const blogModules = import.meta.glob('../../../blogs/**/blog.json', {
     eager: true,
     import: 'default'
   });
   
-  // 2) Gather all images, txt, md, etc. from src/blogs, returning file URLs eagerly.
-  //    Using "query: '?url'" + "import: 'default'" to get direct file URLs (no more 'as: "url"' deprecation).
   const imageModules = import.meta.glob('../../../blogs/**/*.{png,jpg,jpeg,gif,txt,md}', {
     eager: true,
     query: '?url',
@@ -23,40 +20,53 @@ const blogModules = import.meta.glob('../../../blogs/**/blog.json', {
   });
   
   function getBlogsArray() {
-    // Debug logs: see what was matched
     console.log('Found blogModules keys:', Object.keys(blogModules));
     console.log('Found imageModules keys:', Object.keys(imageModules));
   
     const blogs = [];
   
-    // Each key is something like: "../../../blogs/Steps/MyBlog/blog.json"
     for (const path in blogModules) {
-      // blogData should be the parsed JSON object if Vite automatically parses it
       const blogData = blogModules[path];
   
-      // Example path: "../../../blogs/Steps/MyBlog/blog.json"
-      // We'll extract "Steps" as category and "MyBlog" as folderName
+      // Expected path format: "../../../blogs/<Category>/<FolderName>/blog.json"
       const regex = /..\/..\/..\/blogs\/([^/]+)\/([^/]+)\/blog\.json$/;
       const match = path.match(regex);
   
       if (match) {
-        const category = match[1];     // e.g. "Steps", "Observations"
-        const folderName = match[2];  // e.g. "MyBlog"
+        const category = match[1];     // e.g. "Steps" or "Observations"
+        const folderName = match[2];   // e.g. "MyBlogFolder"
   
-        // Provide a helper function that returns the file URL if found
+        // Skip folder named "0-Folder Format"
+        if (folderName === '0-Folder Format (only for reference) copy') {
+          console.log('Skipping folder: 0-Folder Format');
+          continue;
+        }
+  
         const getImage = (filename) => {
-          const imagePath = `../../../blogs/${category}/${folderName}/${filename}`;
+          const imagePath = `../../../blogs/${category}/${folderName}/pictures/${filename}`;
+          console.log(imagePath)
           return imageModules[imagePath] || null;
         };
+  
+        // Compute coverImage: first, try "cover.png"
+        let coverImage = null;
+        const folderPattern = `../../../blogs/${category}/${folderName}/`;
+        const candidateKeys = Object.keys(imageModules).filter(key =>
+        key.startsWith(folderPattern) && /\.(png|jpe?g|gif)$/i.test(key)
+        );
+        candidateKeys.sort(); // Alphabetical order
+        if (candidateKeys.length > 0) {
+        coverImage = imageModules[candidateKeys[0]];
+        }
   
         blogs.push({
           folderName,
           category,
           data: blogData,   // The JSON object from blog.json
-          getImage         // A function for retrieving image or .txt URLs
+          getImage,         // Function to get an asset from the folder
+          coverImage        // Computed cover image URL (or null)
         });
       } else {
-        // If the path didn't match, optionally log it:
         console.log(`Path did not match expected pattern: ${path}`);
       }
     }

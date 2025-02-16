@@ -34,21 +34,20 @@ export default function ITProjects() {
 
   // Convert each discovered blog into a project card
   const dynamicBlogProjects = allBlogs.map((blog) => {
-    const { folderName, data: blogJson, getImage } = blog;
+    const { folderName, data: blogJson, coverImage } = blog;
     const blogTitle = blogJson?.headers?.title || folderName;
     const blogDesc = blogJson?.headers?.subject || 'A new blog.';
-    // Attempt to load "cover.png" from that folder; if missing, fallback
-    const coverImage = getImage('cover.png') || '/assets/noimage.png';
+    // Use the computed coverImage; if none, fallback to a default image.
+    const cover = coverImage || '/assets/noimage.png';
 
     return {
       title: blogTitle,
       desc: blogDesc,
-      imgLink: coverImage,
+      imgLink: cover,
       navigateLink: `blog-${folderName}`
     };
   });
-  console.log('wat')
-console.log(allBlogs)
+
   const combinedProjects = [
     aws,
     ciscoWLC,
@@ -56,7 +55,7 @@ console.log(allBlogs)
     kaliLinux,
     ...dynamicBlogProjects
   ];
-  console.log(combinedProjects)
+
   // 2-column layout split
   const mid = Math.ceil(combinedProjects.length / 2);
   const leftColumn = combinedProjects.slice(0, mid);
