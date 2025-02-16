@@ -70,12 +70,14 @@ export default function BlogPage({ blogFolder }) {
 
       {related.length > 0 && (
         <LargeSection>
-          <MediumText>Related Articles</MediumText>
-          <ul>
-            {related.map((ra, i) => (
-              <li key={i}>{ra}</li>
-            ))}
-          </ul>
+          <MediumSection>
+            <MediumText>Related Articles</MediumText>
+            <ul>
+              {related.map((ra, i) => (
+                <a href={ra} key={i}>{ra}</a>
+              ))}
+            </ul>
+          </MediumSection>
         </LargeSection>
       )}
     </div>
@@ -193,23 +195,27 @@ function RenderSection({ section, getImage }) {
     case 'overview':
       return (
         <LargeSection>
-          {title && <MediumText>{title}</MediumText>}
-          {renderText}
-          {renderPicture()}
+          <MediumSection>
+            {title && <MediumText>{title}</MediumText>}
+            {renderText}
+            {renderPicture()}
+          </MediumSection>
         </LargeSection>
       );
     case 'small-section':
       return (
-        <div>
-          {title && <MediumText>{title}</MediumText>}
-          {renderText}
-          {renderPicture()}
-          {renderNotes()}
-          {nestedData &&
-            nestedData.map((child, i) => (
-              <RenderSection key={i} section={child} getImage={getImage} />
-            ))}
-        </div>
+        <LargeSection>
+          <MediumSection>
+            {title && <MediumText>{title}</MediumText>}
+            {renderText}
+            {renderPicture()}
+            {renderNotes()}
+            {nestedData &&
+              nestedData.map((child, i) => (
+                <RenderSection key={i} section={child} getImage={getImage} />
+              ))}
+          </MediumSection>
+        </LargeSection>
       );
     case 'medium-section':
       return (
@@ -238,7 +244,7 @@ function RenderSection({ section, getImage }) {
       );
     case 'section':
       return (
-        <div>
+        <MediumSection>
           {renderText}
           {renderPicture()}
           {renderNotes()}
@@ -246,21 +252,23 @@ function RenderSection({ section, getImage }) {
             nestedData.map((child, i) => (
               <RenderSection key={i} section={child} getImage={getImage} />
             ))}
-        </div>
+        </MediumSection>
       );
     case 'conclusion':
       return (
         <LargeSection>
-          {title && <MediumText>{title}</MediumText>}
-          {renderText}
-          {renderPicture()}
+          <MediumSection>
+            {title && <MediumText>{title}</MediumText>}
+            {renderText}
+            {renderPicture()}
+          </MediumSection>
         </LargeSection>
       );
     default:
       return (
-        <div>
+        <MediumSection>
           <SmallText>Unsupported section type: {type}</SmallText>
-        </div>
+        </MediumSection>
       );
   }
 }

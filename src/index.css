@@ -32,7 +32,9 @@ body{
 code{
   color: #8fff96 !important;
 }
-
+a{
+  color: skyblue !important;
+}
 
 
 @media (max-width: 870px){
