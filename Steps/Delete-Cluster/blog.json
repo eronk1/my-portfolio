@@ -13,7 +13,7 @@
             "type": "overview",
             "anotherTitle": "",
             "text": "Delete cluster in the node so that the it can be added to another one by following these commands on the node that wants to delete the cluster.",
-            "picture": "10"
+            "picture": ""
         },
         {
             "type": "medium-section",
