@@ -15,10 +15,11 @@ function CodeBlock({ codeString }) {
   return (
     <pre
       style={{
-        background: '#f5f5f5',
+        background: '#343b4f',
         padding: '1rem',
         overflowX: 'auto',
-        border: '1px solid #ccc'
+        border: '0.15rem solid var(--secondary-color)',
+        borderRadius: "0.2rem",
       }}
     >
       <code>{codeString}</code>
