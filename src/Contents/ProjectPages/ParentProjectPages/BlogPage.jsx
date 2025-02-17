@@ -60,12 +60,20 @@ export default function BlogPage({ blogFolder }) {
   return (
     <div>
       <TitleText backC="#343b4f">
-        <h1>{headers.title}</h1>
-        {headers.subject && <h2>{headers.subject}</h2>}
+        <h1 dangerouslySetInnerHTML={createMarkup(headers.title)} />
+        {headers.subject && (
+          <h2 dangerouslySetInnerHTML={createMarkup(headers.subject)} />
+        )}
       </TitleText>
 
       {data.map((section, idx) => (
-        <RenderSection key={idx} section={section} getImage={getImage} />
+        // Mark top-level sections as "isRoot"
+        <RenderSection
+          key={idx}
+          section={section}
+          getImage={getImage}
+          isRoot={true}
+        />
       ))}
 
       {related.length > 0 && (
@@ -74,7 +82,9 @@ export default function BlogPage({ blogFolder }) {
             <MediumText>Related Articles</MediumText>
             <ul>
               {related.map((ra, i) => (
-                <a href={ra} key={i}>{ra}</a>
+                <a href={ra} key={i}>
+                  {ra}
+                </a>
               ))}
             </ul>
           </MediumSection>
@@ -84,7 +94,7 @@ export default function BlogPage({ blogFolder }) {
   );
 }
 
-function RenderSection({ section, getImage }) {
+function RenderSection({ section, getImage, isRoot = false }) {
   const {
     type,
     title,
@@ -98,7 +108,7 @@ function RenderSection({ section, getImage }) {
     note
   } = section;
 
-  // Renders text with code tags recognized as HTML <code>:
+  // Renders text with code tags recognized as HTML <code>
   const renderText = text ? (
     <SmallText>
       <span dangerouslySetInnerHTML={createMarkup(text)} />
@@ -136,36 +146,53 @@ function RenderSection({ section, getImage }) {
       );
     }
     const src = getImage(finalFile) || null;
-    if (!src) return <SmallText key={key}>Image not found: {finalFile}</SmallText>;
+    if (!src)
+      return <SmallText key={key}>Image not found: {finalFile}</SmallText>;
     return <ImgSec key={key} ImgSrc={src} />;
   }
 
+  // Renders notes with potential code tags processed
   const renderNotes = () => {
     if (!note) return null;
     if (multiLineNotes && Array.isArray(note)) {
       return note.map((n, i) => (
-        <SmallText key={i}>
-          <strong>Note:</strong> {n}
+        <SmallText key={i} note>
+          <strong style={{fontWeight: 700}}>Note:</strong>{' '}
+          <span dangerouslySetInnerHTML={createMarkup(n)} />
         </SmallText>
       ));
     }
     if (typeof note === 'string' && note.trim()) {
       return (
-        <SmallText>
-          <strong>Note:</strong> {note}
+        <SmallText note>
+          <strong style={{fontWeight: 800}}>Note:</strong>{' '}
+          <span dangerouslySetInnerHTML={createMarkup(note)} />
         </SmallText>
       );
     }
     return null;
   };
 
-  const renderNested = () => {
-    if (stepByStepGuide && Array.isArray(nestedData)) {
+  // New helper function to render nested sections.
+  // If "stepByStepGuide" is true, it will display a "Steps" header and list each step with "Step 1", "Step 2", etc.
+  const renderNestedSections = () => {
+    if (!Array.isArray(nestedData)) return null;
+    if (stepByStepGuide) {
+      return (
+        <>
+          {nestedData.map((child, i) => (
+            <MediumSection key={i}>
+              <MediumText>Step {i + 1}</MediumText>
+              <RenderSection section={child} getImage={getImage} isRoot={false} />
+            </MediumSection>
+          ))}
+        </>
+      );
+    } else {
       return nestedData.map((child, i) => (
-        <RenderSection key={i} section={child} getImage={getImage} />
+        <RenderSection key={i} section={child} getImage={getImage} isRoot={false} />
       ));
     }
-    return null;
   };
 
   // Check if the entire section is empty
@@ -175,11 +202,15 @@ function RenderSection({ section, getImage }) {
     const hasPicture =
       picture !== undefined &&
       picture !== null &&
-      (Array.isArray(picture) ? picture.length > 0 : picture.trim?.() !== '');
+      (Array.isArray(picture)
+        ? picture.length > 0
+        : picture.trim?.() !== '');
     const hasNote =
       note !== undefined &&
       note !== null &&
-      (Array.isArray(note) ? note.length > 0 : note.trim?.() !== '');
+      (Array.isArray(note)
+        ? note.length > 0
+        : note.trim?.() !== '');
     const hasNested = Array.isArray(data) && data.length > 0;
     const hasCommand = !!codeAttach; // "command" means codeAttach
 
@@ -190,80 +221,164 @@ function RenderSection({ section, getImage }) {
   // If the section is empty, return null
   if (isSectionEmpty(section)) return null;
 
-  // Otherwise, switch on the "type" to determine the layout
+  // Depending on the section type and whether it has a parent,
+  // we conditionally choose the header element and container.
   switch (type) {
     case 'overview':
       return (
         <LargeSection>
+          {title ? (
+            <LargeText>
+              <span dangerouslySetInnerHTML={createMarkup(title)} />
+            </LargeText>
+          ) : (
+            <LargeText>Overview</LargeText>
+          )}
           <MediumSection>
-            {title && <MediumText>{title}</MediumText>}
             {renderText}
             {renderPicture()}
           </MediumSection>
         </LargeSection>
       );
     case 'small-section':
-      return (
-        <LargeSection>
-          <MediumSection>
-            {title && <MediumText>{title}</MediumText>}
+      if (isRoot) {
+        return (
+          <LargeSection>
+            {title && (
+              <LargeText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </LargeText>
+            )}
             {renderText}
             {renderPicture()}
             {renderNotes()}
-            {nestedData &&
-              nestedData.map((child, i) => (
-                <RenderSection key={i} section={child} getImage={getImage} />
-              ))}
-          </MediumSection>
-        </LargeSection>
-      );
+            {renderNestedSections()}
+          </LargeSection>
+        );
+      } else {
+        return (
+            <MediumSection>
+              {title && (
+                <MediumText>
+                  <span dangerouslySetInnerHTML={createMarkup(title)} />
+                </MediumText>
+              )}
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
+        );
+      }
     case 'medium-section':
-      return (
-        <LargeSection>
-          <MediumSection>
-            {title && <MediumText>{title}</MediumText>}
+      if (isRoot) {
+        return (
+          <LargeSection>
+            {title && (
+              <LargeText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </LargeText>
+            )}
             {renderText}
             {renderPicture()}
             {renderNotes()}
-            {renderNested()}
-          </MediumSection>
-        </LargeSection>
-      );
+            {renderNestedSections()}
+          </LargeSection>
+        );
+      } else {
+        return (
+            <MediumSection>
+              {title && (
+                <MediumText>
+                  <span dangerouslySetInnerHTML={createMarkup(title)} />
+                </MediumText>
+              )}
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
+        );
+      }
     case 'large-section':
       return (
         <LargeSection>
-          {title && <LargeText>{title}</LargeText>}
-          {renderText}
-          {renderPicture()}
-          {renderNotes()}
-          {nestedData &&
-            nestedData.map((child, i) => (
-              <RenderSection key={i} section={child} getImage={getImage} />
-            ))}
+          {title && (
+            <LargeText>
+              <span dangerouslySetInnerHTML={createMarkup(title)} />
+            </LargeText>
+          )}
+            <MediumSection>
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
         </LargeSection>
       );
     case 'section':
-      return (
-        <MediumSection>
-          {renderText}
-          {renderPicture()}
-          {renderNotes()}
-          {nestedData &&
-            nestedData.map((child, i) => (
-              <RenderSection key={i} section={child} getImage={getImage} />
-            ))}
-        </MediumSection>
-      );
+      // Modified to apply the "small-section" style
+      if (isRoot) {
+        return (
+          <LargeSection>
+            {title && (
+              <LargeText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </LargeText>
+            )}
+            <MediumSection>
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
+          </LargeSection>
+        );
+      } else {
+        return (
+            <MediumSection>
+              {title && (
+                <MediumText>
+                  <span dangerouslySetInnerHTML={createMarkup(title)} />
+                </MediumText>
+              )}
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
+        );
+      }
     case 'conclusion':
-      return (
-        <LargeSection>
-          <MediumSection>
-            {title && <MediumText>{title}</MediumText>}
-            {renderText}
-            {renderPicture()}
-          </MediumSection>
-        </LargeSection>
-      );
+      if (isRoot) {
+        return (
+          <LargeSection>
+            <MediumSection>
+              {title ? (
+                <MediumText>
+                  <span dangerouslySetInnerHTML={createMarkup(title)} />
+                </MediumText>
+              ) : (
+                <MediumText>Conclusion</MediumText>
+              )}
+              {renderText}
+              {renderPicture()}
+            </MediumSection>
+          </LargeSection>
+        );
+      } else {
+        return (
+            <MediumSection>
+              {title && (
+                <MediumText>
+                  <span dangerouslySetInnerHTML={createMarkup(title)} />
+                </MediumText>
+              )}
+              {renderText}
+              {renderPicture()}
+            </MediumSection>
+        );
+      }
     default:
       return (
         <MediumSection>

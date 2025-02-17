@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion-latest'
 import ProjectPagesElementsAnimate from '../../../Animation-stuff/ProjectPagesElementsAnimate'
 import { createPortal } from 'react-dom'
 
-export function SmallText({children}) {
+export function SmallText({children, note=false}) {
     return (
-      <div tabIndex={0} className={s.SmallTextParent}>
+      <div tabIndex={0} className={!note ? s.SmallTextParent : s.NoteTextParent}>
           {children}
       </div>
     )

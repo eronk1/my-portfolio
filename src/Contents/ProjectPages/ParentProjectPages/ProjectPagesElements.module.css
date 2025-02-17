@@ -1,7 +1,18 @@
 .SmallTextParent{
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    opacity: 0.85;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  opacity: 0.85;
+}
+
+.NoteTextParent {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+.NoteTextParent > :first-child {
+  opacity: 1;
+}
+.NoteTextParent > :nth-child(2) {
+  opacity: 0.85;
 }
 
 .MediumTextParent{
