@@ -18,6 +18,7 @@
         {
             "type": "small-section",
             "title": "",
+            "stepByStepGuide": true,
             "picture": [
 
             ],
