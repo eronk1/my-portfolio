@@ -46,6 +46,7 @@ function createMarkup(text) {
 }
 
 export default function BlogPage({ blogFolder }) {
+  // Find the relevant blog by folder name
   const blogObj = allBlogs.find(b => b.folderName === blogFolder);
   if (!blogObj) {
     return (
@@ -55,7 +56,7 @@ export default function BlogPage({ blogFolder }) {
     );
   }
 
-  const { data: blogData, getImage } = blogObj;
+  const { data: blogData, getImage, getText } = blogObj;
   const { headers, data = [], 'related-articles': related = [] } = blogData;
 
   return (
@@ -73,6 +74,7 @@ export default function BlogPage({ blogFolder }) {
           key={idx}
           section={section}
           getImage={getImage}
+          getText={getText}
           isRoot={true}
         />
       ))}
@@ -95,7 +97,7 @@ export default function BlogPage({ blogFolder }) {
   );
 }
 
-function RenderSection({ section, getImage, isRoot = false }) {
+function RenderSection({ section, getImage, getText, isRoot = false }) {
   const {
     type,
     title,
@@ -124,7 +126,7 @@ function RenderSection({ section, getImage, isRoot = false }) {
     return codeAttach ? fileName + '.txt' : fileName + '.png';
   }
 
-  // Renders images (or code if codeAttach is true)
+  // Renders images (or .txt code if codeAttach is true)
   const renderPicture = () => {
     if (!picture) return null;
     if (multiPicture && Array.isArray(picture)) {
@@ -137,18 +139,29 @@ function RenderSection({ section, getImage, isRoot = false }) {
     // Append extension if missing
     const finalFile = appendExtension(picFile);
 
+    // If codeAttach is true and it's .txt, get raw text from aggregator
     if (codeAttach && finalFile.toLowerCase().endsWith('.txt')) {
-      // If we truly want to fetch the text content, you'd do a fetch or dynamic import.
+      const textContent = getText(finalFile);
+      if (!textContent) {
+        return (
+          <SmallText key={key} style={{ color: 'red' }}>
+            Text file not found: {finalFile}
+          </SmallText>
+        );
+      }
+      // Display the exact text inside a code block
+      return <CodeBlock key={key} codeString={textContent} />;
+    }
+
+    // Otherwise, treat as image
+    const src = getImage(finalFile);
+    if (!src) {
       return (
-        <CodeBlock
-          key={key}
-          codeString={`(Code file: ${finalFile}) -- load content via fetch if needed`}
-        />
+        <SmallText key={key} style={{ color: 'red' }}>
+          Image not found: {finalFile}
+        </SmallText>
       );
     }
-    const src = getImage(finalFile) || null;
-    if (!src)
-      return <SmallText key={key}>Image not found: {finalFile}</SmallText>;
     return <ImgSec key={key} ImgSrc={src} />;
   }
 
@@ -158,7 +171,7 @@ function RenderSection({ section, getImage, isRoot = false }) {
     if (multiLineNotes && Array.isArray(note)) {
       return note.map((n, i) => (
         <SmallText key={i} note>
-          <strong style={{fontWeight: 700}}>Note:</strong>{' '}
+          <strong style={{ fontWeight: 700 }}>Note:</strong>{' '}
           <span dangerouslySetInnerHTML={createMarkup(n)} />
         </SmallText>
       ));
@@ -166,7 +179,7 @@ function RenderSection({ section, getImage, isRoot = false }) {
     if (typeof note === 'string' && note.trim()) {
       return (
         <SmallText note>
-          <strong style={{fontWeight: 800}}>Note:</strong>{' '}
+          <strong style={{ fontWeight: 800 }}>Note:</strong>{' '}
           <span dangerouslySetInnerHTML={createMarkup(note)} />
         </SmallText>
       );
@@ -174,8 +187,7 @@ function RenderSection({ section, getImage, isRoot = false }) {
     return null;
   };
 
-  // New helper function to render nested sections.
-  // If "stepByStepGuide" is true, it will display a "Steps" header and list each step with "Step 1", "Step 2", etc.
+  // Render nested sections
   const renderNestedSections = () => {
     if (!Array.isArray(nestedData)) return null;
     if (stepByStepGuide) {
@@ -184,14 +196,25 @@ function RenderSection({ section, getImage, isRoot = false }) {
           {nestedData.map((child, i) => (
             <MediumSection key={i}>
               <MediumText>Step {i + 1}</MediumText>
-              <RenderSection section={child} getImage={getImage} isRoot={false} />
+              <RenderSection
+                section={child}
+                getImage={getImage}
+                getText={getText}
+                isRoot={false}
+              />
             </MediumSection>
           ))}
         </>
       );
     } else {
       return nestedData.map((child, i) => (
-        <RenderSection key={i} section={child} getImage={getImage} isRoot={false} />
+        <RenderSection
+          key={i}
+          section={child}
+          getImage={getImage}
+          getText={getText}
+          isRoot={false}
+        />
       ));
     }
   };
@@ -222,8 +245,7 @@ function RenderSection({ section, getImage, isRoot = false }) {
   // If the section is empty, return null
   if (isSectionEmpty(section)) return null;
 
-  // Depending on the section type and whether it has a parent,
-  // we conditionally choose the header element and container.
+  // Depending on "type" and whether it's a top-level section (isRoot), choose how to render:
   switch (type) {
     case 'overview':
       return (
@@ -258,17 +280,17 @@ function RenderSection({ section, getImage, isRoot = false }) {
         );
       } else {
         return (
-            <MediumSection>
-              {title && (
-                <MediumText>
-                  <span dangerouslySetInnerHTML={createMarkup(title)} />
-                </MediumText>
-              )}
-              {renderText}
-              {renderPicture()}
-              {renderNotes()}
-              {renderNestedSections()}
-            </MediumSection>
+          <MediumSection>
+            {title && (
+              <MediumText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </MediumText>
+            )}
+            {renderText}
+            {renderPicture()}
+            {renderNotes()}
+            {renderNestedSections()}
+          </MediumSection>
         );
       }
     case 'medium-section':
@@ -288,17 +310,17 @@ function RenderSection({ section, getImage, isRoot = false }) {
         );
       } else {
         return (
-            <MediumSection>
-              {title && (
-                <MediumText>
-                  <span dangerouslySetInnerHTML={createMarkup(title)} />
-                </MediumText>
-              )}
-              {renderText}
-              {renderPicture()}
-              {renderNotes()}
-              {renderNestedSections()}
-            </MediumSection>
+          <MediumSection>
+            {title && (
+              <MediumText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </MediumText>
+            )}
+            {renderText}
+            {renderPicture()}
+            {renderNotes()}
+            {renderNestedSections()}
+          </MediumSection>
         );
       }
     case 'large-section':
@@ -309,16 +331,16 @@ function RenderSection({ section, getImage, isRoot = false }) {
               <span dangerouslySetInnerHTML={createMarkup(title)} />
             </LargeText>
           )}
-            <MediumSection>
-              {renderText}
-              {renderPicture()}
-              {renderNotes()}
-              {renderNestedSections()}
-            </MediumSection>
+          <MediumSection>
+            {renderText}
+            {renderPicture()}
+            {renderNotes()}
+            {renderNestedSections()}
+          </MediumSection>
         </LargeSection>
       );
     case 'section':
-      // Modified to apply the "small-section" style
+      // We'll treat 'section' similarly to "small-section"
       if (isRoot) {
         return (
           <LargeSection>
@@ -337,17 +359,17 @@ function RenderSection({ section, getImage, isRoot = false }) {
         );
       } else {
         return (
-            <MediumSection>
-              {title && (
-                <MediumText>
-                  <span dangerouslySetInnerHTML={createMarkup(title)} />
-                </MediumText>
-              )}
-              {renderText}
-              {renderPicture()}
-              {renderNotes()}
-              {renderNestedSections()}
-            </MediumSection>
+          <MediumSection>
+            {title && (
+              <MediumText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </MediumText>
+            )}
+            {renderText}
+            {renderPicture()}
+            {renderNotes()}
+            {renderNestedSections()}
+          </MediumSection>
         );
       }
     case 'conclusion':
@@ -369,15 +391,15 @@ function RenderSection({ section, getImage, isRoot = false }) {
         );
       } else {
         return (
-            <MediumSection>
-              {title && (
-                <MediumText>
-                  <span dangerouslySetInnerHTML={createMarkup(title)} />
-                </MediumText>
-              )}
-              {renderText}
-              {renderPicture()}
-            </MediumSection>
+          <MediumSection>
+            {title && (
+              <MediumText>
+                <span dangerouslySetInnerHTML={createMarkup(title)} />
+              </MediumText>
+            )}
+            {renderText}
+            {renderPicture()}
+          </MediumSection>
         );
       }
     default:
