@@ -2,6 +2,8 @@
  * Global variable to store last used section type (for top-level)
  **************************************************************/
 window.lastSectionType = "overview";
+/* Global variable to store the cover image file (imported or selected) */
+window.coverImageFile = null;
 
 /**************************************************************
  * Mapping for nested default types based on parent's type
@@ -41,6 +43,18 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
       newSubjectInput.style.display = "none";
       newSubjectInput.value = "";
+    }
+  });
+
+  // Cover picture input event listener to update preview and store file in global variable
+  const coverPictureInput = document.getElementById('coverPictureInput');
+  coverPictureInput.addEventListener('change', () => {
+    if (coverPictureInput.files && coverPictureInput.files.length > 0) {
+      window.coverImageFile = coverPictureInput.files[0];
+      updateCoverImagePreview(window.coverImageFile);
+    } else {
+      window.coverImageFile = null;
+      document.getElementById('coverImagePreview').innerText = "No file selected";
     }
   });
 });
@@ -249,7 +263,6 @@ function addSection(parentContainer, data = null) {
 
   // If data is provided, populate fields
   if (data) {
-    // Section type is already set via default above if data.type exists; otherwise, it remains the default.
     if (data.note) {
       if (Array.isArray(data.note)) {
         data.note.forEach(nt => {
@@ -270,7 +283,6 @@ function addSection(parentContainer, data = null) {
       }
     }
     if (data.codeSnippet) {
-      // Populate code snippets (could be string or array)
       if (Array.isArray(data.codeSnippet)) {
         data.codeSnippet.forEach(snippet => {
           const snippetTextarea = document.createElement('textarea');
@@ -298,13 +310,14 @@ function addSection(parentContainer, data = null) {
 
 function updateFilePreview(sectionDiv) {
   const previewContainer = sectionDiv.querySelector('.file-preview-container');
-  previewContainer.innerHTML = ""; // Clear previous previews
+  previewContainer.innerHTML = "";
   const files = sectionDiv._files || [];
   files.forEach(file => {
     if (file.type.startsWith("image/")) {
       const img = document.createElement('img');
       img.src = URL.createObjectURL(file);
       img.alt = file.name;
+      // Add click event for modal preview
       img.addEventListener('click', () => {
         openModal(img.src);
       });
@@ -407,7 +420,7 @@ document.getElementById('downloadBlogZipBtn').addEventListener('click', () => {
       updated: now,
       updateHistory: [now],
       title: blogTitle,
-      picture: null,
+      picture: null,  // Cover image is not referenced in blog.json
       author: "Seon Kim",
       subject: finalSubject
     },
@@ -420,6 +433,20 @@ document.getElementById('downloadBlogZipBtn').addEventListener('click', () => {
   const zip = new JSZip();
   const mainFolder = zip.folder(folderName);
   const picturesFolder = mainFolder.folder("pictures");
+  
+  // Cover picture export: if provided, store it inside the existing pictures folder as "0.png"
+  // Use window.coverImageFile if available, otherwise check the coverPictureInput
+  const coverPictureInput = document.getElementById('coverPictureInput');
+  let coverFile = null;
+  if (coverPictureInput.files && coverPictureInput.files.length > 0) {
+    coverFile = coverPictureInput.files[0];
+  } else if (window.coverImageFile) {
+    coverFile = window.coverImageFile;
+  }
+  if (coverFile) {
+    picturesFolder.file("0.png", coverFile);
+  }
+  
   let globalFileIndex = 1;
   function exportSectionFiles(sec, sectionDiv) {
     const files = sectionDiv._files || [];
@@ -548,7 +575,7 @@ document.getElementById('downloadMainJsonBtn').addEventListener('click', () => {
 });
 
 /**************************************************************
- * 6. IMPORT BLOG (blog.json, ZIP, or folder) -> Populate Fields and Import Pictures
+ * 6. IMPORT BLOG (blog.json, ZIP, or folder) -> Populate Fields and Import Pictures & Cover Image
  **************************************************************/
 document.getElementById('importBlogBtn').addEventListener('click', () => {
   document.getElementById('importBlogInput').click();
@@ -613,19 +640,27 @@ function processZipImport(file) {
     }
     let blogJsonFile = null;
     let picturesFolder = null;
+    let mainFolder = null;
     if (topLevelFolder) {
-      const mainFolder = zip.folder(topLevelFolder);
+      mainFolder = zip.folder(topLevelFolder);
       blogJsonFile = mainFolder.file("blog.json");
       picturesFolder = mainFolder.folder("pictures");
     } else {
       blogJsonFile = zip.file("blog.json");
       picturesFolder = zip.folder("pictures");
+      mainFolder = zip;
     }
+    // Get cover image (0.png) from the pictures folder if it exists
+    let coverImagePromise = picturesFolder && picturesFolder.file("0.png") ? picturesFolder.file("0.png").async("blob") : Promise.resolve(null);
     if (!blogJsonFile) {
       throw new Error("blog.json not found in zip");
     }
-    return blogJsonFile.async("string").then(blogContent => {
+    return Promise.all([blogJsonFile.async("string"), coverImagePromise]).then(([blogContent, coverBlob]) => {
       let blogData = JSON.parse(blogContent);
+      let coverImageFile = null;
+      if (coverBlob) {
+        coverImageFile = new File([coverBlob], "0.png", { type: coverBlob.type });
+      }
       let picturesFiles = {};
       if (picturesFolder) {
         let picturePromises = [];
@@ -635,10 +670,10 @@ function processZipImport(file) {
           }));
         });
         return Promise.all(picturePromises).then(() => {
-          finishImport(blogData, picturesFiles);
+          finishImport(blogData, picturesFiles, coverImageFile);
         });
       } else {
-        finishImport(blogData, {});
+        finishImport(blogData, {}, coverImageFile);
       }
     });
   }).catch(error => {
@@ -650,6 +685,7 @@ function processFolderImport(files) {
   let folderName = null;
   let blogJsonFile = null;
   let picturesFiles = {};
+  let coverImageFile = null;
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     const relPath = file.webkitRelativePath;
@@ -659,6 +695,9 @@ function processFolderImport(files) {
     }
     if (relPath === folderName + "/blog.json") {
       blogJsonFile = file;
+    }
+    if (relPath === folderName + "/0.png") {
+      coverImageFile = file;
     }
     if (relPath.indexOf(folderName + "/pictures/") === 0) {
       const parts = relPath.split("/");
@@ -674,7 +713,7 @@ function processFolderImport(files) {
   reader.onload = function(e) {
     try {
       const blogData = JSON.parse(e.target.result);
-      finishImport(blogData, picturesFiles);
+      finishImport(blogData, picturesFiles, coverImageFile);
     } catch(err) {
       alert("Failed to parse blog.json from folder: " + err);
     }
@@ -682,7 +721,7 @@ function processFolderImport(files) {
   reader.readAsText(blogJsonFile);
 }
 
-function finishImport(blogData, picturesFiles) {
+function finishImport(blogData, picturesFiles, coverImageFile) {
   document.getElementById('sectionsContainer').innerHTML = "";
   if (Array.isArray(blogData.data)) {
     blogData.data.forEach(sec => {
@@ -711,6 +750,14 @@ function finishImport(blogData, picturesFiles) {
     }
   }
   attachImportedFiles(blogData.data, document.getElementById('sectionsContainer'), picturesFiles);
+  // If cover image exists, update preview and store it in global variable
+  if (coverImageFile) {
+    window.coverImageFile = coverImageFile;
+    updateCoverImagePreview(coverImageFile);
+  } else {
+    document.getElementById('coverImagePreview').innerText = "No file selected";
+    window.coverImageFile = null;
+  }
 }
 
 function attachImportedFiles(dataArr, container, picturesFiles) {
@@ -800,3 +847,24 @@ document.getElementById('downloadMainJsonBtn').addEventListener('click', () => {
   const blob = new Blob([JSON.stringify(mainJson, null, 2)], { type: "application/json" });
   saveAs(blob, "main.json");
 });
+
+/**************************************************************
+ * NEW: Function to update cover image preview
+ **************************************************************/
+function updateCoverImagePreview(file) {
+  const coverPreview = document.getElementById('coverImagePreview');
+  if (coverPreview) {
+    coverPreview.innerHTML = "";
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.alt = "Cover Image";
+    // Set dimensions similar to other image previews
+    img.style.maxWidth = "100px";
+    img.style.maxHeight = "100px";
+    // Add click event to open modal preview
+    img.addEventListener('click', () => {
+      openModal(img.src);
+    });
+    coverPreview.appendChild(img);
+  }
+}

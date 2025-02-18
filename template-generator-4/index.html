@@ -9,8 +9,7 @@
   <!-- Top bar with subject loading, blog import, downloads -->
   <div id="topbar">
     <button id="importBlogBtn">Import Blog</button>
-    <!-- Accept JSON, ZIP, or folder files; multiple selection enabled -->
-    <input type="file" id="importBlogInput" accept=".json,application/json,.zip" style="display:none;" multiple>
+    <input type="file" id="importBlogInput" accept=".json,application/json,.zip" style="display:none;">
     
     <button id="downloadBlogZipBtn">Download Blog Folder (zip)</button>
     <button id="downloadMainJsonBtn">Download main.json</button>
@@ -18,6 +17,13 @@
 
   <div class="container">
     <h1>Blog Generator</h1>
+    
+    <!-- Cover picture input and preview -->
+    <div class="cover-picture-container">
+      <label for="coverPictureInput">Cover Picture (optional):</label>
+      <input type="file" id="coverPictureInput" accept="image/*">
+      <div id="coverImagePreview">No file selected</div>
+    </div>
 
     <!-- Blog settings -->
     <div>
