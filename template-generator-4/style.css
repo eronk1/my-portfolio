@@ -186,8 +186,8 @@ button.add-nested-section-btn {
 
 /* Code text in the editor */
 code {
-  color: lightgreen;
-  background-color: rgba(144,238,144,0.2);
+  color: rgb(192, 0, 0);
+  background-color: rgba(238, 144, 144, 0.2);
   padding: 2px 4px;
   border-radius: 3px;
 }
