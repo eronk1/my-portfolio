@@ -1,0 +1,66 @@
+{
+    "headers":{
+        "created": "10/09/2024",
+        "updated": "10/09/2024",
+        "updateHistory":["10/09/2024"],
+        "title": "Delete/Remove Cluster from Node",
+        "picture": null,
+        "author": "Seon Kim",
+        "subject": "Proxmox Features"
+    },
+    "data":[
+        {
+            "type": "overview",
+            "anotherTitle": "",
+            "text": "Delete cluster in the node so that the it can be added to another one by following these commands on the node that wants to delete the cluster.",
+            "picture": ""
+        },
+        {
+            "type": "medium-section",
+            "title": "Solution",
+            "picture": "",
+            "stepByStepGuide": true,
+            "data": [
+                {
+                    "type": "section",
+                    "text": "<code>pvecm expected 1</code>",
+                    "picture":"",
+                    "note": "This allows for only 1 node to be online. By default it may be higher."
+                },
+                {
+                    "type": "section",
+                    "text": "<code>systemctl stop pve-cluster</code>",
+                    "picture":"",
+                    "note": "Stop the pve-cluster so that it doesn't affect other nodes in the same cluster."
+                },
+                {
+                    "type": "section",
+                    "text": "<code>pmxcfs -l</code>",
+                    "picture":"",
+                    "note": "Force the node into local mode."
+                },
+                {
+                    "type": "section",
+                    "text": "<code>rm -f /etc/pve/cluster.conf /etc/pve/corosync.conf /etc/cluster/cluster.conf /etc/corosync/corosync.conf /var/lib/pve-cluster/.pmxcfs.lockfile</code>",
+                    "picture":"",
+                    "note": "Remove these files by force. Some may not exist like the cluster.conf because its legacy."
+                },
+                {
+                    "type": "section",
+                    "text": "<code>systemctl stop pve-cluster</code>",
+                    "picture":"",
+                    "note": "Stop the cluster one more time as it was started locally."
+                },
+                {
+                    "type": "section",
+                    "text": "Finally, <code>reboot</code>",
+                    "picture":"",
+                    "note": null
+                }
+            ]
+        }
+    ],
+    "related-articles":[
+
+    ]
+}

@@ -1,0 +1,28 @@
+ifreload -a //for resetting /etc/network/interfaces
+
+nano /etc/network/interfaces
+
+iptables -t nat -L PREROUTING -v -n //this didn't really help
+
+iptables -t nat -L POSTROUTING -v -n
+iptables -t nat -L -n
+
+tcpdump -i vmbr2 icmp
+tcpdump -i vmbr0 icmp
+tcpdump -i vmbr0 host 192.168.1.100 and icmp
+tcpdump -i vmbr0 host 192.168.1.130 and icmp
+
+ip a show dev vmbr0
+
+//Modify current session configuration
+ip addr add 192.168.1.100/24 dev vmbr0
+
+//Must be saved like this in order for it to persist
+iface vmbr0 inet static
+        address 192.168.1.171/24
+        gateway 192.168.1.1
+        bridge-ports eno1
+        bridge-stp off
+        bridge-fd 0
+iface vmbr0 inet static
+        address 192.168.1.100/24

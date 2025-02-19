@@ -1,0 +1,65 @@
+{
+    "headers":{
+        "created": "10/09/2024",
+        "updated": "10/09/2024",
+        "updateHistory":["10/09/2024","10/10/2024"],
+        "title": "Enable Integrated Lights-Out (iLO) to be accessed on a Shared Port and assign Static IPv4 address",
+        "picture": null,
+        "author": "Seon Kim",
+        "subject": "Proxmox Features"
+    },
+    "data":[
+        {
+            "type": "overview",
+            "anotherTitle": null,
+            "text": "Shared port with static IP provides several benefits. This includes not needing a dedicated link and being able to access it across your network.",
+            "picture": "10"
+        },
+        {
+            "type": "medium-section",
+            "title": "Solution",
+            "picture": "",
+            "stepByStepGuide": true,
+            "data": [
+                {
+                    "type": "section",
+                    "text":"First, go to the iLO ip address after connecting to the server. Then using the credentials that is attached to the server, login to the iLO.",
+                    "picture":"5",
+                    "note": "Initial IPv4 or IPv6 address for the iLO may be seen while the server is booting."
+                },
+                {
+                    "type": "section",
+                    "text":"After logging in enable <code>Network > Shared Network Port > General > Use iLO Shared Network Port</code>. Then click submit and reset. And go to the new shared network IP address and login again.",
+                    "picture":"10",
+                    "note": "The iLO IPv4 or IPv6 address may be different from the address initially used to access iLO. Check boot screen to get the changed address."
+                },
+                {
+                    "type": "section",
+                    "text":"After logging in again, go to <code>Network > Shared Network Port > General > Use iLO Shared Network Port</code> and choose the port you want shared.",
+                    "picture":"15",
+                    "note":null
+                },
+                {
+                    "type": "section",
+                    "text":"Then, go to <code>Network > Shared Network Port > IPv4</code> and check off Enable DHCPv4 and set the necessary IP information.",
+                    "picture":"20",
+                    "note": null
+                },
+                {
+                    "type": "section",
+                    "text":"Finally, click <code>Submit</code> and then <code>Reset</code> and the shared port should be established.",
+                    "picture":"30",
+                    "note":null
+                }
+            ]
+        },
+        {
+            "type": "conclusion",
+            "text": "",
+            "picture": ""
+        }
+    ],
+    "related-articles":[
+
+    ]
+}
