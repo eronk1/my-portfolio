@@ -26,56 +26,56 @@
       "picture": "0.png"
     },
     {
-      "type": "small-section",
+      "type": "medium-section",
       "title": "Mesh Configuration",
       "text": "",
       "note": null,
       "data": [
         {
           "type": "small-section",
-          "title": null,
-          "text": "Based off the AP I got, I chose the newest version of the wireless controller that supports the APs.",
+          "title": "CCM",
+          "text": "Based off the AP I got, I chose the newest version of the wireless controller that supports the APs based off the cisco compatibility matrix.",
           "note": null,
           "picture": "10-CCM.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "SSC",
           "text": "After doing the initial setup of the wlc using the <code>setup</code> command, I issued a self-signed certificate to the WLC so that it can be used for the AAA processes involving the WLC. <br>",
           "note": null,
           "picture": "120.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "MAC Authorization",
           "text": "I authorized the APs by adding their ethernet mac addresses to the authorization list and added a authorization method of credential-download so that only specified and verified APs are allowed to join. In addition, I also added authentication method for mesh AP so that mesh AP can be authenticated and authorized by the wireless controller to join.",
           "note": null,
           "picture": "130.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Mesh Profile",
           "text": "<div>Then I created a mesh profile based on the mesh authentication and authorization created in AAA section to allow the Mesh AP (MAP) to properly authenticate and get authorized while joining the controller. The bridge group name was set so that any MAPs or Root APs (RAPs) with the same group name can associate with each other to create a mesh network. Ethernet bridging was enabled in order to allow RAPs to pass traffic into the wired network.</div>",
           "note": "RAP is the access point in the mesh network that is connected to the distribution system (the internal network).",
           "picture": "190.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Join Profile",
           "text": "AP join profile is used to specify how and what method the APs will use to join. So in here, I specified the way mesh APs can join by linking it to the mesh profile.",
           "note": null,
           "picture": "210.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "WLAN Profile",
           "text": "Here, I created a WLAN profile for the mesh APs to use and get clients to use and connect. I specified essential configurations such as the type of encryption to use to what WPA policy to use. I then gave it a password using simultaneous authentication of equals (SAE) for clients to input when attempting to connect.",
           "note": null,
           "picture": "230.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "AP Tags",
           "text": "There are 3 tags that make up the configuration that is deployed to lightweight APs. Of which, policy tag was created by mapping the WLAN profile to it and site tag was created by mapping to join profile to it. The last tag which is RF tag was left as default for simplicity. I then deployed these tags to the access points and configured its mode to bridge. Then I waited for the access point to reboot and reentered into the configuration.",
           "note": null,
           "multiPicture": true,
@@ -86,7 +86,7 @@
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Applying Mesh",
           "text": "After the reboot, the AP configuration now had a tab mesh and there, I was able to configure 1 of the access point to mesh mode root and the other to mesh. This allowed for the mesh network of 1 child connecting to the parent and the parent connected to the wired network. From there, I was able to connect to the mesh network through the SSID I configured as Guest.",
           "note": null,
           "picture": "270.png"
@@ -95,42 +95,42 @@
       "picture": ""
     },
     {
-      "type": "small-section",
+      "type": "medium-section",
       "title": "RADIUS Configuration",
       "text": "",
       "note": null,
       "data": [
         {
           "type": "small-section",
-          "title": null,
+          "title": "IP on Ubuntu Server",
           "text": "First, I created a VM in Proxmox running a ubuntu server so that I can install freeradius on it. Before doing so, I configured the IP addresses so that it can access both the internet and the lab environment created. I then installed the FreeRadius using their tutorial.",
           "note": null,
           "picture": "500.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "RADIUS Server Access Control",
           "text": "After installing FreeRadius I went into root user with attributes with <code>sudo -E -s</code> then the clients configuration by <code>nano /etc/freeradius/3.0/clients.conf</code>. In here, clients that are allowed to connect to radius are configured. By default, only local host is allowed so I configured it to allow both access from my PC and the WLC.",
           "note": null,
           "picture": "580.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Users",
           "text": "I then, <code>nano /etc/freeradius/3.0/users</code> and created users each with specific permissions. This includes which VLANs they are assigned to and which ACL they are assigned to depending on their role. This effectively provides authentication for the client and authorization for specific groups of users.",
           "note": null,
           "picture": "570.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Accounting",
           "text": "I then went into&nbsp;<code>nano /etc/freeradius/3.0/mods-available/details</code> in order to configure which specific attributes for the RADIUS server to log. This includes but is not limited to their IP address username and timestamp of their events.",
           "note": null,
           "picture": "560.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Testing",
           "text": "I first enabled RADIUS testing using <code>sudo freeradius -X</code> and verified its functionality. After creating rules for AAA in the RADIUS server, I installed NTRadPing on my PC then tested for authentication and accounting using their respective ports and other details.",
           "note": null,
           "multiPicture": true,
@@ -141,7 +141,7 @@
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "PEAP",
           "text": "In <code>nano /etc/freeradius/3.0/mods-available/eap</code> I chose to use the 802.1X method of PEAP. I configured it so that it uses the inner eap type of PAP because it is more efficient then default MSCHAPv2. Both inner EAP is protected by the outside PEAP and since MSCHAPv2 is less efficient and can still be easily cracked by any modern computer, having PEAP breached in the first place would jeopardize the credential details whether MSCHAPv2 or PAP. Therefore, PAP was chosen.",
           "note": null,
           "multiPicture": true,
@@ -152,14 +152,14 @@
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Linking RADIUS Server to Controller",
           "text": "After configuring all the essential features in the RADIUS server I went back to the wireless controller and configured it so that it can use the RADIUS server I created. This was done by specifying the server address and its key. Then after linking the RADIUS server I configured the authentication and accounting to use the RADIUS server.",
           "note": null,
           "picture": "640.png"
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Policy Tag & Policy Profile",
           "text": "I used the RADIUS server linked by creating a WLAN using 802.1X and the RADIUS server linked, then policy profile to allow for AAA override in order to allow the RADIUS server to enforce authorization like which VLAN the client uses and which ACL is enforced on the client.",
           "note": null,
           "multiPicture": true,
@@ -170,7 +170,7 @@
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "VLAN & ACL",
           "text": "I created ACLs specified by the RADIUS server with custom rules each in respect to their role. I created a VLAN and VLAN group needed on the controller so the VLAN traffic can pass through. Finally I applied the VLAN onto the AP.",
           "note": null,
           "multiPicture": true,
@@ -182,7 +182,7 @@
         },
         {
           "type": "small-section",
-          "title": null,
+          "title": "Accounting Logs",
           "text": "When attempting to connect to the controller, the controller was able to verify from the RADIUS server and the RADIUS server is shown to log attributes like the user that accessed it and the timestamp it was accessed.",
           "note": null,
           "picture": "770.png"
@@ -191,7 +191,7 @@
       "picture": ""
     },
     {
-      "type": "small-section",
+      "type": "medium-section",
       "title": "Errors Faced and My Solutions",
       "text": "<div><br></div><div><br></div>",
       "note": null,
