@@ -1,1 +1,0 @@
-*|div#fullscr-toggler {display:none!important;}

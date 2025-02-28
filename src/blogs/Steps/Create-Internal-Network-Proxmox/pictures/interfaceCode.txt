@@ -1,2 +1,0 @@
-post-up iptables -A POSTROUTING -s {subnet/mask} -o {vmbr} -j MASQUERADE
-post-down iptable -D POSTROUTING -s {subnet/mask} -o {vmbr} -j MASQUERADE
