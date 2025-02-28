@@ -1,0 +1,50 @@
+{
+    "headers":{
+        "created": "--/--/----",
+        "updated": "--/--/----",
+        "updateHistory":["--/--/----"],
+        "title": "",
+        "picture": null,
+        "author": "Seon Kim",
+        "subject": ""
+    },
+    "data":[
+        {
+            "type": "overview",
+            "anotherTitle": null,
+            "text": "",
+            "picture": "10"
+        },
+        {
+            "type": "medium-section",
+            "title": "Solution",
+            "picture": "",
+            "stepByStepGuide": false,
+            "data": [
+                {
+                    "type": "section",
+                    "text":"",
+                    "picture":"",
+                    "note":null
+                },
+                {
+                    "type": "small-section",
+                    "title": "",
+                    "text":"",
+                    "picture":"",
+                    "data": [
+                        
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "conclusion",
+            "text": "",
+            "picture": ""
+        }
+    ],
+    "related-articles":[
+
+    ]
+}
