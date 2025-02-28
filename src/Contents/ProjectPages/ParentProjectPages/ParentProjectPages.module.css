@@ -8,6 +8,7 @@
 .AllProjectsParent > * > *{
     width: 65vw;
     margin: 0 auto;
+    max-width: 60rem;
 }
 .AllProjectsParent *{
     color: var(--secondary-color);
