@@ -219,6 +219,13 @@
         }
       ],
       "picture": ""
+    },
+    {
+      "type": "conclusion",
+      "title": null,
+      "text": "This experience has taught me the numerous possibilities wireless technologies are capable of and numerous more functions it can serve with the combination of other technologies like a RADIUS server. I think a solid foundation before I tried this lab helped me a lot get through it, but there were still plenty of interactions documentation didn't cover like the potential problems for a specific error or connecting Mesh AP and WLC. Overall, wireless technology is quite interesting and I'm looking forward to learning and playing around with it more.",
+      "note": null,
+      "picture": ""
     }
   ]
 }
