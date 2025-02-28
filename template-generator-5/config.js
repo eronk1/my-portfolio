@@ -10,7 +10,8 @@ var mainData = {
       "Fog Server",
       "Server Features",
       "Firefox Config",
-      "CML Errors"
+      "CML Errors",
+      "Personal Experiences"
     ]
   };
   
