@@ -156,10 +156,12 @@ function RenderSection({ section, getImage, getText, isRoot = false }) {
     // Otherwise, treat as image
     const src = getImage(finalFile);
     if (!src) {
+      // console.log('image not found')
       return (
-        <SmallText key={key} style={{ color: 'red' }}>
-          Image not found: {finalFile}
-        </SmallText>
+        // <SmallText key={key} style={{ color: 'red' }}>
+        //   {/* Image not found: {finalFile} */}
+        // </SmallText>
+       null 
       );
     }
     return <ImgSec key={key} ImgSrc={src} />;
