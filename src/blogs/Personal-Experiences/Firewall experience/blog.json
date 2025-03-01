@@ -1,0 +1,278 @@
+{
+  "headers": {
+    "created": "2/28/2025",
+    "updated": "2/28/2025",
+    "updateHistory": [
+      "2/28/2025"
+    ],
+    "title": "Implementing different types of Firewall",
+    "picture": null,
+    "author": "Seon Kim",
+    "subject": "Personal Experiences"
+  },
+  "data": [
+    {
+      "type": "overview",
+      "title": null,
+      "text": "As technology evolves, security becomes ever more challenging and firewalls are a major component for keeping businesses or households secure. Therefore, I decided to lab out different types of firewalls to get a better understanding of what each can do. In this blog, I will showcase the firewalls Cisco ASA, Cisco FTD, and pfSense and go over the features they lack and advantages they have from the features I have tested. I also&nbsp; used addition features and technologies such as Cisco FMC, IP SLA, and EEM to manage and support these firewalls.",
+      "note": null,
+      "picture": ""
+    },
+    {
+      "type": "overview",
+      "title": "Prerequisites",
+      "text": "All the technologies used in this blog was was virtualized using both Proxmox and Cisco Modeling Labs. Primary technologies used were: Cisco ASA, Cisco FTD, Cisco FMC, Cisco Switch, pfSense. The diagram represents my general lab setup with pfsense analyzing some traffic but not others. Depending on the group the traffic from the internet will either go to Cisco ASA or Cisco FTD. The FMC in this lab manages just the FTD.",
+      "note": null,
+      "picture": "0.png"
+    },
+    {
+      "type": "medium-section",
+      "title": "Cisco Adaptive Security Appliance (ASA)",
+      "text": "",
+      "codeSnippet": [
+        "ASA(config)# ip local pool third_party 10.2.2.5-10.2.2.60 mask 255.255.255.192\n\nASA(config)# tunnel-group 3rd-tunnel type remote-access\nASA(config)# tunnel-group 3rd-tunnel general-attributes\nASA(config-tunnel-general)# address-pool third_party",
+        "sudo openconnect --protocol=anyconnect --authgroup=third_party 192.168.137.222"
+      ],
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "ASA overview",
+          "text": "Since in the real world there are many legacy ASA firewalls still in use, I wanted to try and configure ASA for remote-access VPN because although ASA does not have NGFW like FTD it still has the hardware to accelerate the encryption and decryption process.",
+          "note": null,
+          "picture": ""
+        },
+        {
+          "type": "small-section",
+          "title": "TFTP Server Setup",
+          "text": "Initially when I tried to configure ASA so that it can provide remote-access VPN it failed due to a missing package that configures the ASA to act as the VPN server. So I had to install it online and import it onto my Proxmox server using a copy protocol like <code>SCP</code> or <code>SFTP</code>. After doing so, I had to import the package using TFTP as that was the protocol supported by ASA. So I configured the Proxmox server to act as a TFTP server. Then I imported the package into ASA using its TFTP protocol.",
+          "note": "sudo apt install tftpd-hpa",
+          "picture": "10.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Anyconnect Enable",
+          "text": "<div>I then initialized anyconnect on ASA so I can start configuring it. In addition, I installed anyconnect on my windows PC but when I attempted to connect it gave me an error and that error led me to disable ethernet network sharing. But this also disabled the server's access to the internet through my PC therefore I had to install a open source software openconnect, on a Linux device.</div>",
+          "note": "sudo apt install openconnect",
+          "picture": "20.png"
+        },
+        {
+          "type": "small-section",
+          "title": "ASA Configuration",
+          "text": "Then I configured ASA to use a NAT pool of in a range of 10.2.2.0/26. This effectively makes it so that outside users can access internal traffic by having their source IP address changed so that they can access internal resources. Additionally, I created a tunnel-group that can have different permissions than other tunnel groups.",
+          "codeAttach": true,
+          "codeSnippet": "ASA(config)# ip local pool third_party 10.2.2.5-10.2.2.60 mask 255.255.255.192\n\nASA(config)# tunnel-group 3rd-tunnel type remote-access\nASA(config)# tunnel-group 3rd-tunnel general-attributes\nASA(config-tunnel-general)# address-pool third_party",
+          "note": null,
+          "picture": "snippet3.txt"
+        },
+        {
+          "type": "small-section",
+          "title": "Testing",
+          "text": "Finally, I tested it by connecting to the ASA using openconnect from my Linux PC using the command listed below. After connecting, I tested it by pinging and going to the web browser of FMC inside the internal network. The packet capture inside CML shows encrypted traffic using DTLS coming into the ASA server and after ASA server decrypts it, it changes the source address and sends out traffic into the internal network towards FMC. <br>",
+          "codeAttach": true,
+          "codeSnippet": "sudo openconnect --protocol=anyconnect --authgroup=third_party 192.168.137.222",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "snippet4.txt",
+            "60.png",
+            "180.png"
+          ]
+        }
+      ],
+      "multiPicture": true,
+      "picture": [
+        "snippet1.txt",
+        "snippet2.txt"
+      ]
+    },
+    {
+      "type": "medium-section",
+      "title": "Cisco Firepower Threat Defense (FTD)",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "FTD vs ASA",
+          "text": "FTD and ASA are both software that can run on a server or a dedicated device. FTD the modern firewall software while ASA is an older software that is no longer supported. However, the primary difference is FTD is next-generation meaning it can support features like, URL-Filtering, IPS, and other advanced features while ASA is limited in these features or does not have them at all. The following sections on FTD configuring features both new and old that portrays the power of a firewall. The configuration of FTD was mostly done by FMC which is the central management center for Cisco firewalls.",
+          "note": null,
+          "picture": ""
+        },
+        {
+          "type": "small-section",
+          "title": "Registration of FTD",
+          "text": "I first had to register the FTD onto the FMC by configuring a username and password along with the IP and its related settings. The fmckey was also defined here so that I can access it from the FMC using that key. Using the credentials defined I logged into the FTD console so that I can setup the initial configuration which was ultimately to configure the default gateway and its outside IP address so that it is accessible from the FMC. In the FMC I added the FTD using the registration key and its IP address (Here, next generation features like URL and IPS is configured to be enabled). <br>",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "105.png",
+            "110.png",
+            "120.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "OSPF",
+          "text": "This firewall was in the middle of an OSPF network. Therefore I configured it. So that the firewall can participate in the OSPF network. The GUI for this section was very intuitive. The configuration was straightforward even without looking at cisco's documentation.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "140.png",
+            "150.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Rule Configuration",
+          "text": "The rule configuration was incredibly intuitive and easy to understand without having to look for how to use it. For example, in the applications tab, I was able to configure it so that only very low application risks and very high business relevance can be accessed. Additionally, traditional firewall features like which ports to allow or deny was also easily configured. The URL filtering in the URLs tab was particularly interesting as it made decisions to allow or deny based on reputation. I learned beforehand people in cisco TALOS which consists of professionals assigns these reputation to websites. This feature makes it much easier for constantly updated categorization of dangerous to non-dangerous traffic. I was also able to allow my own domain name for more granular control.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "220.png",
+            "230.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Last touches",
+          "text": "I finished setting up the rules to fit my network's needs and configured the rule to apply to a specific FTD. Then I saved the configuration and deployed it onto the FTD device. I then tested to make sure ports and websites that I allowed were accessible from the internal network.",
+          "note": null,
+          "picture": "250.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "pfSense",
+      "text": "",
+      "codeSnippet": [
+        "interface nve1\n    overlay-encapsulation vxlan-with-tag\n    source-interface loopback1\n    member vni 10002-10100\n    ingress-replication protocol static\n        peer-ip 10.31.0.1\n    member vni 20003-20150\n    ingress-replication protocol static\n        peer-ip 10.47.0.1",
+        "ip sla 1\n  icmp-echo 10.17.1.253 source-interface Ethernet1/1\n    threshold 500\n    timeout 2000\n    frequency 2\n\nip sla schedule 1 life forever start-time now",
+        "track 1 ip sla 1\n delay up 8 down 4",
+        "event manager applet VNI_GOES_DOWN\n  event track 1 state down\n  action 2.0 cli configure terminal\n  action 3.0 cli interface nve1\n  action 4.0 cli member vni 10002-10100\n  action 5.0 cli ingress-replication protocol static\n  action 6.0 cli peer-ip 10.31.0.1\n  action 7.0 cli exit\n  action 8.0 syslog msg 10.18.1.253 is unreachable Bringing VNI up\nevent manager applet VNI_GOES_UP\n  event track 1 state up\n  action 1.1 cli configure terminal\n  action 1.2 cli interface nve1\n  action 1.3 cli member vni 10002-10100\n  action 1.4 cli no ingress-replication protocol static\n  action 1.5 cli exit\n  action 1.6 syslog msg pfsense in building 2 reachable bringing it's vni down"
+      ],
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Overview",
+          "text": "pfSense is one of the most popular open source firewall solutions out there. In addition to that from what I tried it is also quite flexible in allowing different software to be added. However, failover DHCP was not supported therefore I made extra configurations on the switch connected to it in order to make the failover work as intended. In addition, I got to add additional security measures for even more reduced attack surface as I was able to make custom configurations.",
+          "note": null,
+          "picture": ""
+        },
+        {
+          "type": "small-section",
+          "title": "Initial Setup",
+          "text": "Initially, I downloaded the ISO image from Netgate's website and booted up a VM from it. It first tried to install from online so I temporarily switched its interface so that it can access the internet and download its neccessary software. I then switched it back to the interface I actually wanted to use. After doing so, I was prompted with options to map the physical port to pfSense's logical port and add the IP addresses to both its internal and external interfaces. So I did so and then I was able to access the GUI through the IP of the LAN interface.",
+          "note": null,
+          "picture": "10.png"
+        },
+        {
+          "type": "small-section",
+          "title": "pfSense VLAN setup",
+          "text": "<div>The goal was to have 15 VLANs of which 10 is accessible while the other 5 is on standby and on pfSense2, 5 accessible and 10 on standby. If one pfSense is inaccessible, the other can take over to meet the user's needs. However one of the lab-specific primary purposes for the pfSense firewall is to serve IP addresses and other related information by acting as the DHCP server. pfSense DHCP server only supports IP address leasing on the same subnet. Therefore I had to configure the VLANs so that they can serve DHCP for the subnets.</div>",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "40.png",
+            "50.png",
+            "60.png",
+            "70.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "DHCP Configuration",
+          "text": "Here, I reserved the first 9 and last 54 addresses so that I can use those for special purposes that may come up. This used ISC DHCP which is a common open source solution used and can also add options unlike its other version in pfSense of Kea DHCP. The option 43 was configured for the access points to find the WLC controller. last 4 bytes is the controller IP address while the f1 indicates it is cisco and 04 indicates that there are 4 bytes in this address (access points and WLC not shown in the network diagram).",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "80.png",
+            "100.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "VXLAN Configuration",
+          "text": "Unfortunately pfSense lacked a native DHCP server failover capability. \nTherefore, I had to configure failover through the switch it is \nconnected to. To do this I used VXLAN to span the VLANs into the other \nDHCP server when the primary one fails. The network virtual interface (NVE) is assigned to so that VLAN tagged traffic can pass through and communicate with its peer switch that is connected to other clients. The member VNI is assigned in 2 groups with different IP as one of them is assigned to itself (if another switch is added with same VLAN it would assign it to that instead of itself).",
+          "codeAttach": true,
+          "codeSnippet": "interface nve1\n    overlay-encapsulation vxlan-with-tag\n    source-interface loopback1\n    member vni 10002-10100\n    ingress-replication protocol static\n        peer-ip 10.31.0.1\n    member vni 20003-20150\n    ingress-replication protocol static\n        peer-ip 10.47.0.1",
+          "note": null,
+          "picture": "snippet9.txt"
+        },
+        {
+          "type": "small-section",
+          "title": "Internet Protocol Service Level Agreement (IP SLA)",
+          "text": "IP SLA is a cisco specific network device feature that performs tasks like ping to verify the latency, jitter, and loss towards its specified destination. In this case I used it to ping the other pfsense on both switches to notify when failure to reach or when it's reachable again. I then started the IP SLA.",
+          "codeAttach": true,
+          "codeSnippet": "ip sla 1\n  icmp-echo 10.17.1.253 source-interface Ethernet1/1\n    threshold 500\n    timeout 2000\n    frequency 2\n\nip sla schedule 1 life forever start-time now",
+          "note": null,
+          "picture": "snippet10.txt"
+        },
+        {
+          "type": "small-section",
+          "title": "Embedded Event Manager (EEM)",
+          "text": "Cisco devices in addition to IP SLA have a feature called EEM which automates tasks based on events. I configured it so that IP SLA I configured is tracked for when it goes up and when it goes down. Down meaning unable to ping and up mean the opposite. The delay command tells when it presumes its up (8 seconds in this case) and when it presumes its down (4 seconds). The EEM makes it so that depending on which event is triggered (up or down) the respective applet runs.",
+          "codeAttach": true,
+          "codeSnippet": [
+            "track 1 ip sla 1\n delay up 8 down 4",
+            "event manager applet VNI_GOES_DOWN\n  event track 1 state down\n  action 2.0 cli configure terminal\n  action 3.0 cli interface nve1\n  action 4.0 cli member vni 10002-10100\n  action 5.0 cli ingress-replication protocol static\n  action 6.0 cli peer-ip 10.31.0.1\n  action 7.0 cli exit\n  action 8.0 syslog msg 10.18.1.253 is unreachable Bringing VNI up\nevent manager applet VNI_GOES_UP\n  event track 1 state up\n  action 1.1 cli configure terminal\n  action 1.2 cli interface nve1\n  action 1.3 cli member vni 10002-10100\n  action 1.4 cli no ingress-replication protocol static\n  action 1.5 cli exit\n  action 1.6 syslog msg pfsense in building 2 reachable bringing it's vni down"
+          ],
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "snippet11.txt",
+            "snippet12.txt"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Testing",
+          "text": "Depending on whether the connection to pfSense server changes to up or down the peer is added or lost as the EEM applet triggers depending on their event. The DHCP server has been successfully leased for their respective VLANs.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "240.png",
+            "260.png",
+            "270.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Rules",
+          "text": "Here I configured a rule so that all traffic that is not matched are filtered out. This was done to reduce internet attack vector to only websites but still allow for pings. In the switches of the PCs, they were configured to route only traffic from a specific VLAN to the pfSense, otherwise the other VLANs bypass pfSense and goes straight to the router.",
+          "note": null,
+          "picture": "280.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Additional Packages",
+          "text": "There were lots of options to choose from in the package of pfSense. I downloaded from it, Squid to act as a reverse proxy, freeradius as the RADIUS server, suricata as an IPS solution. They were imported easily and I was able to configure them intuitively as they provide GUI from pfSense rather then some of their native CLI.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "290.png",
+            "300.png",
+            "310.png"
+          ]
+        }
+      ],
+      "multiPicture": true,
+      "picture": [
+        "snippet5.txt",
+        "snippet6.txt",
+        "snippet7.txt",
+        "snippet8.txt"
+      ]
+    },
+    {
+      "type": "conclusion",
+      "title": null,
+      "text": "Their are a lot of security solutions both open source and closed source in the market that I tried out. However, they all provided distinct advantages that made them special. ASA is legacy but its hardware is still useful, FTD is the modern version of ASA that has next-generation features, and finally pfSense is incredibly flexible in it being able to integrate with variety of other solutions easily. Overall, I learned that although many different firewall solutions exist, they all share a same structure and their distinct features and capabilities should be carefully considered before implementing into a network.",
+      "note": null,
+      "picture": ""
+    }
+  ]
+}

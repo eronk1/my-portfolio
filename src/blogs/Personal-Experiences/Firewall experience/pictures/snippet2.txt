@@ -1,0 +1,1 @@
+sudo openconnect --protocol=anyconnect --authgroup=third_party 192.168.137.222
