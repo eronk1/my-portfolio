@@ -1,0 +1,5 @@
+ASA(config)# ip local pool third_party 10.2.2.5-10.2.2.60 mask 255.255.255.192
+
+ASA(config)# tunnel-group 3rd-tunnel type remote-access
+ASA(config)# tunnel-group 3rd-tunnel general-attributes
+ASA(config-tunnel-general)# address-pool third_party

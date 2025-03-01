@@ -1,0 +1,7 @@
+ip sla 1
+  icmp-echo 10.17.1.253 source-interface Ethernet1/1
+    threshold 500
+    timeout 2000
+    frequency 2
+
+ip sla schedule 1 life forever start-time now

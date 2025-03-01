@@ -1,0 +1,9 @@
+interface nve1
+    overlay-encapsulation vxlan-with-tag
+    source-interface loopback1
+    member vni 10002-10100
+    ingress-replication protocol static
+        peer-ip 10.31.0.1
+    member vni 20003-20150
+    ingress-replication protocol static
+        peer-ip 10.47.0.1
