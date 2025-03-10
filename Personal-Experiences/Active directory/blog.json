@@ -1,0 +1,253 @@
+{
+  "headers": {
+    "created": "3/10/2025",
+    "updated": "3/10/2025",
+    "updateHistory": [
+      "3/10/2025"
+    ],
+    "title": "Governing users and computers with Active Directory",
+    "picture": null,
+    "author": "Seon Kim",
+    "subject": "Personal Experiences"
+  },
+  "data": [
+    {
+      "type": "overview",
+      "title": null,
+      "text": "In many small to giant businesses today, active directory is commonly used as it is able to be integrated with the Windows OS which is the most common operating system normal people are used to. Hence, I decided to administer and configure users and computers with them. Ranging from everyday tasks such as changing passwords and assigning users to groups to more high level tasks such as allowing users access to resources in different domains.",
+      "note": null,
+      "picture": ""
+    },
+    {
+      "type": "overview",
+      "title": "General Setup",
+      "text": "There will be 2 domain controllers, with the setup allowing for more domain controllers to be added with little to no problem. FFL of windows server 2016 to allow for at least windows 2016 and nothing older like 2012R2 as most controllers should be able to be upgraded to at least 2016. DFL is set to 2025 on the domain <code>ad.cags2.local</code> allowing newer features and upgrades in 2025 to be used and compatible. 2 domains are used to test different domain interactions. <code>ad.cags2.local</code> is the parent domain while the child domain is <code>uk.ad.cags2.local</code>. There are multiple users that can be accessed through the PC but for simplicity it is not labeled.",
+      "note": null,
+      "picture": "0.png"
+    },
+    {
+      "type": "medium-section",
+      "title": "Initial Setup",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Configuring IP for Windows 10",
+          "text": "In windows 10, the IP was able to be configured using the Ethernet properties in the network and sharing center. I was able to set the Ip for both external and internal interfaces on the <code>uk.ad.cags2 local</code> DC and interfaces connecting to DC on the client PC.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "10.png",
+            "20.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Configuring IP for Windows 11",
+          "text": "On windows 11, the process was easier as I was able to do it directly on windows settings for both client PC and windows 2025 DC in <code>ad.cags2.local</code>.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "30.png",
+            "35.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Active Directory Domain Services Setup",
+          "text": "I first initialized AD DS for the parent domain <code>ad.cags2.local</code>.",
+          "note": null,
+          "picture": "40.png"
+        },
+        {
+          "type": "small-section",
+          "title": null,
+          "text": "I then initialized AD DS for the child domain <code>uk.ad.cags2.local</code>. Here, I was able to also set the DFL as the child domain to 2016.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "50.png",
+            "60.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "DHCP",
+          "text": "For both domains, I then initialized DHCP with its related settings so that their client can get an IP address and access the internet through the default gateway of their controller. This also allowed for testing to be conducted to see if active directory is accessible as intended.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "70.png",
+            "80.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "DHCP Scope",
+          "text": "I assigned DHCP scope and emitting the first 255 IPs and last 255 so I that I can use those when I need to in the future. The address was able to be distributed and was given to one of the clients with expiration.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "120.png",
+            "130.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Client Domain Controller Join",
+          "text": "I joined the client for each PC to the domain controller by the domain and renamed the PC using system properties. By doing so, I was able to log back in with the joined domain controller.",
+          "note": null,
+          "picture": "110.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "Active Directory Groups",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Users and Group Creation",
+          "text": "Groups allow for multiple users to be treated as one whether account users or service users. I wanted to create a group schema of AGDLP which means, accounts (A) go into global&nbsp; (G) group which goes into the domain local (DL) group, which then assigns their permissions (P). This schema allows for resources to be accessed across domains with replication occurring at the domain of the group created for domain local and global groups. Here, I created users and groups with their settings.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "90.png",
+            "100.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Folder Sharing to Groups",
+          "text": "When attempting to share the folder there was a lot of weird behavior. When attempting to do basic sharing, the shared folder was restricted to read-only even though I set the setting in both security tab and network file and folder sharing to full control. After trying numerous possibilities, the behavior was that both settings in security tab and advanced sharing applied only matching permissions. So, if 1 was read and write but the other was only read, then only read was applied. In addition, Network File and Folder Sharing is linked to the Security. If permission specified by the security tab then share is set to custom. So to refine, the permission of share that is linked to security tab, has permissions that will be applied depending on it being matched with the advanced sharing.",
+          "note": "In workgroup advanced sharing was unnecessary and when joining domain controller was when I labbed it out.",
+          "multiPicture": true,
+          "picture": [
+            "150.png",
+            "160.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Group Policy Managment",
+          "text": "I first went into group policy management, configured my child domain to show because by default it didn't show even though I'm in the child domain DC. Then I went into the group policy management editor of the default domain policy and configured password history to be 1 meaning cannot change password to the same current password and remember just 1 password for easier administration. In addition, password must meet complexity requirement was also disabled as for easier administration.",
+          "note": null,
+          "picture": "170.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Group Policy Object",
+          "text": "I created and configured a group policy object combined with file sharing to allow for wallpapers in the authenticated devices to be set to a wallpaper I want, which is <code>water.jpg</code>. After, I created a GPO, different configuration such as having no time limit on screen saver timeout. I then enforced the policy so that it is mandatory even if there are child OUs.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "180.png",
+            "190.png",
+            "200.png",
+            "205.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Group Policy Update",
+          "text": "Group Policy Update was also performed to apply the changes I configured to the computers inside the OU or what I did was manually apply it to the host run because firewall was likely blocking the update.",
+          "note": null,
+          "picture": "210.png"
+        },
+        {
+          "type": "small-section",
+          "title": "GPO Testing",
+          "text": "After applying the group policy, I signed out and signed back in and I was greeted with the wallpaper I set in my GPO.",
+          "note": null,
+          "picture": "220.png"
+        },
+        {
+          "type": "small-section",
+          "title": "DNS Conditional forwarder",
+          "text": "In order to access the PCs inside the other domain controller, I was presented with the options to either use the IP address or use the domain name. Because IP address keeps changing as DHCP assigns it, using domain name was the most reliable. Therefore, I configured DNS conditional forwarder to use the DNS of the other controller for both controllers so that I can resolve the IP address associated with domain names configured for them. <br>",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "255.png",
+            "256.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "AGDLP Setup",
+          "text": "I created a Important folder and gave access to it in the domain local group. This allowed for global group for any domain to use this folder if they become the member of the domain local group.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "265.png",
+            "270.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Routing",
+          "text": "When I first tested the AGDLP it didn't work. This was because although nslookup worked giving back an IP address, pining the given IP address didn't work as active directory did not route user traffic by default. So here, i configured, routing and remote access so that routing can happen and NAT can be used to access outside resources using the domain controller's IP address.",
+          "note": null,
+          "picture": "290.png"
+        },
+        {
+          "type": "small-section",
+          "title": "AGDLP Test",
+          "text": "After host being able to access the IP address it was able to access the DNS and then finally the folder was able to be accessed using the run command.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "295.png",
+            "300.png"
+          ]
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "Other Common User Administrative Tasks",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Finding users",
+          "text": "Here both users and groups are able to be found, allowing for easier administration.",
+          "note": null,
+          "picture": "310.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Disable/Enable Account",
+          "text": "An account can be disabled by right clicking on the user. This can be useful for temporarily or permanently blocking access from certain users for specific purposes like vacation or retirement.",
+          "note": null,
+          "multiPicture": true,
+          "picture": [
+            "315.png",
+            "320.png"
+          ]
+        },
+        {
+          "type": "small-section",
+          "title": "Unlocking account and Resetting Password",
+          "text": "One of the most common administrative task is to reset password for users either for onboarding purposes or because they forget. Also if they try to unlock the password more then the specified amount of times then their account is locked. Account getting locked can mean a security attack, but in most cases its just the user forgetting their password and retrying over and over until they lock themselves out. SO the resetting password and unlocking account is then here.",
+          "note": null,
+          "picture": "330.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "conclusion",
+      "title": null,
+      "text": "<div>Active directory is a immensely capable and what was covered was only a gist of it. Configuring groups and users along with OUs allowed me to grow confidence on active directory as what was done was quite simple and easy to understand. Being able to use different group types to make different domains and controllers work together to grant access was very interesting in the design perspective. Overall, I think active directory is a great tool to administer lots of users as it is simple yet effective and are harmonious with windows machines.</div>",
+      "note": null,
+      "picture": ""
+    }
+  ]
+}
