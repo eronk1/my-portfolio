@@ -14,35 +14,35 @@
     {
       "type": "overview",
       "title": null,
-      "text": "Windows workgroup is a convenient feature of windows home and other higher version of windows for file and folder sharing between devices. That's what I did for my desktop and laptop to allow folder and file sharing. In addition, I implemented security features so that unauthorized access isn't allowed.",
+      "text": "Windows Workgroup is a convenient feature of Windows Home and other higher versions of Windows for file and folder sharing between devices. That's what I did for my desktop and laptop to allow folder and file sharing. In addition, I implemented security features so that unauthorized access isn't allowed.",
       "note": null,
       "picture": "0.png"
     },
     {
       "type": "small-section",
       "title": "Workgroup assignment",
-      "text": "First, I went into system properties and assigned the system a workgroup called <code>CAG2</code> and gave it a name for eaiser visibility. This was done in both my desktop and laptop. By doing so, workgroup was configured after restarting the machines.",
+      "text": "First, I went into System Properties and assigned the system a workgroup called <code>CAG2</code> and gave it a name for easier visibility. This was done on both my desktop and laptop. By doing so, the workgroup was configured after restarting the machines.",
       "note": null,
       "picture": "10.png"
     },
     {
       "type": "small-section",
       "title": "User creation",
-      "text": "I created another user so that the devices that needs access to the shared folders can do so using this user credentials. Files can be shared using primary credentials but that will significantly compromise security if the authorized device is an attacker.",
+      "text": "I created another user so that the devices that need access to the shared folders can do so using this user's credentials. Files can be shared using primary credentials, but that would significantly compromise security if the authorized device is an attacker.",
       "note": null,
       "picture": "11-.png"
     },
     {
       "type": "small-section",
       "title": "Folder sharing",
-      "text": "I created a folder and went into the folder properties and configured it to share to a user that I just created. In this case that user is Public-access.",
+      "text": "I created a folder, went into the folder properties, and configured it to share with the user I just created. In this case, that user is Public-access.",
       "note": null,
       "picture": "12-SHare.png"
     },
     {
       "type": "small-section",
       "title": "Private Network",
-      "text": "I then went into network settings and changed the home network I was \nusing to private network so that I can transition into a private network\n while using my home network. I also gave private network permission to share files and folders and allow for device to discover and be discovered by others in the same workgroup. This can be done in public network, but that can compromise security once entering a untrusted network as public network is the default set. So by configuring private network to give permissions to file and folder share and discover, better security posture is achieved. This was all configured on windows 11 in the pictures but similar procedure was followed in windows 10.",
+      "text": "I then went into Network Settings and changed the home network I was using to a private network, so that I can transition into a private network while using my home network. I also gave the private network permission to share files and folders and allow for the device to discover and be discovered by others in the same workgroup. This can be done on a public network, but that can compromise security once entering an untrusted network, as a public network is the default. So, by configuring a private network to allow file and folder sharing and discovery, a better security posture is achieved. This was all configured on Windows 11 in the pictures, but a similar procedure was followed on Windows 10.",
       "note": null,
       "multiPicture": true,
       "picture": [
@@ -53,7 +53,7 @@
     {
       "type": "small-section",
       "title": "Testing",
-      "text": "I am able to access shared folders by providing the credentials i configured of username of Public-access and configured password.",
+      "text": "I am able to access shared folders by providing the credentials I configured of the username 'Public-access' and the configured password.",
       "note": null,
       "multiPicture": true,
       "picture": [
@@ -65,7 +65,7 @@
     {
       "type": "conclusion",
       "title": null,
-      "text": "Before I tried this lab, I was under the assumption that it will be complicated, but after learning about it and configuring it I came to realize both its simplicity and capability. Before I configured it on my personal devices, I transferred files and folder using a USB stick, but now I'm able to do it using workgroup which is much more convenient. Setting some solid security on it too gave me immense comfort, as I thought initially, that this will be completely insecure.",
+      "text": "Before I tried this lab, I was under the assumption that it would be complicated, but after learning about it and configuring it, I came to realize both its simplicity and capability. Before I configured it on my personal devices, I transferred files and folders using a USB stick, but now I'm able to do it using Workgroup, which is much more convenient. Setting some solid security on it also gave me immense comfort, as I initially thought that this would be completely insecure.",
       "note": null,
       "picture": ""
     }
