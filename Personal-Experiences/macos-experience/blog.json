@@ -1,0 +1,256 @@
+{
+  "headers": {
+    "created": "3/13/2025",
+    "updated": "3/13/2025",
+    "updateHistory": [
+      "3/13/2025"
+    ],
+    "title": "macOS Experience",
+    "picture": null,
+    "author": "Seon Kim",
+    "subject": "Server Errors"
+  },
+  "data": [
+    {
+      "type": "overview",
+      "title": null,
+      "text": "macOS is one of the most common operating systems in the world for its ease of use and its automatic integration with other apple products. So in this lab, I tried a variety of features and capabilities macOS offered and provided explanations for their purpose.",
+      "note": null,
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "macOS install",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Initial Disk Setup",
+          "text": "In order to install macOS, I first had to erase all the data and format it into the apple file system&nbsp; in order to be able to use it. I gave it a name and did just that.",
+          "note": null,
+          "picture": "10.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Install",
+          "text": "I tried multiple installations of macOS in Proxmox but it kept failing and either it got stuck in this screen for about an hour or it failed to boot afterwards. Therefore I decided to use VirtualBox instead and a older macOS version in order to get past this screen and be able to boot. But this process still took about a half an hour.",
+          "note": null,
+          "picture": "20.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Successful Install Test",
+          "text": "After install, I did the initial setup process such as entering my credential, preferred language and so on. Then I was logged in with my credential I setup and tested the internet connectivity and DNS by pinging outside servers like google and cloudflare.",
+          "note": "After login, it was pretty much a black screen for an additional 5 or so minutes before icons and the background showed up.",
+          "picture": "30.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "small-section",
+      "title": "System Preferences",
+      "text": "Here, I tried multiple different settings and customized it into my own personal environment such as changing the direction scroll is handled.",
+      "note": null,
+      "picture": "40.png"
+    },
+    {
+      "type": "medium-section",
+      "title": "Ethernet Adapter Configuration",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "My Configuration",
+          "text": "Here, I configured settings such as TCP/IP from DHCP&nbsp; to manual and set the IP address and default gateway. I also configured the DNS servers to use along with search domains so that I can perform tasks like ping without specifying the full domain if integrated into the active directory domain. The configuration was simple and very similar to windows configuration although the DNS search domain was something new it also offered in the general configuration.",
+          "note": null,
+          "picture": "50.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Testing Connectivity",
+          "text": "After the configuration, I pinged the domain <code>google.com</code> and it worked as expected.",
+          "note": null,
+          "picture": "60.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "Accessing Shared Files on Windows",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "File Sharing",
+          "text": "First in macOS I enabled file sharing to allow for folders and files to be shared onto it inside system preferences.",
+          "note": null,
+          "picture": "70.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Windows Folder",
+          "text": "In windows, I went into the properties of the folder I wanted to share, then with the share user a created allowed only that user to be able to access this folder using the share. This ultiamtely, reduced threat vector in windows because this folder is accessible from share by only 1 account. I also gave it full control so that this file can be read and modified from macOS.",
+          "note": null,
+          "picture": "90.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Connect to Windows using SMB",
+          "text": "After allowing for share, I then got the IP address of the windows using <code>ipconfig</code> then I clicked on <code>go &gt; connect</code> to server in macOS and entered the ip address using the SMB protocol as a link and connected to it.",
+          "note": null,
+          "picture": "100.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Credentials",
+          "text": "I then entered in the credentials I created for the user share in windows and accessed the folder.",
+          "note": null,
+          "picture": "110.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Access Success",
+          "text": "Here, I'm able to see and modify the folder and its file I created on windows. This was fairly simple, and very similar to windows workgroup configuration as only the last part which was using SMB to connect was different then the workgroup process.",
+          "note": null,
+          "picture": "140.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Computer Management",
+          "text": "In windows, I went into computer management to see the folders that are currently shared and see any open sessions. When connecting from macOS, I'm able to see the user the macOS connection is using.",
+          "note": null,
+          "picture": "150.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Computer Management Manage",
+          "text": "In here, I'm able to do things like close sessions of users.",
+          "note": null,
+          "picture": "152.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "medium-section",
+      "title": "Accessing Shared Files on macOS",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Text Edititor",
+          "text": "Using macOS text editor, I created a new file and placed it into the folder I created, gave it a name, and a tag. I put some text in so I can verify later on. <br>",
+          "note": "The macOS file creation was peculiar as in windows I can create it inside the folder itself, but in macOS the file is created and then placed into the folder I want to put it in.",
+          "picture": "155.png"
+        },
+        {
+          "type": "small-section",
+          "title": "User Creation",
+          "text": "Just like windows, I created a separate user for sharing files. Unlike windows, I was able to set it to sharing only allowing this user to be dedicated to only sharing. This was different from windows as this option was not even presented when I was configuring a user.",
+          "note": null,
+          "picture": "156.png"
+        },
+        {
+          "type": "small-section",
+          "title": "macOS Share",
+          "text": "I went into system preferences and shared files and folder using SMB for only the user mac-share. This configuration was to follow the zero trust least privilege principle.",
+          "note": null,
+          "picture": "157.png"
+        },
+        {
+          "type": "small-section",
+          "title": "File Sharing",
+          "text": "This time I went back into file sharing in macOS to share its folder macOS-file-share and no other folder. Only, this user can access it, not even with this user account. Least privilege, is used here again for this shared folder.",
+          "note": null,
+          "picture": "158.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Access",
+          "text": "I went back to my windows machine and accessed it using the search bar in windows and typed in the IP address of the macOS with the <code>\\\\</code> to access macOS. It then asked for the credentials so I entered the credentials for the mac-share user I created to access the folder in macOS.",
+          "note": null,
+          "picture": "159.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Folder Access Success",
+          "text": "<div>Here, I'm able to successfully access the folder I created in macOS from my windows machine along with its files.</div>",
+          "note": null,
+          "picture": "160.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "small-section",
+      "title": "Desktop",
+      "text": "macOS is unique from other OS I encountered because it allows for mission control. Desktop can be changed and different spaces can be created to allow for a more organized list of applications in use. In addition, I was also able to try a variety of key binds like <code>Ctrl+Up</code> Arrow to see applications and desktops, <code>Ctrl+Right Arrow</code> to switch desktops, and so on.",
+      "note": null,
+      "picture": "165.png"
+    },
+    {
+      "type": "small-section",
+      "title": "Finder",
+      "text": "I also made a general observation of finder. I realized it was really similar to windows and it is organized into categories like favorites, locations, and tags unlike windows which doesn't have such labels on it. I think organization was easier in macOS as favorites can be chosen and folders and files can be placed in categories easily. I was able to just drag folders into favorites and it was now in the favorites tab which made folder access much easier.",
+      "note": null,
+      "picture": "170.png"
+    },
+    {
+      "type": "medium-section",
+      "title": "Keychain",
+      "text": "",
+      "note": null,
+      "data": [
+        {
+          "type": "small-section",
+          "title": "Secure Notes",
+          "text": "In Keychain, there were multiple interesting options, among these were secure notes. This allowed me to store secure information in a note format and make it so that password is required to access it.",
+          "note": null,
+          "picture": "180.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Passwords",
+          "text": "I'm able to store passwords for websites or personal applications. In here I entered my credentials for my own website and stored it. Also below, it gave me the strength of my password so that I can adjust it as I see fit.",
+          "note": null,
+          "picture": "190.png"
+        },
+        {
+          "type": "small-section",
+          "title": "Password Access",
+          "text": "To access my password I had to enter the password of my user in macOS. <br>",
+          "note": null,
+          "picture": "200.png"
+        }
+      ],
+      "picture": ""
+    },
+    {
+      "type": "small-section",
+      "title": "FileVault",
+      "text": "<div>By default, much of the data in the physical disk is not encrypted. This allows for attackers with access to the physical device (e.g. if they steal labtop) to access the data without the password. So full disk encryption may be necessary in order to prevent such scenarios. Windows uses BitLocker while macOS uses FileVault to achieve such goal. The downside is it may take sometime depending on the hardware to encrypt and decrypt.</div><div><br></div>",
+      "note": null,
+      "picture": "210.png"
+    },
+    {
+      "type": "small-section",
+      "title": "Force Quit",
+      "text": "Another feature that is similar to windows in macOS is Force Quit. Which is similar to windows task manager. It allows for applications to relaunch or force it to stop along with being able to see which applications are running.",
+      "note": null,
+      "picture": "220.png"
+    },
+    {
+      "type": "conclusion",
+      "title": null,
+      "text": "Overall, macOS is really similar in structure to windows OS but with a easier GUI. It does this through features like Mission Control and its Spaces, tags and favorites in finder, and so on. By using macOS's features like FileVault and KeyChain I was also able to secure many aspects and because of such features I realized that's why macOS is much more resistant to hacking then other OS like Windows. Other than the super long installation it took, macOS is a top-tier OS for its security and simplicity.",
+      "note": null,
+      "picture": ""
+    }
+  ]
+}
