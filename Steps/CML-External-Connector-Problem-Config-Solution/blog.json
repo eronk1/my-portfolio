@@ -71,7 +71,7 @@
       "picture": "9.png"
     },
     {
-      "type": "medium-section",
+      "type": "small-section",
       "title": "My Experience",
       "text": "There was a lot of unexpected behavior when protected was configured. ARP requests where coming from both sides when I tried to ping from both sides but the bridge was not allowing them to meet. Cisco had really little documentation that helped me solve this problem so I had to do a lot of searching and troubleshooting and this solution worked.",
       "note": null,
