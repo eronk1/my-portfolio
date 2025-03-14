@@ -274,10 +274,12 @@ function RenderSection({ section, getImage, getText, isRoot = false }) {
                 <span dangerouslySetInnerHTML={createMarkup(title)} />
               </LargeText>
             )}
-            {renderText}
-            {renderPicture()}
-            {renderNotes()}
-            {renderNestedSections()}
+            <MediumSection>
+              {renderText}
+              {renderPicture()}
+              {renderNotes()}
+              {renderNestedSections()}
+            </MediumSection>
           </LargeSection>
         );
       } else {
